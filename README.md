@@ -1,6 +1,6 @@
 # Pickle Tours — Route 66 Pickleball Tour (marketing site)
 
-Phase 1 static marketing site + waitlist for the Racon Tours Route 66 pickleball product.
+Phase 1 static marketing site + waitlist for the Pickle Tours Route 66 pickleball product.
 
 ## Stack
 - Pure static HTML/CSS/JS, no build step
