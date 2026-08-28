@@ -84,7 +84,10 @@
   .wordmark{
     font-family:'Alfa Slab One',Georgia,serif;font-size:1.25rem;
     text-decoration:none;color:var(--green);line-height:1;
+    display:flex;align-items:center;gap:.6rem;
   }
+  .wordmark img{display:block;width:42px;height:42px}
+  footer .wordmark img{width:34px;height:34px}
   .nav-links{display:flex;align-items:center;gap:1.6rem}
   .nav-links a{
     font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
@@ -247,7 +250,10 @@
 
 <nav>
   <div class="nav-inner">
-    <a class="wordmark" href="#top">Pickle&nbsp;Tours</a>
+    <a class="wordmark" href="#top">
+      <img src="/assets/pickle-tours-mark.svg" alt="" width="42" height="42">
+      <span>Pickle&nbsp;Tours</span>
+    </a>
     <div class="nav-links">
       <a href="#route">The Route</a>
       <a href="#tournament">The Pickleball</a>
