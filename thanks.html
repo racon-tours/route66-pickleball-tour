@@ -3,37 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're on the list — Pickle Tours</title>
+<title>You're on the list — Route 66 Pickleball Tour</title>
 <meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Oswald:wght@600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@700&family=Merriweather:wght@400&display=swap" rel="stylesheet">
 <style>
-  :root{--paper:#FAF7F0;--ink:#26241F;--court:#2D6E9E;--court-deep:#1F5378;--line:#F4EFE3;--route:#C6472E;--shield:#E2A93B}
+  :root{--green:#04421D;--optic:#E7FB20;--chalk:#F7F5EE;--ink:#14211F;--green-line:#1C6234}
   *{margin:0;padding:0;box-sizing:border-box}
   body{
-    font-family:'Source Serif 4',Georgia,serif;background:var(--court);color:var(--line);
+    font-family:'Merriweather',Georgia,serif;background:var(--green);color:var(--chalk);
     min-height:100vh;display:grid;place-items:center;padding:2rem;text-align:center;
-    position:relative;overflow:hidden;
+    position:relative;overflow:hidden;font-size:18px;line-height:1.75;
   }
-  body::before,body::after{content:"";position:absolute;left:0;right:0;height:5px;background:var(--line);opacity:.5}
-  body::before{top:3rem}body::after{bottom:3rem}
-  .label{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--shield)}
-  h1{font-family:'Ultra',serif;font-weight:400;font-size:clamp(2rem,6vw,3.6rem);margin:1rem 0 1.2rem;text-shadow:4px 4px 0 var(--court-deep)}
-  p{max-width:32rem;margin:0 auto 2rem;font-size:1.1rem;line-height:1.65}
+  body::before,body::after{content:"";position:absolute;left:0;right:0;height:4px;background:var(--green-line)}
+  body::before{top:3rem}
+  body::after{bottom:3rem}
+  .badge{width:180px;height:180px;display:block;margin:0 auto 1.75rem}
+  .label{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.16em;font-size:1rem;color:var(--chalk);
+  }
+  h1{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:clamp(2.2rem,6vw,3.6rem);
+     line-height:1.12;margin:.9rem 0 1.3rem}
+  p.body{max-width:34rem;margin:0 auto 2.2rem}
   a.btn{
-    display:inline-block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.14em;font-size:.85rem;text-decoration:none;background:var(--route);color:var(--line);
-    padding:.75rem 1.5rem;box-shadow:3px 3px 0 var(--ink);
+    display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:.12em;font-size:1.05rem;text-decoration:none;
+    background:var(--optic);color:var(--green);padding:.85rem 1.8rem;box-shadow:4px 4px 0 var(--ink);
+    transition:transform .12s ease,box-shadow .12s ease;
   }
-  a.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+  a.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+  a.btn:focus-visible{outline:3px solid var(--chalk);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){a.btn{transition:none}}
 </style>
 </head>
 <body>
   <main>
-    <p class="label">Position secured</p>
-    <h1>You're on the list.</h1>
-    <p>We'll email you the 2027 departure dates and pricing before booking opens to anyone else. Until then — work on that third-shot drop.</p>
+    <img class="badge" src="/assets/route66-pickleball-tour-2027-badge.png"
+         alt="Route 66 Pickleball Tour 2027" width="180" height="180">
+    <p class="label">You're on the list</p>
+    <h1>Consider your spot held.</h1>
+    <p class="body">We'll send you the 2027 departure dates and the price before booking opens to
+      anyone else. Until then — work on that third-shot drop.</p>
     <a class="btn" href="/">Back to the road</a>
   </main>
 </body>
