@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Route 66 Pickleball Tour — Pickle Tours</title>
-<meta name="description" content="Nine mornings of pickleball and 2,400 miles of Route 66. Ten days by motorcoach from Chicago to Santa Monica, 32 players per departure. Sixteen departures in 2027.">
+<meta name="description" content="Ten pickleball sessions and 2,400 miles of Route 66. Ten days by motorcoach between Chicago and Santa Monica, every level welcome, 32 players per departure. Sixteen departures in 2027.">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
 <link rel="icon" href="/assets/favicon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <meta property="og:title" content="Route 66 Pickleball Tour — Pickle Tours">
-<meta property="og:description" content="Nine mornings of pickleball and 2,400 miles of Route 66. Chicago to Santa Monica, 32 players per departure.">
+<meta property="og:description" content="Ten pickleball sessions and 2,400 miles of Route 66. Chicago to Santa Monica, every level welcome, 32 players per departure.">
 <meta property="og:image" content="/assets/route66-pickleball-tour-2027-badge.png">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -160,33 +160,60 @@
     color:var(--green);display:block;margin:.1rem 0 .35rem;
   }
   .stop .cap-detail{font-size:15px;line-height:1.55;font-style:italic;color:var(--muted)}
+  .stop .cap-play{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.1em;font-size:.85rem;color:var(--clay);display:block;margin-top:.55rem;
+  }
+  .stop .cap-play.rest{color:var(--muted)}
+
+  /* ---------- direction tabs ---------- */
+  .tabs{display:flex;flex-wrap:wrap;margin:2rem 0 0;border-bottom:3px solid var(--green)}
+  .tab{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.11em;font-size:1.05rem;cursor:pointer;text-align:left;
+    background:none;border:none;border-bottom:5px solid transparent;
+    padding:.75rem 1.3rem .65rem;color:var(--muted);margin-bottom:-3px;
+  }
+  .tab .dir{
+    display:block;text-transform:none;letter-spacing:.02em;font-weight:600;
+    font-size:.92rem;color:var(--muted);margin-top:.15rem;
+  }
+  .tab[aria-selected="true"]{color:var(--green);border-bottom-color:var(--clay)}
+  .tab[aria-selected="true"] .dir{color:var(--ink)}
+  .tab:hover{color:var(--clay)}
+  @media(max-width:600px){.tab{flex:1 1 100%;padding-left:0}}
   .scroll-hint{
     font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
     letter-spacing:.14em;font-size:.95rem;color:var(--muted);margin-top:.25rem;
   }
   @media(min-width:1560px){.scroll-hint{display:none}}
 
+  /* ---------- terrain ---------- */
+  .terrain{padding:4.5rem 0}
+  .terrain .wrap{max-width:56rem}
+  .terrain .label{color:var(--clay)}
+  .passage{
+    font-family:'Alfa Slab One',Georgia,serif;font-weight:400;
+    font-size:clamp(1.45rem,3vw,2.05rem);line-height:1.38;color:var(--green);
+    margin:0 0 1.3rem;
+  }
+  .kicker{font-style:italic;font-size:17px;color:var(--muted);margin:0}
+
   /* ---------- tournament ---------- */
   .tournament{background:var(--green);color:var(--chalk)}
   .tournament h2{color:var(--chalk)}
   .tournament .label{color:var(--chalk)}
-  .tournament .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
   .tournament p{color:var(--chalk)}
-  .format-list{list-style:none;border-top:4px solid var(--optic);margin-top:.4rem}
-  .format-list li{
-    padding:1.2rem 0;border-bottom:1px solid var(--green-line);
-    display:grid;grid-template-columns:7rem 1fr;gap:1.2rem;align-items:baseline;
+  .tournament .intro{max-width:44rem}
+  .highlights{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem 2.6rem;margin-top:3rem;
   }
-  .format-list .when{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.11em;font-size:1rem;color:var(--chalk);
-  }
-  .format-list b{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.08em;font-size:1.15rem;display:block;margin-bottom:.25rem;color:var(--chalk);
-  }
-  .format-list span.body{font-size:16px;line-height:1.65;color:var(--chalk-dim)}
-  @media(max-width:880px){.tournament .wrap{grid-template-columns:1fr;gap:2.25rem}}
+  .hi{border-top:3px solid var(--green-line);padding-top:1.1rem}
+  .hi:first-child{border-top-color:var(--optic)}
+  .hi h3{font-size:1.22rem;color:var(--chalk);margin-bottom:.5rem;line-height:1.25}
+  .hi p{font-size:16px;line-height:1.65;color:var(--chalk-dim);margin:0}
+  @media(max-width:880px){.highlights{grid-template-columns:1fr 1fr;gap:2rem}}
+  @media(max-width:600px){.highlights{grid-template-columns:1fr}}
 
   /* ---------- season ---------- */
   .season .wrap{max-width:800px}
@@ -238,10 +265,12 @@
 
   /* ---------- motion ---------- */
   #routePath{stroke-dasharray:1;stroke-dashoffset:1}
-  .drawn #routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
+  .routePath{stroke-dasharray:1;stroke-dashoffset:1}
+  .drawn .routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     #routePath{stroke-dashoffset:0 !important;transition:none !important}
+    .routePath{stroke-dashoffset:0 !important;transition:none !important}
     .btn{transition:none}
   }
 </style>
@@ -256,6 +285,7 @@
     </a>
     <div class="nav-links">
       <a href="#route">The Route</a>
+      <a href="#country">The Country</a>
       <a href="#tournament">The Pickleball</a>
       <a href="#season">2027 Season</a>
       <a class="btn small clay" href="#waitlist">Join the Waitlist</a>
@@ -271,9 +301,9 @@
          alt="Route 66 Pickleball Tour 2027" width="200" height="200">
     <p class="label">Chicago to Santa Monica &middot; Sixteen departures in 2027</p>
     <h1>2,400 miles.<br>10 days.<br>31 new friends.</h1>
-    <p class="lede">Nine mornings of pickleball and 2,400 miles of Route 66. Thirty-two players board a
-      motorcoach in Chicago and play their way to the Santa Monica Pier — team doubles, blind doubles
-      and two full resort days for the bracket.</p>
+    <p class="lede">Ten days between the BEGIN sign in Chicago and the Pacific, and ten pickleball
+      sessions on courts booked for us alone. Beginner or 4.0, trophy hunter or don't-keep-score
+      &mdash; there's something for you in every one.</p>
     <a class="btn" href="#waitlist">Join the 2027 waitlist</a>
   </div>
 </header>
@@ -291,35 +321,39 @@
   <div class="wrap">
     <span class="label">The idea</span>
     <h2>A road trip you play through.</h2>
-    <p>Most pickleball trips are a resort with courts attached. This one moves. You board in Chicago
-      with thirty-one other players and step off at the Pacific ten days later, having played your way
-      across eight states with dozens of different partners and opponents.</p>
-    <p>The draw is not made before you arrive. Seeds come from watching you play on Day 2, and the
-      completed bracket goes up on an easel in the hotel lobby that same evening.</p>
-    <p>Nobody sits out. Players knocked out of the bracket still play every session — clinics and
-      recreational play with a local club pro in every region.</p>
-    <p>Your travel partner does not have to play. Up to eight non-playing companion seats ride, stay
-      and eat with the tour on every departure.</p>
+    <p>Most pickleball trips are a resort with courts attached. This one moves. Thirty-two players
+      board; friends emerge 2,400 miles later.</p>
+    <p>Mornings are courts. Afternoons are the road. Partners don't have to play &mdash; eight
+      companion seats ride with every departure.</p>
   </div>
 </section>
 
 <section class="route-section" id="route">
   <div class="wrap">
     <div class="route-head">
-      <span class="label">The route &middot; westbound</span>
-      <h2>Get your kicks, then get your serves in.</h2>
-      <p>Every departure runs the real road — the neon, the diners, the desert — with morning play at
-        quality courts along the way. Eastbound departures run the same route in reverse, starting at
-        the Santa Monica Pier and finishing at the BEGIN sign in Chicago.</p>
+      <span class="label">The route</span>
+      <h2>One road, both directions.</h2>
+      <p>It's the same tour either way &mdash; same resorts, same landmarks, ten sessions each.
+        Half the departures start in Chicago, half at the Santa Monica Pier. Pick the date that
+        fits.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose a direction">
+      <button class="tab" id="tab-wb" role="tab" type="button" aria-selected="true" aria-controls="panel-wb">
+        Westbound<span class="dir">Chicago to Santa Monica</span>
+      </button>
+      <button class="tab" id="tab-eb" role="tab" type="button" aria-selected="false" aria-controls="panel-eb" tabindex="-1">
+        Eastbound<span class="dir">Santa Monica to Chicago</span>
+      </button>
     </div>
   </div>
-  <div class="wrap">
-    <div class="strip-scroller" tabindex="0" role="group" aria-label="Route map — scroll horizontally">
-      <div class="strip" id="strip">
+
+  <div class="wrap" id="panel-wb" role="tabpanel" aria-labelledby="tab-wb">
+    <div class="strip-scroller" tabindex="0" role="group" aria-label="Westbound route map — scroll horizontally">
+      <div class="strip">
         <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
           <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
                 fill="none" stroke="#14211F" stroke-width="10" stroke-linecap="round"/>
-          <path id="routePath"
+          <path class="routePath"
                 d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
                 fill="none" stroke="#E9603E" stroke-width="6" stroke-linecap="round" pathLength="1"/>
           <g fill="#F7F5EE" stroke="#14211F" stroke-width="2">
@@ -334,48 +368,135 @@
           <span class="cap-city">Chicago, Illinois</span>
           <span class="cap-landmark">The BEGIN sign</span>
           <p class="cap-detail">a sidewalk photo on Adams Street, then the welcome reception</p>
+          <span class="cap-play rest">Arrival day</span>
         </div>
         <div class="stop">
           <span class="marker">Day 2</span>
           <span class="cap-city">St. Louis, Missouri</span>
-          <span class="cap-landmark">Evaluation day</span>
-          <p class="cap-detail">the morning that sets the seeds; the bracket goes up at check-in</p>
+          <span class="cap-landmark">The Mississippi</span>
+          <p class="cap-detail">indoor courts on the way out of Chicago, the big river by evening</p>
+          <span class="cap-play">Morning session</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 3&ndash;4</span>
           <span class="cap-city">Grand Lake, Oklahoma</span>
           <span class="cap-landmark">The dome</span>
-          <p class="cap-detail">two nights at the lake — round of 16 and quarterfinals</p>
+          <p class="cap-detail">a Missouri morning on the way down, then two nights at the lake</p>
+          <span class="cap-play">Three sessions</span>
         </div>
         <div class="stop">
           <span class="marker">Day 5</span>
           <span class="cap-city">Amarillo, Texas</span>
           <span class="cap-landmark">Cadillac Ranch</span>
           <p class="cap-detail">spray paint at golden hour, steak afterwards</p>
+          <span class="cap-play rest">The road all day</span>
         </div>
         <div class="stop">
           <span class="marker">Day 6</span>
           <span class="cap-city">Albuquerque, New Mexico</span>
           <span class="cap-landmark">Green chile</span>
           <p class="cap-detail">a 1939 Conrad Hilton original downtown, and dinner off the old road</p>
+          <span class="cap-play">Morning session</span>
         </div>
         <div class="stop">
           <span class="marker">Day 7</span>
           <span class="cap-city">Flagstaff, Arizona</span>
           <span class="cap-landmark">Ponderosa country</span>
           <p class="cap-detail">seven thousand feet, pines and painted desert on the horizon</p>
+          <span class="cap-play">Morning session</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 8&ndash;9</span>
           <span class="cap-city">La Quinta, California</span>
           <span class="cap-landmark">Under the lights</span>
-          <p class="cap-detail">semifinals in the morning, finals staged at golden hour</p>
+          <p class="cap-detail">a Flagstaff morning, then the old road down to two nights in the desert</p>
+          <span class="cap-play">Three sessions &middot; finals</span>
         </div>
         <div class="stop">
           <span class="marker">Day 10</span>
           <span class="cap-city">Santa Monica, California</span>
           <span class="cap-landmark">End of the Trail</span>
           <p class="cap-detail">the pier, the Pacific, the group photo — paddles up</p>
+          <span class="cap-play">Farewell session</span>
+        </div>
+      </div>
+    </div>
+    <p class="scroll-hint">&larr; Drag or scroll the map &rarr;</p>
+  </div>
+
+  <div class="wrap" id="panel-eb" role="tabpanel" aria-labelledby="tab-eb" hidden>
+    <div class="strip-scroller" tabindex="0" role="group" aria-label="Eastbound route map — scroll horizontally">
+      <div class="strip">
+        <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
+          <g transform="translate(1520,0) scale(-1,1)">
+            <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
+                  fill="none" stroke="#14211F" stroke-width="10" stroke-linecap="round"/>
+            <path class="routePath"
+                  d="M 1490 90 C 1385 45, 1187 80, 1187 80 S 896 85, 896 85 S 594 80, 594 80 S 312 85, 30 95"
+                  fill="none" stroke="#E9603E" stroke-width="6" stroke-linecap="round" pathLength="1"/>
+            <g fill="#F7F5EE" stroke="#14211F" stroke-width="2">
+              <circle cx="30" cy="95" r="7"/><circle cx="312" cy="85" r="7"/><circle cx="594" cy="80" r="10"/>
+              <circle cx="896" cy="85" r="7"/><circle cx="1187" cy="80" r="10"/><circle cx="1490" cy="90" r="7"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="stops">
+        <div class="stop">
+          <span class="marker">Day 1</span>
+          <span class="cap-city">Santa Monica, California</span>
+          <span class="cap-landmark">End of the Trail</span>
+          <p class="cap-detail">the sign on the pier in the last of the light, then the welcome reception</p>
+          <span class="cap-play rest">Arrival day</span>
+        </div>
+        <div class="stop anchor">
+          <span class="marker">Days 2&ndash;3</span>
+          <span class="cap-city">La Quinta, California</span>
+          <span class="cap-landmark">Under the lights</span>
+          <p class="cap-detail">a morning in Los Angeles, then east into the desert for two nights</p>
+          <span class="cap-play">Three sessions</span>
+        </div>
+        <div class="stop">
+          <span class="marker">Day 4</span>
+          <span class="cap-city">Flagstaff, Arizona</span>
+          <span class="cap-landmark">Ponderosa country</span>
+          <p class="cap-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</p>
+          <span class="cap-play rest">The road all day</span>
+        </div>
+        <div class="stop">
+          <span class="marker">Day 5</span>
+          <span class="cap-city">Albuquerque, New Mexico</span>
+          <span class="cap-landmark">Green chile</span>
+          <p class="cap-detail">a high-country morning, the Wigwam Motel at Holbrook, a 1939 Hilton downtown</p>
+          <span class="cap-play">Morning session</span>
+        </div>
+        <div class="stop">
+          <span class="marker">Day 6</span>
+          <span class="cap-city">Amarillo, Texas</span>
+          <span class="cap-landmark">Cadillac Ranch</span>
+          <p class="cap-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</p>
+          <span class="cap-play">Morning session</span>
+        </div>
+        <div class="stop anchor">
+          <span class="marker">Days 7&ndash;8</span>
+          <span class="cap-city">Grand Lake, Oklahoma</span>
+          <span class="cap-landmark">The dome</span>
+          <p class="cap-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</p>
+          <span class="cap-play">Three sessions &middot; finals</span>
+        </div>
+        <div class="stop">
+          <span class="marker">Day 9</span>
+          <span class="cap-city">St. Louis, Missouri</span>
+          <span class="cap-landmark">Challenge Day</span>
+          <p class="cap-detail">one last morning on the resort courts, then the Ozarks and the big river</p>
+          <span class="cap-play">Morning session</span>
+        </div>
+        <div class="stop">
+          <span class="marker">Day 10</span>
+          <span class="cap-city">Chicago, Illinois</span>
+          <span class="cap-landmark">The BEGIN sign</span>
+          <p class="cap-detail">a last St. Louis morning, then the sidewalk where the whole road starts</p>
+          <span class="cap-play">Morning session</span>
         </div>
       </div>
     </div>
@@ -383,28 +504,52 @@
   </div>
 </section>
 
+<section class="terrain" id="country">
+  <div class="wrap">
+    <span class="label">The country in between</span>
+    <p class="passage">From the rolling plains of the Midwest to the crystal-blue Pacific, across
+      the mountains and deserts that separate them &mdash; an American boulevard of hopes and
+      dreams for a hundred years.</p>
+    <p class="kicker">Mornings are pickleball. Afternoons are all of this, at ground level.</p>
+  </div>
+</section>
+
 <section class="tournament" id="tournament">
   <div class="wrap">
-    <div>
+    <div class="intro">
       <span class="label">The pickleball</span>
-      <h2>Two brackets. Nine mornings. Nobody on the sideline.</h2>
-      <p>You register alone — no partner required. Self-reported DUPR sizes the field; it does not set
-        the draw. The directors seed from what they watch at the Day-2 session, pair one with
-        thirty-two, two with thirty-one, and post the finished bracket at that night's check-in.</p>
-      <p>Two bracketed formats run the length of the route: team doubles, where you keep your partner,
-        and blind doubles, where partners are drawn fresh each round. Between them you play with and
-        against thirty-odd different people.</p>
-      <p>The bracket splits across two resorts — round of 16 and quarterfinals at the first,
-        semifinals and finals at the second, on one court with the whole tour watching. Singles runs
-        informally on resort free time: self-reported results, a bragging-rights table, no schedule.</p>
+      <h2>Ten sessions. Every level. Nobody on the sideline.</h2>
+      <p>Come alone or bring a partner &mdash; no rating gate, no minimum, nothing to qualify for.
+        The brackets are real and genuinely competitive. They are also not the plot.</p>
     </div>
-    <ul class="format-list">
-      <li><span class="when">Day 2</span><div><b>Evaluation session</b><span class="body">One morning at a club on the way out of town. The directors watch. The seeds come from this.</span></div></li>
-      <li><span class="when">Days 3&ndash;4</span><div><b>Opening residency</b><span class="body">Two nights at the lake resort — round of 16 in the morning, quarterfinals late afternoon.</span></div></li>
-      <li><span class="when">Days 5&ndash;7</span><div><b>The corridor</b><span class="body">Morning club sessions across Texas, New Mexico and Arizona: a clinic with a local pro, then recreational play. Afternoons belong to the road.</span></div></li>
-      <li><span class="when">Days 8&ndash;9</span><div><b>Championship resort</b><span class="body">Semifinals in the morning. Finals staged at golden hour under the lights.</span></div></li>
-      <li><span class="when">Day 10</span><div><b>End of the trail</b><span class="body">A farewell session on the resort courts, then the Pacific. The last competitive moment is already behind you.</span></div></li>
-    </ul>
+    <div class="highlights">
+      <div class="hi">
+        <h3>Two brackets</h3>
+        <p>Blind-draw doubles deals you a new partner every round. Team doubles keeps the one you
+          brought &mdash; come as a pair, compete as a pair.</p>
+      </div>
+      <div class="hi">
+        <h3>No rating gate</h3>
+        <p>Beginners and 4.0s play the same mornings. Nothing to qualify for.</p>
+      </div>
+      <div class="hi">
+        <h3>A pro every session</h3>
+        <p>A local club pro at every stop. Clinic, then play.</p>
+      </div>
+      <div class="hi">
+        <h3>You play with everyone</h3>
+        <p>With and against thirty-odd different people by the last stop.</p>
+      </div>
+      <div class="hi">
+        <h3>Nobody sits out</h3>
+        <p>Lose in a bracket and you still play every session after. Nobody&rsquo;s tour ends in
+          elimination.</p>
+      </div>
+      <div class="hi">
+        <h3>Finals under the lights</h3>
+        <p>One court, golden hour, the whole tour watching.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -412,17 +557,18 @@
   <div class="wrap">
     <span class="label">2027 season</span>
     <h2>Sixteen departures. Two directions.</h2>
-    <p>The inaugural season runs March through October 2027. Westbound departures leave Chicago on a
-      Sunday. Eastbound departures leave the Santa Monica Pier on a Tuesday and finish at the BEGIN
-      sign in Chicago. Dates and pricing go to the waitlist first.</p>
+    <p>March through October 2027. Westbound leaves Chicago on Sundays; eastbound leaves the Santa
+      Monica Pier on Tuesdays. Same tour either way &mdash; pick the date that fits. Dates and
+      pricing go to the waitlist first.</p>
     <dl class="season-facts">
       <div><dt>Season</dt><dd>March &ndash; October 2027</dd></div>
-      <div><dt>Departures</dt><dd>Sixteen — eight westbound, eight eastbound</dd></div>
+      <div><dt>Departures</dt><dd>Sixteen &mdash; eight each direction</dd></div>
       <div><dt>Duration</dt><dd>10 days, 9 nights, Chicago &#8646; Santa Monica</dd></div>
-      <div><dt>Field</dt><dd>32 players per departure, all levels welcome</dd></div>
+      <div><dt>Field</dt><dd>32 players per departure &mdash; beginner to 4.0+, no rating gate, no partner needed</dd></div>
+      <div><dt>Play</dt><dd>Ten sessions, mornings only, on courts booked for the tour alone</dd></div>
       <div><dt>Companions</dt><dd>Up to 8 non-playing companion seats per departure</dd></div>
       <div><dt>Season capacity</dt><dd>512 player seats — and there will not be more</dd></div>
-      <div><dt>Included</dt><dd>Motorcoach, hotels, court time in every region, club-pro coaching, and most meals</dd></div>
+      <div><dt>Included</dt><dd>Motorcoach, hotels, all ten sessions, club-pro coaching, and most meals</dd></div>
       <div><dt>Pricing</dt><dd>Announced to the waitlist ahead of public release</dd></div>
     </dl>
   </div>
@@ -496,14 +642,41 @@
 
 <script>
   (function(){
-    var strip=document.getElementById('strip');
-    if(!strip){return}
-    if(!('IntersectionObserver' in window)){strip.classList.add('drawn');return}
-    new IntersectionObserver(function(entries,obs){
-      entries.forEach(function(e){
-        if(e.isIntersecting){strip.classList.add('drawn');obs.disconnect()}
-      })
-    },{threshold:.4}).observe(strip);
+    /* draw the route line when a strip becomes visible */
+    var strips=[].slice.call(document.querySelectorAll('.strip'));
+    function draw(el){el.classList.add('drawn')}
+    if(!('IntersectionObserver' in window)){strips.forEach(draw)}
+    else{
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){if(e.isIntersecting){draw(e.target);io.unobserve(e.target)}})
+      },{threshold:.4});
+      strips.forEach(function(el){io.observe(el)});
+    }
+
+    /* direction tabs */
+    var tabs=[].slice.call(document.querySelectorAll('.tab'));
+    if(!tabs.length){return}
+    function select(tab,focus){
+      tabs.forEach(function(t){
+        var panel=document.getElementById(t.getAttribute('aria-controls'));
+        var on=(t===tab);
+        t.setAttribute('aria-selected',on?'true':'false');
+        t.tabIndex=on?0:-1;
+        if(panel){panel.hidden=!on}
+      });
+      var p=document.getElementById(tab.getAttribute('aria-controls'));
+      if(p){var st=p.querySelector('.strip'); if(st){draw(st)}}
+      if(focus){tab.focus()}
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){select(t,false)});
+      t.addEventListener('keydown',function(e){
+        var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+        if(!d){return}
+        e.preventDefault();
+        select(tabs[(i+d+tabs.length)%tabs.length],true);
+      });
+    });
   })();
 </script>
 
