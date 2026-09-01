@@ -205,15 +205,20 @@
   .tournament .label{color:var(--chalk)}
   .tournament p{color:var(--chalk)}
   .tournament .intro{max-width:44rem}
-  .highlights{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem 2.6rem;margin-top:3rem;
-  }
-  .hi{border-top:3px solid var(--green-line);padding-top:1.1rem}
-  .hi:first-child{border-top-color:var(--optic)}
-  .hi h3{font-size:1.22rem;color:var(--chalk);margin-bottom:.5rem;line-height:1.25}
-  .hi p{font-size:16px;line-height:1.65;color:var(--chalk-dim);margin:0}
-  @media(max-width:880px){.highlights{grid-template-columns:1fr 1fr;gap:2rem}}
-  @media(max-width:600px){.highlights{grid-template-columns:1fr}}
+  .halves{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem 3rem;margin-top:2.4rem}
+  .half{border-top:4px solid var(--optic);padding-top:1.3rem}
+  .half:last-child{border-top-color:var(--clay)}
+  .half h3{font-size:1.45rem;color:var(--chalk);margin-bottom:.9rem;line-height:1.3}
+  .half p{font-size:16.5px;line-height:1.7;color:var(--chalk)}
+  @media(max-width:820px){.halves{grid-template-columns:1fr;gap:2.2rem}}
+
+  /* ---------- comfort ---------- */
+  .comfort .label{color:var(--clay)}
+  .comforts{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;margin-top:2.4rem}
+  .comfort-item{border-top:3px solid var(--green);padding-top:1rem}
+  .comfort-item h3{font-size:1.25rem;color:var(--green);margin-bottom:.5rem}
+  .comfort-item p{font-size:16.5px;line-height:1.68;margin:0}
+  @media(max-width:720px){.comforts{grid-template-columns:1fr}}
 
   /* ---------- season ---------- */
   .season .wrap{max-width:800px}
@@ -516,38 +521,49 @@
 
 <section class="tournament" id="tournament">
   <div class="wrap">
-    <div class="intro">
-      <span class="label">The pickleball</span>
-      <h2>Ten sessions. Every level. Nobody on the sideline.</h2>
-      <p>Come alone or bring a partner &mdash; no rating gate, no minimum, nothing to qualify for.
-        The brackets are real and genuinely competitive. They are also not the plot.</p>
+    <span class="label">The pickleball</span>
+    <h2>Ten sessions. Every level. Nobody on the sideline.</h2>
+    <div class="halves">
+      <div class="half">
+        <h3>Come to win.</h3>
+        <p>Local pros at every club session prepare you to claw your way through the doubles,
+          blind doubles, and singles brackets with one-on-one instruction. Seeds come from
+          watching you actually play, not from your self-reported rating. It ends on one court at
+          golden hour, under the lights, with the whole tour on the sideline &mdash; and the
+          awards dinner after.</p>
+        <p>Come as a pair, compete as a pair &mdash; bring your partner and the (non-blind)
+          doubles bracket is yours together, start to finish. Come alone and the draw deals you
+          in.</p>
+      </div>
+      <div class="half">
+        <h3>The real fun starts when you get knocked out of the bracket.</h3>
+        <p>Lose on Tuesday, you're back on court Wednesday &mdash; clinics with local pros, rec
+          play, and games that matter to nobody but the four people laughing through them. No
+          rating gate, no minimum, no partner required. By the pier you'll have played with (and
+          against) all 31 of your new friends.</p>
+      </div>
     </div>
-    <div class="highlights">
-      <div class="hi">
-        <h3>Two brackets</h3>
-        <p>Blind-draw doubles deals you a new partner every round. Team doubles keeps the one you
-          brought &mdash; come as a pair, compete as a pair.</p>
+  </div>
+</section>
+
+<section class="comfort" id="comfort">
+  <div class="wrap">
+    <span class="label">Comfort off the court</span>
+    <h2>Ten days, zero roughing it.</h2>
+    <div class="comforts">
+      <div class="comfort-item">
+        <h3>Historic hotels</h3>
+        <p>Every night in a hotel with a story &mdash; a lakeside resort under a landmark dome, a
+          1939 Hilton original, a desert resort with courts under the lights.</p>
       </div>
-      <div class="hi">
-        <h3>No rating gate</h3>
-        <p>Beginners and 4.0s play the same mornings. Nothing to qualify for.</p>
+      <div class="comfort-item">
+        <h3>The motorcoach</h3>
+        <p>Executive recliners and legroom for days. The windows do the entertaining.</p>
       </div>
-      <div class="hi">
-        <h3>A pro every session</h3>
-        <p>A local club pro at every stop. Clinic, then play.</p>
-      </div>
-      <div class="hi">
-        <h3>You play with everyone</h3>
-        <p>With and against thirty-odd different people by the last stop.</p>
-      </div>
-      <div class="hi">
-        <h3>Nobody sits out</h3>
-        <p>Lose in a bracket and you still play every session after. Nobody&rsquo;s tour ends in
-          elimination.</p>
-      </div>
-      <div class="hi">
-        <h3>Finals under the lights</h3>
-        <p>One court, golden hour, the whole tour watching.</p>
+      <div class="comfort-item">
+        <h3>The table</h3>
+        <p>Breakfast and lunch every day, plus the celebration dinner. The other evenings you're
+          loose in the best roadfood country in America.</p>
       </div>
     </div>
   </div>
@@ -568,7 +584,7 @@
       <div><dt>Play</dt><dd>Ten sessions, mornings only, on courts booked for the tour alone</dd></div>
       <div><dt>Companions</dt><dd>Up to 8 non-playing companion seats per departure</dd></div>
       <div><dt>Season capacity</dt><dd>512 player seats — and there will not be more</dd></div>
-      <div><dt>Included</dt><dd>Motorcoach, hotels, all ten sessions, club-pro coaching, and most meals</dd></div>
+      <div><dt>Included</dt><dd>Motorcoach, hotels, all ten sessions, club-pro coaching, breakfast and lunch daily, and the celebration dinner</dd></div>
       <div><dt>Pricing</dt><dd>Announced to the waitlist ahead of public release</dd></div>
     </dl>
   </div>
