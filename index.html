@@ -239,6 +239,36 @@
   /* ---------- motion ---------- */
   #routePath{stroke-dasharray:1;stroke-dashoffset:1}
   .drawn #routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
+  /* ---------- photography ---------- */
+  figure{margin:0}
+  .ph{display:block;width:100%;height:auto;object-fit:cover;background:var(--rule)}
+  .cap{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:.12em;font-size:.92rem;line-height:1.5;
+    display:block;margin-top:.75rem;color:var(--muted);
+  }
+
+  /* full-bleed band between sections */
+  .band{position:relative;line-height:0;background:var(--ink)}
+  .band .ph{height:clamp(260px,42vh,440px)}
+  .band figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:4rem 0 1.25rem;
+    background:linear-gradient(to top,rgba(20,33,31,.85),rgba(20,33,31,0));
+  }
+  .band .cap{color:var(--chalk);margin-top:0}
+
+  /* concept: photo beside the copy */
+  .concept.has-media .wrap{
+    max-width:var(--max);
+    display:grid;grid-template-columns:.82fr 1fr;gap:3rem;align-items:center;
+  }
+  .concept.has-media .ph{aspect-ratio:1/1;box-shadow:12px 12px 0 var(--optic)}
+  @media(max-width:860px){
+    .concept.has-media .wrap{grid-template-columns:1fr;gap:2.2rem}
+    .concept.has-media .ph{aspect-ratio:4/3;box-shadow:8px 8px 0 var(--optic)}
+  }
+
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     #routePath{stroke-dashoffset:0 !important;transition:none !important}
@@ -287,8 +317,17 @@
   </div>
 </div>
 
-<section class="concept">
+<section class="concept has-media">
   <div class="wrap">
+    <figure>
+      <img class="ph" src="/assets/img/coach-boarding-800.webp"
+           srcset="/assets/img/coach-boarding-400.webp 400w,
+                   /assets/img/coach-boarding-800.webp 800w"
+           sizes="(max-width:860px) 92vw, 40vw"
+           width="1024" height="1024" loading="lazy" decoding="async"
+           alt="Two guests stepping down from the motorcoach door, paddles in hand.">
+    </figure>
+    <div>
     <span class="label">The idea</span>
     <h2>A road trip you play through.</h2>
     <p>Most pickleball trips are a resort with courts attached. This one moves. You board in Chicago
@@ -300,8 +339,20 @@
       recreational play with a local club pro in every region.</p>
     <p>Your travel partner does not have to play. Up to eight non-playing companion seats ride, stay
       and eat with the tour on every departure.</p>
+    </div>
   </div>
 </section>
+
+<figure class="band">
+  <img class="ph" src="/assets/img/route66-sign-flagstaff-1200.webp"
+       srcset="/assets/img/route66-sign-flagstaff-400.webp 400w,
+               /assets/img/route66-sign-flagstaff-800.webp 800w,
+               /assets/img/route66-sign-flagstaff-1200.webp 1200w,
+               /assets/img/route66-sign-flagstaff-1800.webp 1800w"
+       sizes="100vw" width="1800" height="1202" loading="lazy" decoding="async"
+       alt="A two-lane stretch of Route 66 curving through northern Arizona, with a stone Route 66 marker and the San Francisco Peaks beyond.">
+  <figcaption><div class="wrap"><span class="cap">Day 7 &middot; Northern Arizona &mdash; seven thousand feet of ponderosa country</span></div></figcaption>
+</figure>
 
 <section class="route-section" id="route">
   <div class="wrap">
@@ -407,6 +458,7 @@
     </ul>
   </div>
 </section>
+
 
 <section class="season" id="season">
   <div class="wrap">
