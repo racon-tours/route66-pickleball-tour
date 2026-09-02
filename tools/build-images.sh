@@ -12,8 +12,9 @@
 
 set -euo pipefail
 
-LIB="/Users/ibmike/Library/CloudStorage/GoogleDrive-global.racon.tours@gmail.com/My Drive/02 - Business Units/03 - pickle.tours/Route66/Images"
-DESK="/Users/ibmike/Desktop/N&Co/2 - pickle-tours/2-Marketing/Route66"
+# Local photo library locations; override per machine, e.g. R66_LIB=... ./tools/build-images.sh
+LIB="${R66_LIB:-$HOME/Library/CloudStorage/GoogleDrive/My Drive/02 - Business Units/03 - pickle.tours/Route66/Images}"
+DESK="${R66_DESK:-$HOME/Desktop/N&Co/2 - pickle-tours/2-Marketing/Route66}"
 OUT="$(cd "$(dirname "$0")/.." && pwd)/assets/img"
 WIDTHS=(400 800 1200 1800)
 QUALITY=80
