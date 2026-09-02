@@ -649,8 +649,7 @@
     <h2>Get on the list.</h2>
     <p class="lede">Waitlist members see the dates and the price first, and choose a departure before
       booking opens to the public. No deposit, no obligation.</p>
-    <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-      <input type="hidden" name="form-name" value="waitlist">
+    <form name="waitlist" method="POST" action="/api/waitlist">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="two-col">
         <div class="field">

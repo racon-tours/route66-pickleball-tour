@@ -48,7 +48,13 @@
     <h1>Consider your spot held.</h1>
     <p class="body">We'll send you the 2027 departure dates and the price before booking opens to
       anyone else. Until then — work on that third-shot drop.</p>
+    <p class="body" id="fallback" hidden>One thing: our mailing list didn't answer just now, so if you
+      don't hear from us within a week, email <a href="mailto:hello@pickle.tours">hello@pickle.tours</a>
+      and we'll add you by hand.</p>
     <a class="btn" href="/">Back to the road</a>
   </main>
+  <script>
+    if(/[?&]status=error/.test(location.search)){document.getElementById('fallback').hidden=false}
+  </script>
 </body>
 </html>

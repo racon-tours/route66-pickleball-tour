@@ -1,6 +1,10 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
+# Keep repo tooling and source out of the deployed site
 [[headers]]
   for = "/*"
   [headers.values]
