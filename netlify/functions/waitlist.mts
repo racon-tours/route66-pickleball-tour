@@ -4,8 +4,8 @@ import type { Context, Config } from "@netlify/functions";
  * Waitlist form → MailerLite.
  *
  * The form on index.html posts here natively (no JS required). On success the
- * subscriber is upserted into the Route 66 Waitlist group with the three
- * optional answers stored as custom fields, then the browser is redirected to
+ * subscriber (email only) is upserted into the Route 66 Waitlist group, then
+ * the browser is redirected to
  * /thanks.html. On any failure the visitor still lands on /thanks.html, but
  * with ?status=error so the page can show a "we'll email you" fallback, and
  * the failure is logged so it shows in the Netlify function log.
@@ -40,8 +40,6 @@ export default async (req: Request, _context: Context) => {
   if (clean(form.get("bot-field"))) return redirect(THANKS);
 
   const email = clean(form.get("email")).toLowerCase();
-  const first = clean(form.get("first_name"), 80);
-  const last = clean(form.get("last_name"), 80);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return redirect(`${THANKS}?status=error`);
   }
@@ -52,14 +50,6 @@ export default async (req: Request, _context: Context) => {
     console.error("waitlist: MAILERLITE_API_KEY / MAILERLITE_GROUP_ID not set");
     return redirect(`${THANKS}?status=error`);
   }
-
-  const fields: Record<string, string> = { name: first, last_name: last };
-  const skill = clean(form.get("skill_level"));
-  const direction = clean(form.get("direction"));
-  const seat = clean(form.get("seat_type"));
-  if (skill) fields.skill_level = skill;
-  if (direction) fields.direction = direction;
-  if (seat) fields.seat_type = seat;
 
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
 
@@ -73,7 +63,6 @@ export default async (req: Request, _context: Context) => {
       },
       body: JSON.stringify({
         email,
-        fields,
         groups: [groupId],
         status: "active",
         ip_address: ip,

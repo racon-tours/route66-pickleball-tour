@@ -671,48 +671,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       booking opens to the public. No deposit, no obligation.</p>
     <form name="waitlist" method="POST" action="/api/waitlist">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
-      <div class="two-col">
-        <div class="field">
-          <label for="first">First name</label>
-          <input id="first" name="first_name" type="text" autocomplete="given-name" required>
-        </div>
-        <div class="field">
-          <label for="last">Last name</label>
-          <input id="last" name="last_name" type="text" autocomplete="family-name" required>
-        </div>
-      </div>
       <div class="field">
         <label for="email">Email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <div class="two-col">
-        <div class="field">
-          <label for="rating">Skill level <span class="opt">(optional)</span></label>
-          <select id="rating" name="skill_level">
-            <option value="">Select one</option>
-            <option>New to pickleball</option>
-            <option>2.5 &ndash; 3.0</option>
-            <option>3.0 &ndash; 3.5</option>
-            <option>3.5 &ndash; 4.0</option>
-            <option>4.0+</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="direction">Direction <span class="opt">(optional)</span></label>
-          <select id="direction" name="direction">
-            <option value="">No preference</option>
-            <option>Westbound — Chicago to Santa Monica</option>
-            <option>Eastbound — Santa Monica to Chicago</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label for="seat">Seat type <span class="opt">(optional)</span></label>
-        <select id="seat" name="seat_type">
-          <option value="">Not sure yet</option>
-          <option>Player seat</option>
-          <option>Player seat + non-playing companion</option>
-        </select>
       </div>
       <button class="btn" type="submit">Join the 2027 waitlist</button>
       <p class="fine">We'll only email you about the tour. Unsubscribe anytime.</p>
