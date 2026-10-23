@@ -13,7 +13,8 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
 export default async (req: Request, ctx: Context) => {
   const want = Netlify.env.get("CLUB_ADMIN_KEY_SHA256");
   const got = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
-  if (!want || !got || (await sha256Hex(got)) !== want) return new Response("forbidden", { status: 403 });
+  if (!want) return new Response("forbidden: CLUB_ADMIN_KEY_SHA256 not set", { status: 403 });
+  if (!got || (await sha256Hex(got)) !== want.trim().toLowerCase()) return new Response("forbidden: bad key", { status: 403 });
 
   if (req.method === "GET") return Response.json(await listClubs(ctx));
   if (req.method !== "POST") return new Response("method", { status: 405 });
