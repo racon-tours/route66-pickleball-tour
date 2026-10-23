@@ -3,7 +3,7 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
 
 /**
  * /api/club-admin — used only by the Mac pipeline (~/dev/pickle-ops/clubs/clubs.py).
- * Auth: Bearer key. Netlify holds only its SHA-256 (CLUB_ADMIN_KEY_SHA256), so the key itself
+ * Auth: Bearer key. Only its SHA-256 is stored here (or in CLUB_ADMIN_KEY_SHA256), so the key itself
  * lives solely in ~/.config/racon/club-admin.secret on the Mac.
  *
  *   GET                                    → all club records
@@ -11,7 +11,9 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
  *   POST {action:"set", token, trello_card_id?, status?:"prospect"|"declined"}
  */
 export default async (req: Request, ctx: Context) => {
-  const want = Netlify.env.get("CLUB_ADMIN_KEY_SHA256");
+  // SHA-256 of the 36-byte random key in ~/.config/racon/club-admin.secret. A fingerprint of a
+  // high-entropy key is safe to publish; the env var overrides it if the key is ever rotated.
+  const want = Netlify.env.get("CLUB_ADMIN_KEY_SHA256") || "08e23bbf18fecb6f413fcda4b52e91d1581b58be67473b9eb805f02a9e65f746";
   const got = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
   if (!want) return new Response("forbidden: CLUB_ADMIN_KEY_SHA256 not set", { status: 403 });
   if (!got || (await sha256Hex(got)) !== want.trim().toLowerCase()) return new Response("forbidden: bad key", { status: 403 });
