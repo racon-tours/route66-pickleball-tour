@@ -14,7 +14,7 @@ Live at https://route66pickleballtour.com
 | Key | Value |
 |---|---|
 | `MAILERLITE_API_KEY` | MailerLite API token (secret) |
-| `MAILERLITE_GROUP_ID` | `197519394240201970` — Route 66 Waitlist group |
+| `MAILERLITE_GROUP_ID` | `202160777372632936` — Route 66 Waitlist group |
 
 ## Deploy
 **Continuous deployment.** Netlify builds every push to `main` on
