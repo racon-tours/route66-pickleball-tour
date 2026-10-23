@@ -25,3 +25,21 @@ Local check: `netlify dev` (needs the env vars above in `.env` or `netlify env:i
 
 ## Phase 2 (booking)
 Replace the waitlist section CTA with the Bokun booking widget embed; everything else stays.
+
+## Club affiliate pages
+Pickleball clubs refer members with a code (e.g. `MPCFAM`) and get their own page at `/<slug>`.
+
+| Path | What |
+|---|---|
+| `/club-preview/<token>` | Private, noindex preview linked from the outreach email |
+| `/join/<token>` | Four-step sign-up: A page address, B code, C agreement, D MailerLite opt-in |
+| `/<slug>` | Live club page (only once the club finishes sign-up); waitlist form tags signups with `referral_club` |
+| `/api/club-admin` | Mac pipeline only (`~/dev/pickle-ops/clubs/clubs.py`) |
+| `/club-terms.html` | Club Referral Agreement — **draft until counsel signs off** |
+
+Data lives in Netlify Blobs: store `clubs` in production, `clubs-preview` everywhere else.
+Code: `netlify/lib/` (data + page templates), `netlify/functions/club-*.mts`.
+
+Env vars: `CLUB_ADMIN_KEY_SHA256` (fingerprint of the key in `~/.config/racon/club-admin.secret`),
+`CLUB_REGISTRATION_OPEN=true` to open sign-up in production (leave unset until the agreement is final),
+optional `CLUB_DISCOUNT_TEXT` (default "$500 per player").

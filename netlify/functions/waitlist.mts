@@ -52,6 +52,8 @@ export default async (req: Request, _context: Context) => {
   }
 
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
+  // Club pages post their members' code so each signup is credited to the referring club.
+  const club = clean(form.get("club"), 20).toUpperCase().replace(/[^A-Z0-9]/g, "");
 
   try {
     const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
@@ -64,6 +66,7 @@ export default async (req: Request, _context: Context) => {
       body: JSON.stringify({
         email,
         groups: [groupId],
+        ...(club ? { fields: { referral_club: club } } : {}),
         status: "active",
         ip_address: ip,
         subscribed_at: new Date().toISOString().replace("T", " ").slice(0, 19),
