@@ -4,9 +4,10 @@ import type { Context, Config } from "@netlify/functions";
  * Waitlist form → MailerLite.
  *
  * The form on index.html posts here natively (no JS required). On success the
- * subscriber (email only) is upserted into the Route 66 Waitlist group, then
- * the browser is redirected to
- * /thanks.html. On any failure the visitor still lands on /thanks.html, but
+ * subscriber (email only) is upserted into the Route 66 Waitlist group as
+ * "unconfirmed" so MailerLite sends its double opt-in email (requires
+ * "Double opt-in for API and integrations" ON in MailerLite), then the browser
+ * is redirected to /thanks.html, which tells them to check their email. On any failure the visitor still lands on /thanks.html, but
  * with ?status=error so the page can show a "we'll email you" fallback, and
  * the failure is logged so it shows in the Netlify function log.
  *
@@ -67,7 +68,7 @@ export default async (req: Request, _context: Context) => {
         email,
         groups: [groupId],
         ...(club ? { fields: { referral_club: club } } : {}),
-        status: "active",
+        status: "unconfirmed",
         ip_address: ip,
         subscribed_at: new Date().toISOString().replace("T", " ").slice(0, 19),
       }),
