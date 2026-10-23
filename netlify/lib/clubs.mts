@@ -38,6 +38,7 @@ export interface ClubRecord {
   suggested_code: string;      // full code incl. suffix, e.g. MPCFAM
   status: Status;
   trello_card_id?: string;
+  meta?: Record<string, string>; // pipeline bookkeeping (drafted_at, subject, card_id, activated_at…)
   created_at: string;
   updated_at: string;
   registration?: {

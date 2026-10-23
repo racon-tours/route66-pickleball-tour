@@ -85,7 +85,7 @@ export function clubPage(c: ClubRecord, mode: "live" | "preview", joinHref?: str
     : `<p class="hint">(Members will sign up here for departure dates and booking-day reminders.)</p>`;
   const body = `${banner}
 <header class="hero"><div class="wrap">
-  <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-2027-badge.png" alt="Route 66 Pickleball Tour 2027" width="96" height="96"></div>
+  <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
   <span class="script">Welcome, ${name} players</span>
   <h1>Get your kicks — and your dinks — on Route 66.</h1>
   <p>Ten days by motorcoach between Chicago and Santa Monica, playing pickleball the whole way. Your club has a members-only rate.</p>
@@ -123,7 +123,7 @@ export function joinPage(c: ClubRecord, open: boolean, error?: string) {
   const closed = open ? "" : `<div class="notice">Sign-up opens once the club agreement is final. You can look around — we'll email you when it's ready.</div>`;
   const body = `${closed}
 <header class="hero"><div class="wrap">
-  <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-2027-badge.png" alt="Route 66 Pickleball Tour 2027" width="96" height="96"></div>
+  <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
   <h1>Set up ${name}'s club page</h1>
   <p>Four quick steps. When you finish, your page goes live and your members' code starts working at booking.</p>
 </div></header>

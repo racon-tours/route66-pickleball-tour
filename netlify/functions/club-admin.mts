@@ -8,7 +8,7 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
  *
  *   GET                                    → all club records
  *   POST {action:"upsert", club:{...}}     → create/update a prospect (never touches registration)
- *   POST {action:"set", token, trello_card_id?, status?:"prospect"|"declined"}
+ *   POST {action:"set", token, trello_card_id?, meta?:{...}, status?:"prospect"|"declined"}
  */
 export default async (req: Request, ctx: Context) => {
   // SHA-256 of the 36-byte random key in ~/.config/racon/club-admin.secret. A fingerprint of a
@@ -40,6 +40,7 @@ export default async (req: Request, ctx: Context) => {
     } as ClubRecord;
     if (prev?.registration) rec.registration = prev.registration;
     if (prev?.trello_card_id) rec.trello_card_id = prev.trello_card_id;
+    if (prev?.meta) rec.meta = prev.meta;
     await putClub(ctx, rec);
     return Response.json(rec);
   }
@@ -48,6 +49,10 @@ export default async (req: Request, ctx: Context) => {
     const rec = await getClub(ctx, body.token ?? "");
     if (!rec) return new Response("not found", { status: 404 });
     if (typeof body.trello_card_id === "string") rec.trello_card_id = body.trello_card_id;
+    if (body.meta && typeof body.meta === "object") {
+      rec.meta = { ...(rec.meta ?? {}) };
+      for (const [k, v] of Object.entries(body.meta)) if (typeof v === "string") rec.meta[k.slice(0, 40)] = v.slice(0, 500);
+    }
     if (body.status === "declined" || body.status === "prospect") {
       // Declining a live club takes its page down and frees its address + code.
       if (rec.registration && body.status === "declined") {
