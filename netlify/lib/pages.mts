@@ -44,7 +44,8 @@ input[type=text],input[type=email]{width:100%;font:400 1rem Merriweather,serif;p
 .ok{color:var(--green-line);font-weight:700}.bad{color:#B3261E;font-weight:700}
 .step{background:var(--white);border-left:6px solid var(--optic);padding:1.4rem 1.4rem 1.6rem;margin:1.2rem 0;box-shadow:0 1px 0 var(--rule)}
 .step h2{font-size:1.5rem}
-.prefix{display:flex;align-items:stretch}.prefix span{display:flex;align-items:center;padding:0 .7rem;background:var(--green);color:var(--white);font:700 1rem 'Barlow Condensed';white-space:nowrap}
+.prefix{display:flex;align-items:stretch;flex-wrap:wrap}.prefix input{flex:1 1 10rem;min-width:0;width:auto}.prefix span{display:flex;align-items:center;padding:.5rem .7rem;background:var(--green);color:var(--white);font:700 1rem 'Barlow Condensed';overflow-wrap:anywhere}
+h1,h2,p,label{overflow-wrap:break-word}
 .check{display:flex;gap:.7rem;align-items:flex-start}.check input{margin-top:.45rem;width:20px;height:20px;flex:none}
 footer{padding:2rem 0 3rem;font-size:15px;color:var(--muted)}
 @media(max-width:600px){.marks img,.clublogo,.monogram{height:72px}.hero .wrap{padding:2rem 16px 2.6rem}}
