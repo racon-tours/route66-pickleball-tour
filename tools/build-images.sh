@@ -23,7 +23,6 @@ mkdir -p "$OUT"
 
 MANIFEST=$(cat <<'EOF'
 $DESK/picklebus-branded.png|coach-boarding
-$LIB/Hotels/little_america_flagstaff/little_america_flagstaff_05_route66-sign-flagstaff-approach.jpg|route66-sign-flagstaff
 EOF
 )
 

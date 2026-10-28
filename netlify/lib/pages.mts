@@ -17,7 +17,7 @@ h1,h2{font-family:'Alfa Slab One',serif;font-weight:400;line-height:1.1;margin:.
 .script{font-family:Yesteryear,cursive;font-size:clamp(28px,4vw,40px);color:var(--optic);line-height:1}
 .wrap{max-width:62rem;margin:0 auto;padding:0 16px}
 .notice{background:var(--orange);color:var(--white);text-align:center;padding:.7rem 16px;font:700 1rem/1.4 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase}
-.hero{position:relative;color:var(--white);background:var(--green) url(/assets/img/route66-sign-flagstaff-1200.webp) center/cover;}
+.hero{position:relative;color:var(--white);background:var(--green);}
 .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,66,29,.82),rgba(4,66,29,.95))}
 .hero .wrap{position:relative;padding:3rem 16px 3.5rem;display:grid;gap:1.6rem}
 .marks{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
