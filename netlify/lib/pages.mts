@@ -48,6 +48,8 @@ input[type=text],input[type=email]{width:100%;font:400 1rem Merriweather,serif;p
 h1,h2,p,label{overflow-wrap:break-word}
 .check{display:flex;gap:.7rem;align-items:flex-start}.check input{margin-top:.45rem;width:20px;height:20px;flex:none}
 footer{padding:2rem 0 3rem;font-size:15px;color:var(--muted)}
+.sot-phone{margin:0 0 .6rem;font-weight:700;font-size:clamp(1.3rem,3.6vw,1.7rem);line-height:1.2}.sot-phone a{text-decoration:none}
+.sot-legal{margin:.9rem 0 0;font-size:15px;line-height:1.5}
 @media(max-width:600px){.marks img,.clublogo,.monogram{height:72px}.hero .wrap{padding:2rem 16px 2.6rem}}
 `;
 
@@ -65,8 +67,10 @@ function clubMark(c: ClubRecord) {
   return `<span class="monogram" aria-hidden="true">${esc(initials)}</span>`;
 }
 
-const FOOT = `<footer><div class="wrap">Tours are sold and operated by Nichols &amp; Company dba Pickle Dot Tours, 4303 McPherson Ave, St. Louis MO 63108 ·
-<a href="https://pickle.tours/terms">Terms</a> · <a href="https://pickle.tours/privacy">Privacy</a> · 1-888-774-DINK</div></footer>`;
+const FOOT = `<footer><div class="wrap"><p class="sot-phone"><a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
+Tours are sold and operated by Nichols &amp; Company dba Pickle Dot Tours, 4303 McPherson Ave, St. Louis MO 63108 &middot;
+<a href="https://pickle.tours/terms">Terms</a> &middot; <a href="https://pickle.tours/privacy">Privacy</a>
+<p class="sot-legal">California Seller of Travel CST 2175274-50 &middot; Washington Seller of Travel UBI 606297094 &middot; Registration as a seller of travel does not constitute approval by the State of California.</p></div></footer>`;
 
 /** The club's landing page. mode=preview adds a not-public banner and swaps the form for a note. */
 export function clubPage(c: ClubRecord, mode: "live" | "preview", joinHref?: string) {
