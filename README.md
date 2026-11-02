@@ -26,6 +26,12 @@ Local check: `netlify dev` (needs the env vars above in `.env` or `netlify env:i
 ## Phase 2 (booking)
 Replace the waitlist section CTA with the Bokun booking widget embed; everything else stays.
 
+## Travel advisor sign-up
+`netlify/functions/advisor-signup.mts` serves `POST /api/advisor-signup`, the target of the form at
+https://pickle.tours/advisors. It saves each advisor to Netlify Blobs (store `advisors`, key
+`advisor/<email>`) and adds them to MailerLite group "Pickle Dot Tours — Travel Advisors", then
+redirects to https://pickle.tours/advisors-thanks. Interim until advisors can self-register in Tour Amigo.
+
 ## Club affiliate pages
 Pickleball clubs refer members with a code (e.g. `MPCFAM`) and get their own page at `/<slug>`.
 
