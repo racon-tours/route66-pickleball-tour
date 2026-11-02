@@ -48,8 +48,14 @@ input[type=text],input[type=email]{width:100%;font:400 1rem Merriweather,serif;p
 h1,h2,p,label{overflow-wrap:break-word}
 .check{display:flex;gap:.7rem;align-items:flex-start}.check input{margin-top:.45rem;width:20px;height:20px;flex:none}
 footer{padding:2rem 0 3rem;font-size:15px;color:var(--muted)}
-.sot-phone{margin:0 0 .6rem;font-weight:700;font-size:clamp(1.3rem,3.6vw,1.7rem);line-height:1.2}.sot-phone a{text-decoration:none}
-.sot-legal{margin:.9rem 0 0;font-size:15px;line-height:1.5}
+footer.pdt-foot .pdt-grid{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1.5rem 2.5rem}
+footer.pdt-foot .pdt-legal{flex:1 1 280px;order:1;margin:0;font-size:10px;line-height:1.6;letter-spacing:.01em}
+footer.pdt-foot .pdt-right{flex:0 1 auto;order:2;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:.75rem}
+footer.pdt-foot .pdt-right nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem 1.1rem}
+footer.pdt-foot .sot-phone{margin:0;font-weight:700;font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.2;letter-spacing:.01em}
+footer.pdt-foot .sot-phone a{text-decoration:none}
+footer.pdt-foot .pdt-logo{width:220px;max-width:100%;height:auto;display:block}
+@media (max-width:640px){footer.pdt-foot .pdt-right{order:0;align-items:flex-start;text-align:left}footer.pdt-foot .pdt-right nav{justify-content:flex-start}}
 @media(max-width:600px){.marks img,.clublogo,.monogram{height:72px}.hero .wrap{padding:2rem 16px 2.6rem}}
 `;
 
@@ -67,10 +73,16 @@ function clubMark(c: ClubRecord) {
   return `<span class="monogram" aria-hidden="true">${esc(initials)}</span>`;
 }
 
-const FOOT = `<footer><div class="wrap"><p class="sot-phone"><a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
-Tours are sold and operated by Nichols &amp; Company dba Pickle Dot Tours, 4303 McPherson Ave, St. Louis MO 63108 &middot;
-<a href="https://pickle.tours/terms">Terms</a> &middot; <a href="https://pickle.tours/privacy">Privacy</a>
-<p class="sot-legal">California Seller of Travel CST 2175274-50 &middot; Washington Seller of Travel UBI 606297094 &middot; Registration as a seller of travel does not constitute approval by the State of California.</p></div></footer>`;
+const FOOT = `<footer class="pdt-foot">
+  <div class="wrap pdt-grid">
+    <p class="pdt-legal">Pickle Dot Tours | St. Louis, MO USA<br>CA Registered Seller of Travel CST 2175274-50<br>WA Seller of Travel UBI 606297094<br>FL Seller of Travel Pending<br>Registration as a Seller of Travel does not constitute approval by the State of California.<br>&copy; 2026 Nichols &amp; Company</p>
+    <div class="pdt-right">
+      <nav aria-label="Footer"><a href="mailto:hello@pickle.tours">hello@pickle.tours</a> <a href="https://pickle.tours/terms">Terms</a> <a href="https://pickle.tours/privacy">Privacy</a></nav>
+      <p class="sot-phone"><a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
+      <img class="pdt-logo" src="/assets/pdt-wordmark-green.png" alt="Pickle Dot Tours" width="640" height="164">
+    </div>
+  </div>
+</footer>`;
 
 /** The club's landing page. mode=preview adds a not-public banner and swaps the form for a note. */
 export function clubPage(c: ClubRecord, mode: "live" | "preview", joinHref?: string) {
