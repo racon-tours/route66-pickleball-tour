@@ -31,6 +31,9 @@ Replace the waitlist section CTA with the Bokun booking widget embed; everything
 https://pickle.tours/advisors. It saves each advisor to Netlify Blobs (store `advisors`, key
 `advisor/<email>`) and adds them to MailerLite group "Pickle Dot Tours — Travel Advisors", then
 redirects to https://pickle.tours/advisors-thanks. Interim until advisors can self-register in Tour Amigo.
+In production it also opens a card on Trello board "Travel Advisors" (list Registered) when
+`TRELLO_KEY` + `TRELLO_TOKEN` are set, and emails mike@pickle.tours via Resend when `RESEND_API_KEY`
+is set (optional `TRELLO_ADVISOR_LIST_ID`, `ADVISOR_ALERT_TO`).
 
 ## Club affiliate pages
 Pickleball clubs refer members with a code (e.g. `MPCFAM`) and get their own page at `/<slug>`.

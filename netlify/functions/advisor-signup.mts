@@ -123,6 +123,48 @@ export default async (req: Request, ctx: Context) => {
     console.error("advisor-signup: MailerLite failed", err);
   }
 
+  const summary = [
+    `${rec.first_name} ${rec.last_name} — ${rec.agency || "(no agency)"}`,
+    `Host: ${rec.host || "-"}   Advisor ID: ${rec.advisor_id || "-"}`,
+    `Email: ${rec.email}   Phone: ${rec.phone || "-"}`,
+    `Address: ${[rec.street, rec.city, rec.state, rec.zip, rec.country].filter(Boolean).join(", ")}`,
+    `Webinar invite: ${rec.webinar}`,
+    `Submitted: ${rec.submitted_at}`,
+    ``,
+    `Next: create the Tour Amigo distribution partner (group "Fora Travel Advisors" if Fora) and a user login, then move this card to Portal Sent.`,
+  ].join("\n");
+
+  // Trello card on the Travel Advisors board (only when the Trello credentials are set).
+  const tk = Netlify.env.get("TRELLO_KEY"), tt = Netlify.env.get("TRELLO_TOKEN");
+  if (prod && tk && tt) {
+    const list = Netlify.env.get("TRELLO_ADVISOR_LIST_ID") || "6ae9107428beed63b46602df";
+    const q = new URLSearchParams({ key: tk, token: tt, idList: list, pos: "top",
+      name: `${rec.first_name} ${rec.last_name} — ${rec.agency || rec.host || "Advisor"}`, desc: summary });
+    try {
+      const r = await fetch(`https://api.trello.com/1/cards?${q}`, { method: "POST" });
+      if (!r.ok) console.error(`advisor-signup: Trello ${r.status} ${(await r.text()).slice(0, 300)}`);
+    } catch (err) { console.error("advisor-signup: Trello failed", err); }
+  }
+
+  // Email alert to Mike via Resend (only when the key is set).
+  const rk = Netlify.env.get("RESEND_API_KEY");
+  if (prod && rk) {
+    try {
+      const r = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${rk}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: "Pickle Dot Tours <noreply@pickle.tours>",
+          to: [Netlify.env.get("ADVISOR_ALERT_TO") || "mike@pickle.tours"],
+          reply_to: rec.email,
+          subject: `New travel advisor: ${rec.first_name} ${rec.last_name} (${rec.host || "no host"})`,
+          text: summary,
+        }),
+      });
+      if (!r.ok) console.error(`advisor-signup: Resend ${r.status} ${(await r.text()).slice(0, 300)}`);
+    } catch (err) { console.error("advisor-signup: Resend failed", err); }
+  }
+
   return redirect(saved || listed ? DONE : `${DONE}?status=error`);
 };
 
