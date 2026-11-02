@@ -1,13 +1,13 @@
 #!/Users/ibmike/.venvs/racon/bin/python3
 """
 brand-coach-badge.py — replace the third-party coach nameplate in picklebus.png
-with a Pickle Tours badge.
+with a Pickle Dot Tours badge.
 
 Two operations on the coach side panel:
   1. The lower model-number text is painted out using per-row colour sampled
      from clean panel to its left, with matched film grain and a feathered
      edge so the repair does not read as a flat patch.
-  2. The manufacturer nameplate is covered by a Pickle Tours plaque — Pickle
+  2. The manufacturer nameplate is covered by a Pickle Dot Tours plaque — Pickle
      Green field, chrome-style edge, ball-and-cucumber mark in Optic Yellow,
      wordmark in Barlow Condensed Bold.
 
@@ -76,7 +76,7 @@ def paint_out(img):
 
 
 def build_plaque(w, h):
-    """Pickle Tours nameplate, rendered at SS scale then downsampled."""
+    """Pickle Dot Tours nameplate, rendered at SS scale then downsampled."""
     W, H = w * SS, h * SS
     p = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(p)

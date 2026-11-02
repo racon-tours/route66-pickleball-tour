@@ -124,7 +124,7 @@ export function clubPage(c: ClubRecord, mode: "live" | "preview", joinHref?: str
     <h2>Lock in the ${name} rate.</h2>
     ${form}
   </section>
-  <p class="hint" style="margin-top:1.4rem">${name} is a referral partner of Pickle Tours and does not sell or operate this tour. Club codes don't combine with other offers.</p>
+  <p class="hint" style="margin-top:1.4rem">${name} is a referral partner of Pickle Dot Tours and does not sell or operate this tour. Club codes don't combine with other offers.</p>
 </main>${FOOT}`;
   return shell(`${c.club_name} × Route 66 Pickleball Tour`, body, {
     noindex: mode === "preview",

@@ -21,7 +21,7 @@ const registrationOpen = (ctx: Context) =>
   !isProduction(ctx) || Netlify.env.get("CLUB_REGISTRATION_OPEN") === "true";
 
 const ML = "https://connect.mailerlite.com/api";
-const ML_GROUP = "Pickle Tours — Club Affiliates";
+const ML_GROUP = "Pickle Dot Tours — Club Affiliates";
 
 async function ml(path: string, init: RequestInit = {}) {
   const key = Netlify.env.get("MAILERLITE_API_KEY");

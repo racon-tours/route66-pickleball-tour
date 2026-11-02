@@ -11,7 +11,7 @@ DESC = ("A 10-day guided pickleball tour down Route 66 between Chicago and Santa
 
 ld = [
  {"@context":"https://schema.org","@type":"Organization","@id":"https://pickle.tours/#org",
-  "name":"Pickle Tours","legalName":"Nichols & Company dba Pickle Dot Tours",
+  "name":"Pickle Dot Tours","legalName":"Nichols & Company dba Pickle Dot Tours",
   "url":"https://pickle.tours","logo":"https://pickle.tours/assets/favicon-512.png",
   "email":"hello@pickle.tours","telephone":"+1-888-774-3465",
   "address":{"@type":"PostalAddress","streetAddress":"4303 McPherson Ave","addressLocality":"St. Louis",
@@ -60,12 +60,12 @@ s = re.sub(r'<title>.*?</title>', f'<title>{TITLE}</title>', s, count=1)
 s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{DESC}">', s, count=1)
 s = s.replace('<meta property="og:image" content="/assets/route66-pickleball-tour-2027-badge.png">',
               f'<meta property="og:image" content="{SITE}/assets/route66-pickleball-tour-2027-badge.png">')
-s = s.replace('<meta property="og:title" content="Route 66 Pickleball Tour — Pickle Tours">',
+s = s.replace('<meta property="og:title" content="Route 66 Pickleball Tour — Pickle Dot Tours">',
               f'<meta property="og:title" content="{TITLE}">')
 s = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{DESC}">', s, count=1)
 extra = (f'<link rel="canonical" href="{SITE}/">\n'
          f'<meta property="og:url" content="{SITE}/">\n'
-         '<meta property="og:site_name" content="Pickle Tours">\n'
+         '<meta property="og:site_name" content="Pickle Dot Tours">\n'
          '<meta property="og:image:alt" content="Route 66 Pickleball Tour 2027 badge">\n'
          '<meta name="twitter:card" content="summary_large_image">\n'
          f'<meta name="twitter:title" content="{TITLE}">\n'

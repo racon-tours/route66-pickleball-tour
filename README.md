@@ -1,12 +1,12 @@
-# Pickle Tours — Route 66 Pickleball Tour (marketing site)
+# Pickle Dot Tours — Route 66 Pickleball Tour (marketing site)
 
-Phase 1 static marketing site + waitlist for the Pickle Tours Route 66 pickleball product.
+Phase 1 static marketing site + waitlist for the Pickle Dot Tours Route 66 pickleball product.
 Live at https://route66pickleballtour.com
 
 ## Stack
 - Pure static HTML/CSS/JS, no build step
 - One Netlify Function, `netlify/functions/waitlist.mts`, serves `POST /api/waitlist`:
-  it adds the visitor to MailerLite (group "Pickle Tours — Route 66 Waitlist") with
+  it adds the visitor to MailerLite (group "Pickle Dot Tours — Route 66 Waitlist") with
   skill level / direction / seat type stored as custom fields, then redirects to `thanks.html`
 - `thanks.html` is the post-submit page; `?status=error` shows a fallback line if MailerLite was unreachable
 
