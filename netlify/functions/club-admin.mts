@@ -13,10 +13,12 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
 export default async (req: Request, ctx: Context) => {
   // SHA-256 of the 36-byte random key in ~/.config/racon/club-admin.secret. A fingerprint of a
   // high-entropy key is safe to publish; the env var overrides it if the key is ever rotated.
-  const want = Netlify.env.get("CLUB_ADMIN_KEY_SHA256") || "08e23bbf18fecb6f413fcda4b52e91d1581b58be67473b9eb805f02a9e65f746";
+  // CLUB_ADMIN_KEY_SHA256 may list several comma-separated fingerprints (one key per Mac).
+  const want = (Netlify.env.get("CLUB_ADMIN_KEY_SHA256") || "08e23bbf18fecb6f413fcda4b52e91d1581b58be67473b9eb805f02a9e65f746")
+    .split(",").map((h) => h.trim().toLowerCase()).filter(Boolean);
   const got = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
-  if (!want) return new Response("forbidden: CLUB_ADMIN_KEY_SHA256 not set", { status: 403 });
-  if (!got || (await sha256Hex(got)) !== want.trim().toLowerCase()) return new Response("forbidden: bad key", { status: 403 });
+  if (!want.length) return new Response("forbidden: CLUB_ADMIN_KEY_SHA256 not set", { status: 403 });
+  if (!got || !want.includes(await sha256Hex(got))) return new Response("forbidden: bad key", { status: 403 });
 
   if (req.method === "GET") return Response.json(await listClubs(ctx));
   if (req.method !== "POST") return new Response("method", { status: 405 });

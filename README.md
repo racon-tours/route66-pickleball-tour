@@ -36,7 +36,7 @@ In production it also opens a card on Trello board "Travel Advisors" (list Regis
 is set (optional `TRELLO_ADVISOR_LIST_ID`, `ADVISOR_ALERT_TO`).
 
 ## Club affiliate pages
-Pickleball clubs refer members with a code (e.g. `MPCFAM`) and get their own page at `/<slug>`.
+Pickleball clubs refer members with a code (e.g. `MPCMEMBER500`; never "FAM", which travel advisors read as a familiarization trip) and get their own page at `/<slug>`.
 
 | Path | What |
 |---|---|
@@ -49,6 +49,6 @@ Pickleball clubs refer members with a code (e.g. `MPCFAM`) and get their own pag
 Data lives in Netlify Blobs: store `clubs` in production, `clubs-preview` everywhere else.
 Code: `netlify/lib/` (data + page templates), `netlify/functions/club-*.mts`.
 
-Env vars: `CLUB_ADMIN_KEY_SHA256` (fingerprint of the key in `~/.config/racon/club-admin.secret`),
+Env vars: `CLUB_ADMIN_KEY_SHA256` (comma-separated fingerprints of the keys in `~/.config/racon/club-admin.secret` on each Mac),
 `CLUB_REGISTRATION_OPEN=true` to open sign-up in production (leave unset until the agreement is final),
 optional `CLUB_DISCOUNT_TEXT` (default "$500 per player").

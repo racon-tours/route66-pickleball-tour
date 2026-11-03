@@ -13,7 +13,8 @@
 import { getStore } from "@netlify/blobs";
 
 export const TERMS_VERSION = "DRAFT-2026-10"; // bump when counsel finalises the agreement
-export const CODE_SUFFIX = "FAM";
+export const CODE_SUFFIX = "MEMBER500"; // was "FAM" until Nov 2026 — dropped: travel advisors read FAM as "familiarization trip"
+const LEGACY_SUFFIXES = ["FAM"];
 export const SITE = "https://route66pickleballtour.com";
 
 export const RESERVED = new Set([
@@ -35,7 +36,7 @@ export interface ClubRecord {
   logo_url?: string;
   member_note?: string;        // e.g. "1,200 members, 24 courts"
   suggested_slug: string;
-  suggested_code: string;      // full code incl. suffix, e.g. MPCFAM
+  suggested_code: string;      // full code incl. suffix, e.g. MPCMEMBER500
   status: Status;
   trello_card_id?: string;
   meta?: Record<string, string>; // pipeline bookkeeping (drafted_at, subject, card_id, activated_at…)
@@ -104,12 +105,14 @@ export function slugProblem(slug: string): string | null {
 
 export function normCodePrefix(v: string): string {
   let p = v.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  if (p.endsWith(CODE_SUFFIX) && p.length > CODE_SUFFIX.length) p = p.slice(0, -CODE_SUFFIX.length);
+  for (const sfx of [CODE_SUFFIX, ...LEGACY_SUFFIXES]) {
+    if (p.endsWith(sfx) && p.length > sfx.length) { p = p.slice(0, -sfx.length); break; }
+  }
   return p;
 }
 
 export function codeProblem(prefix: string): string | null {
-  if (prefix.length < 2 || prefix.length > 14) return "Use 2–14 letters or numbers before FAM.";
+  if (prefix.length < 2 || prefix.length > 14) return `Use 2–14 letters or numbers before ${CODE_SUFFIX}.`;
   return null;
 }
 
