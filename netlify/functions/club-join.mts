@@ -3,15 +3,15 @@ import {
   getClub, putClub, store, isProduction, isFree, normSlug, slugProblem, normCodePrefix, codeProblem,
   CODE_SUFFIX, TERMS_VERSION, SITE, html,
 } from "../lib/clubs.mts";
-import { clubPage, joinPage, donePage, notFound } from "../lib/pages.mts";
+import { joinPage, donePage, notFound } from "../lib/pages.mts";
 
 /**
  * Club affiliate sign-up.
- *   GET  /club-preview/:token  private preview of the club's page (linked from the outreach email)
+ *   GET  /club-preview/:token  forwards to /join/:token (older outreach emails link here; clubs no longer get a page)
  *   GET  /join/:token          four-step sign-up form
  *   GET  /api/club-check       live slug / code availability for the form
  *   POST /api/club-register    completes sign-up: claims slug + code, records agreement,
- *                              opts into MailerLite, flips the club to active (page goes live)
+ *                              opts into MailerLite, flips the club to active (short link goes live)
  *
  * Sign-up is always open on previews/branch deploys. In production it stays closed until
  * the env var CLUB_REGISTRATION_OPEN=true (set once counsel finalises the agreement).
@@ -34,7 +34,7 @@ async function ml(path: string, init: RequestInit = {}) {
   return res.json();
 }
 
-/** Find-or-create the club partner group, and the referral_club field the club pages tag members with. */
+/** Find-or-create the club partner group, and the referral_club field club-link visitors' waitlist signups are tagged with. */
 async function mailerliteSetup(): Promise<string> {
   const fields = await ml(`/fields?filter[keyword]=referral_club&limit=100`);
   if (!fields.data?.some((f: any) => f.key === "referral_club")) {
@@ -81,12 +81,12 @@ async function register(req: Request, ctx: Context) {
   const code = pre + CODE_SUFFIX;
   const signer_name = s("signer_name", 120), signer_title = s("signer_title", 120);
   const signer_email = s("signer_email", 200).toLowerCase();
-  const sp = slugProblem(slug); if (sp) return fail(`Page address: ${sp}`);
+  const sp = slugProblem(slug); if (sp) return fail(`Club link: ${sp}`);
   const cp = codeProblem(pre); if (cp) return fail(`Members' code: ${cp}`);
   if (!signer_name || !signer_title) return fail("Please add your name and title.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signer_email)) return fail("Please add a valid email.");
   if (s("agree") !== "yes") return fail("Please agree to the Club Referral Agreement.");
-  if (!(await isFree(ctx, "slug", slug, club.token))) return fail("That page address was just taken. Try another.");
+  if (!(await isFree(ctx, "slug", slug, club.token))) return fail("That club link was just taken. Try another.");
   if (!(await isFree(ctx, "code", code, club.token))) return fail(`${code} was just taken. Try another.`);
 
   const st = store(ctx);
@@ -104,7 +104,7 @@ async function register(req: Request, ctx: Context) {
   };
   club.status = "active";
 
-  // MailerLite: always make sure the referral field exists (club pages tag waitlist signups with it);
+  // MailerLite: always make sure the referral field exists (club-link visitors' waitlist signups are tagged with it);
   // add the signer to the partner group only if they opted in. Failure never blocks going live.
   try {
     const gid = await mailerliteSetup();
@@ -135,7 +135,7 @@ export default async (req: Request, ctx: Context) => {
   const club = await getClub(ctx, token);
   if (!club || club.status === "declined") return html(notFound(), 404);
   const noindex = { "X-Robots-Tag": "noindex, nofollow" };
-  if (p.startsWith("/club-preview/")) return html(clubPage(club, "preview", `/join/${club.token}`), 200, noindex);
+  if (p.startsWith("/club-preview/")) return new Response(null, { status: 302, headers: { Location: `/join/${club.token}`, ...noindex } });
   return html(joinPage(club, registrationOpen(ctx)), 200, noindex);
 };
 

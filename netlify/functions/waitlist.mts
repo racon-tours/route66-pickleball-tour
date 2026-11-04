@@ -53,7 +53,7 @@ export default async (req: Request, _context: Context) => {
   }
 
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
-  // Club pages post their members' code so each signup is credited to the referring club.
+  // Visitors who arrived by a club's short link post its members' code, so the signup is credited to that club.
   const club = clean(form.get("club"), 20).toUpperCase().replace(/[^A-Z0-9]/g, "");
 
   try {
