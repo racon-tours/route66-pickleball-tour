@@ -151,7 +151,7 @@ export function notFound() {
   <p><a class="btn" href="/">Back to the tour</a></p></div></header>${FOOT}`, { noindex: true });
 }
 
-/** Self-serve registration (/register), linked from the MailerLite welcome email. */
+/** Self-serve registration (/clubs/register), linked from the MailerLite welcome email. */
 export function registerPage(v: Signup, open: boolean, error?: string, blocked = false) {
   if (blocked) {
     return shell("Not available in your state yet | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">

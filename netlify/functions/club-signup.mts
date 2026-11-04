@@ -9,8 +9,8 @@ import { registerPage, registeredPage, notFound } from "../lib/pages.mts";
  * Self-serve club registration (step B of club onboarding).
  *
  *   Step A  Club or pro joins the "Pickle Dot Tours — Club Affiliates" MailerLite list; the welcome
- *           email's "Register for referral commission" button links to /register?email=<their email>.
- *   Step B  GET /register shows the form; POST /api/club-signup saves it:
+ *           email's "Register for referral commission" button links to /clubs/register?email=<their email>.
+ *   Step B  GET /clubs/register shows the form; POST /api/club-signup saves it:
  *             - one short name makes both the link (route66pickleballtour.com/<name>) and the code (<NAME>500)
  *             - club address and contact details (they become the Tour Amigo partner record)
  *             - agreement to the Club Referral Agreement (signer, title, time, IP, version)
@@ -185,4 +185,4 @@ export default async (req: Request, ctx: Context) => {
     { "X-Robots-Tag": "noindex, nofollow" });
 };
 
-export const config: Config = { path: ["/register", "/api/club-signup"] };
+export const config: Config = { path: ["/clubs/register", "/api/club-signup"] };
