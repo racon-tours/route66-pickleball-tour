@@ -13,8 +13,8 @@
 import { getStore } from "@netlify/blobs";
 
 export const TERMS_VERSION = "2026-11-03";
-export const CODE_SUFFIX = "MEMBER500"; // was "FAM" until Nov 2026 — dropped: travel advisors read FAM as "familiarization trip"
-const LEGACY_SUFFIXES = ["FAM"];
+export const CODE_SUFFIX = "500"; // e.g. ABQE500. Was "MEMBER500" (Nov 2026) and "FAM" before that — never use FAM: travel advisors read it as "familiarization trip"
+const LEGACY_SUFFIXES = ["MEMBER500", "FAM"]; // checked before CODE_SUFFIX so MPCMEMBER500 -> MPC
 export const SITE = "https://route66pickleballtour.com";
 
 export const RESERVED = new Set([
@@ -36,7 +36,7 @@ export interface ClubRecord {
   logo_url?: string;
   member_note?: string;        // e.g. "1,200 members, 24 courts"
   suggested_slug: string;
-  suggested_code: string;      // full code incl. suffix, e.g. MPCMEMBER500
+  suggested_code: string;      // full code incl. suffix, e.g. MPC500
   status: Status;
   trello_card_id?: string;
   meta?: Record<string, string>; // pipeline bookkeeping (drafted_at, subject, card_id, activated_at…)
@@ -92,6 +92,26 @@ export async function clubBySlug(ctx: any, slug: string): Promise<ClubRecord | n
   return rec && rec.status === "active" ? rec : null;
 }
 
+/**
+ * Clubs have no web page of their own (dropped 3 Nov 2026). route66pickleballtour.com/<slug> is a short
+ * link that forwards to the tour home page with GA tags, so visits, waitlist signups and bookings can be
+ * traced to the club in Google Analytics. The code itself does the discount; the link only does tracking.
+ */
+export function trackingUrl(slug: string, code: string): string {
+  const q = new URLSearchParams({
+    utm_source: slug, utm_medium: "club", utm_campaign: "club-referral", utm_content: code,
+  });
+  return `/?${q}`;
+}
+
+/**
+ * Clubs set up by hand (partner + code made directly in Tour Amigo) rather than through /join.
+ * Same behavior as a signed-up club's link. slug -> members' code.
+ */
+export const MANUAL_LINKS: Record<string, string> = {
+  abqe: "ABQE500", // Picklr Albuquerque East (Jeaney) — set up 3 Nov 2026
+};
+
 export function normSlug(v: string): string {
   return v.toLowerCase().trim().replace(/[^a-z0-9-]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 }
@@ -105,7 +125,7 @@ export function slugProblem(slug: string): string | null {
 
 export function normCodePrefix(v: string): string {
   let p = v.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  for (const sfx of [CODE_SUFFIX, ...LEGACY_SUFFIXES]) {
+  for (const sfx of [...LEGACY_SUFFIXES, CODE_SUFFIX]) {
     if (p.endsWith(sfx) && p.length > sfx.length) { p = p.slice(0, -sfx.length); break; }
   }
   return p;

@@ -35,16 +35,22 @@ In production it also opens a card on Trello board "Travel Advisors" (list Regis
 `TRELLO_KEY` + `TRELLO_TOKEN` are set, and emails mike@pickle.tours via Resend when `RESEND_API_KEY`
 is set (optional `TRELLO_ADVISOR_LIST_ID`, `ADVISOR_ALERT_TO`).
 
-## Club affiliate pages
-Pickleball clubs refer members with a code (e.g. `MPCMEMBER500`; never "FAM", which travel advisors read as a familiarization trip) and get their own page at `/<slug>`.
+## Club affiliate links
+Pickleball clubs refer members with a code (`<CLUB>500`, e.g. `ABQE500`; never "MEMBER", never "FAM", which travel advisors read as a familiarization trip).
+Clubs do **not** get a web page (dropped 3 Nov 2026). Each club gets a short link, `/<slug>`, that forwards (302) to the
+home page with GA tags: `utm_source=<slug>&utm_medium=club&utm_campaign=club-referral&utm_content=<CODE>`. In GA4, filter
+session medium = `club`. The home page keeps the code for the visit and sends it with a waitlist signup, so MailerLite
+tags that subscriber with `referral_club`.
 
 | Path | What |
 |---|---|
-| `/club-preview/<token>` | Private, noindex preview linked from the outreach email |
-| `/join/<token>` | Four-step sign-up: A page address, B code, C agreement, D MailerLite opt-in |
-| `/<slug>` | Live club page (only once the club finishes sign-up); waitlist form tags signups with `referral_club` |
+| `/join/<token>` | Four-step sign-up: A club link, B code, C agreement, D MailerLite opt-in |
+| `/club-preview/<token>` | Forwards to `/join/<token>` (older outreach emails link here) |
+| `/<slug>` | Club short link (clubs that finished sign-up, plus `MANUAL_LINKS` in `netlify/lib/clubs.mts` for clubs set up by hand) |
 | `/api/club-admin` | Mac pipeline only (`~/dev/pickle-ops/clubs/clubs.py`) |
 | `/club-terms.html` | Club Referral Agreement — **draft until counsel signs off** |
+
+The code itself (the $500 discount) lives in Tour Amigo as a Tour Commercial Rule; the link only does tracking.
 
 Data lives in Netlify Blobs: store `clubs` in production, `clubs-preview` everywhere else.
 Code: `netlify/lib/` (data + page templates), `netlify/functions/club-*.mts`.

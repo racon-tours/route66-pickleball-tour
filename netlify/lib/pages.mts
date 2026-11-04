@@ -1,4 +1,4 @@
-/** HTML for club pages, previews and the registration flow. Brand: Guide v1.3 tokens. */
+/** HTML for the club sign-up flow (clubs get a tracked short link, not a page). Brand: Guide v1.3 tokens. */
 import { ClubRecord, esc, discountText, CODE_SUFFIX, TERMS_VERSION, normCodePrefix } from "./clubs.mts";
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,54 +84,6 @@ const FOOT = `<footer class="pdt-foot">
   </div>
 </footer>`;
 
-/** The club's landing page. mode=preview adds a not-public banner and swaps the form for a note. */
-export function clubPage(c: ClubRecord, mode: "live" | "preview", joinHref?: string) {
-  const code = c.registration?.code ?? c.suggested_code;
-  const name = esc(c.club_name);
-  const banner = mode === "preview"
-    ? `<div class="notice">Private preview for ${name} — not public. ${joinHref ? `<a style="color:var(--optic)" href="${esc(joinHref)}">Finish sign-up to make it live →</a>` : ""}</div>` : "";
-  const form = mode === "live"
-    ? `<form class="stack" method="POST" action="/api/waitlist">
-        <input type="hidden" name="club" value="${esc(code)}">
-        <p style="display:none"><label>Leave blank <input name="bot-field"></label></p>
-        <div class="field"><label class="label" for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email"></div>
-        <button class="btn dark" type="submit">Hold my club rate</button>
-        <p class="hint">We'll email you the 2027 departures and remind you to use ${esc(code)} when booking opens.</p>
-      </form>`
-    : `<p class="hint">(Members will sign up here for departure dates and booking-day reminders.)</p>`;
-  const body = `${banner}
-<header class="hero"><div class="wrap">
-  <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
-  <span class="script">Welcome, ${name} players</span>
-  <h1>Get your kicks — and your dinks — on Route 66.</h1>
-  <p>Ten days by motorcoach between Chicago and Santa Monica, playing pickleball the whole way. Your club has a members-only rate.</p>
-  <div class="codebox"><span class="label">Your club code</span><b>${esc(code)}</b><span>Saves ${esc(discountText())} at booking</span></div>
-</div></header>
-<main class="wrap">
-  <section>
-    <p class="label" style="color:var(--green)">The trip</p>
-    <h2>One road, ten court sessions, sixteen departures.</h2>
-    <div class="facts">
-      <div class="fact"><span class="label">Route</span><br>Chicago ⇄ Santa Monica, westbound and eastbound</div>
-      <div class="fact"><span class="label">Play</span><br>Ten court sessions at clubs along the Mother Road</div>
-      <div class="fact"><span class="label">Group</span><br>32 players per departure, coached and bracketed</div>
-      <div class="fact"><span class="label">Stays</span><br>Historic hotels and resorts, all ground transport</div>
-    </div>
-    <p style="margin-top:1.6rem"><a class="btn" href="/">See the full tour</a></p>
-  </section>
-  <section>
-    <p class="label" style="color:var(--green)">Booking opens soon</p>
-    <h2>Lock in the ${name} rate.</h2>
-    ${form}
-  </section>
-  <p class="hint" style="margin-top:1.4rem">${name} is a referral partner of Pickle Dot Tours and does not sell or operate this tour. Club codes don't combine with other offers.</p>
-</main>${FOOT}`;
-  return shell(`${c.club_name} × Route 66 Pickleball Tour`, body, {
-    noindex: mode === "preview",
-    desc: `${c.club_name} members save with code ${code} on the Route 66 Pickleball Tour — ten days of pickleball from Chicago to Santa Monica.`,
-  });
-}
-
 /** Four-step sign-up: A slug, B code, C terms, D mailing list. */
 export function joinPage(c: ClubRecord, open: boolean, error?: string) {
   const name = esc(c.club_name);
@@ -140,21 +92,21 @@ export function joinPage(c: ClubRecord, open: boolean, error?: string) {
   const body = `${closed}
 <header class="hero"><div class="wrap">
   <div class="marks">${clubMark(c)}<span class="x">×</span><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
-  <h1>Set up ${name}'s club page</h1>
-  <p>Four quick steps. When you finish, your page goes live and your members' code starts working at booking.</p>
+  <h1>Set up ${name}'s club link</h1>
+  <p>Four quick steps. When you finish, your club link goes live and your members' code starts working at booking.</p>
 </div></header>
 <main class="wrap">
 ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</p>` : ""}
 <form method="POST" action="/api/club-register" id="join">
   <input type="hidden" name="token" value="${esc(c.token)}">
-  <div class="step"><p class="label">Step A</p><h2>Choose your page address</h2>
+  <div class="step"><p class="label">Step A</p><h2>Choose your club link</h2>
     <div class="prefix"><span>route66pickleballtour.com/</span><input type="text" name="slug" id="slug" value="${esc(c.suggested_slug)}" required maxlength="40" autocapitalize="none" spellcheck="false"></div>
-    <p class="hint" id="slug-msg">Letters, numbers and dashes.</p></div>
+    <p class="hint" id="slug-msg">Letters, numbers and dashes. Put this link in your member emails; it takes members to the tour and lets us credit your club.</p></div>
   <div class="step"><p class="label">Step B</p><h2>Choose your members' code</h2>
     <div class="prefix"><input type="text" name="code" id="code" value="${esc(prefix)}" required maxlength="14" style="text-transform:uppercase"><span>${CODE_SUFFIX}</span></div>
     <p class="hint" id="code-msg">Members type this at checkout to save ${esc(discountText())}.</p></div>
   <div class="step"><p class="label">Step C</p><h2>Agree to the referral terms</h2>
-    <p>Your members save ${esc(discountText())}. The club earns $250 for every member who books with your code and travels, when your club page link or code goes out in at least one member email that month ($150 otherwise). We handle every booking and payment.</p>
+    <p>Your members save ${esc(discountText())}. The club earns $250 for every member who books with your code and travels, when your club link or code goes out in at least one member email that month ($150 otherwise). We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <div class="field"><label class="label" for="sn">Your name</label><input type="text" id="sn" name="signer_name" required autocomplete="name" value="${esc(c.contact_name ?? "")}"></div>
     <div class="field"><label class="label" for="st">Your title at the club</label><input type="text" id="st" name="signer_title" required></div>
@@ -162,7 +114,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     <label class="check"><input type="checkbox" name="agree" value="yes" required><span>I'm authorized to act for ${name}, and the club agrees to the Club Referral Agreement.</span></label></div>
   <div class="step"><p class="label">Step D</p><h2>Stay in the loop</h2>
     <label class="check"><input type="checkbox" name="optin" value="yes" checked><span>Send me club partner updates — departure news, member flyers and booking-day reminders. Unsubscribe anytime.</span></label></div>
-  <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Make our page live</button></p>
+  <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Activate our link</button></p>
 </form>
 <script>
 (function(){
@@ -177,7 +129,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
 })();
 </script>
 </main>${FOOT}`;
-  return shell(`Set up ${c.club_name}'s club page`, body, { noindex: true });
+  return shell(`Set up ${c.club_name}'s club link`, body, { noindex: true });
 }
 
 export function donePage(c: ClubRecord, url: string) {
@@ -185,11 +137,10 @@ export function donePage(c: ClubRecord, url: string) {
   const body = `<header class="hero"><div class="wrap">
   <span class="script">You're live!</span>
   <h1>${esc(c.club_name)} is on Route 66.</h1>
-  <p>Your page: <a style="color:var(--optic)" href="${esc(url)}">${esc(url.replace(/^https?:\/\//, ""))}</a></p>
+  <p>Your club link: <a style="color:var(--optic)" href="${esc(url)}">${esc(url.replace(/^https?:\/\//, ""))}</a></p>
   <div class="codebox"><span class="label">Members' code</span><b>${esc(r.code)}</b></div>
-  <p>Mike will email your final member flyer and email graphic, with this address and code on them, to ${esc(r.signer_email)}. Questions? Call 1-888-774-DINK.</p>
-  <p><a class="btn" href="${esc(url)}">View your page</a></p>
-</div></header>${FOOT}`;
+  <p>Mike will email your final member flyer and email graphic, with this link and code on them, to ${esc(r.signer_email)}. Questions? Call 1-888-774-DINK.</p>
+  </div></header>${FOOT}`;
   return shell(`${c.club_name} is live`, body, { noindex: true });
 }
 

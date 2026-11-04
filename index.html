@@ -671,6 +671,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       booking opens to the public. No deposit, no obligation.</p>
     <form name="waitlist" method="POST" action="/api/waitlist">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <input type="hidden" name="club" id="club-code" value="">
       <div class="field">
         <label for="email">Email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
@@ -692,6 +693,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<script>
+  /* Club short links (route66pickleballtour.com/<club>) land here with utm_medium=club&utm_content=<CODE>.
+     Keep the code for the visit so a waitlist signup is credited to the club in MailerLite. */
+  (function(){
+    var code='';
+    try{
+      var q=new URLSearchParams(location.search);
+      if(q.get('utm_medium')==='club'){code=(q.get('utm_content')||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,20)}
+      if(code){sessionStorage.setItem('club_code',code)}else{code=sessionStorage.getItem('club_code')||''}
+    }catch(e){}
+    var f=document.getElementById('club-code'); if(f&&code){f.value=code}
+  })();
+</script>
 <script>
   (function(){
     /* draw the route line when a strip becomes visible */
