@@ -20,7 +20,7 @@ export const SITE = "https://route66pickleballtour.com";
 export const RESERVED = new Set([
   "api", "assets", "join", "club-preview", "club-terms", "thanks", "index", "robots", "sitemap",
   "dates", "terms", "privacy", "brochure", "admin", "clubs", "club", "about", "contact", "faq",
-  "book", "booking", "waitlist", "route66", "pickle", "pickletours", "tour", "tours", "netlify",
+  "book", "booking", "waitlist", "route66", "pickle", "pickletours", "tour", "tours", "netlify", "register",
 ]);
 
 export type Status = "prospect" | "active" | "declined";
@@ -35,6 +35,10 @@ export interface ClubRecord {
   website?: string;
   logo_url?: string;
   member_note?: string;        // e.g. "1,200 members, 24 courts"
+  address_1?: string;          // self-signup: club street address (for the Tour Amigo partner record)
+  zip?: string;
+  phone?: string;
+  contact_title?: string;
   suggested_slug: string;
   suggested_code: string;      // full code incl. suffix, e.g. MPC500
   status: Status;
@@ -55,6 +59,26 @@ export interface ClubRecord {
     mailerlite_ok?: boolean;
   };
 }
+
+/** US states + DC for the sign-up form. */
+export const STATES: Record<string, string> = {
+  AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",
+  DC:"District of Columbia",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",
+  KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",
+  MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",
+  NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",
+  PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",
+  VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",
+};
+
+/**
+ * Clubs in these states can't register for the referral program (yet): HI skipped; FL held until the FL
+ * seller-of-travel registration clears; IL and CA held on seller-of-travel grounds. Override with the
+ * CLUB_BLOCKED_STATES env var (comma-separated) without a code change.
+ */
+export const BLOCKED_STATES = new Set(
+  ((globalThis as any).Netlify?.env.get("CLUB_BLOCKED_STATES") || "HI,FL,IL,CA").split(",").map((x) => x.trim().toUpperCase()).filter(Boolean),
+);
 
 export function isProduction(ctx: any): boolean {
   return ctx?.deploy?.context === "production";

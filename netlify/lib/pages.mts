@@ -1,5 +1,6 @@
 /** HTML for the club sign-up flow (clubs get a tracked short link, not a page). Brand: Guide v1.3 tokens. */
-import { ClubRecord, esc, discountText, CODE_SUFFIX, TERMS_VERSION, normCodePrefix } from "./clubs.mts";
+import { ClubRecord, esc, discountText, CODE_SUFFIX, TERMS_VERSION, normCodePrefix, STATES } from "./clubs.mts";
+import type { Signup } from "../functions/club-signup.mts";
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">`;
@@ -38,7 +39,7 @@ background:var(--optic);color:var(--green);padding:1rem 1.8rem;box-shadow:4px 4p
 .btn.dark{background:var(--green);color:var(--optic)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 form.stack{display:grid;gap:1rem;max-width:36rem}
-input[type=text],input[type=email]{width:100%;font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
+input[type=text],input[type=email],input[type=tel]{width:100%;font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
 .field{display:grid;gap:.35rem}
 .hint{font-size:15px;color:var(--muted);margin:0}
 .ok{color:var(--green-line);font-weight:700}.bad{color:#B3261E;font-weight:700}
@@ -148,4 +149,74 @@ export function notFound() {
   return shell("Page not found | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
   <h1>That exit isn't on our map.</h1><p>The page you're after doesn't exist (or isn't live yet).</p>
   <p><a class="btn" href="/">Back to the tour</a></p></div></header>${FOOT}`, { noindex: true });
+}
+
+/** Self-serve registration (/clubs/register), linked from the MailerLite welcome email. */
+export function registerPage(v: Signup, open: boolean, error?: string, blocked = false) {
+  if (blocked) {
+    return shell("Not available in your state yet | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
+  <h1>We're not there yet.</h1>
+  <p>Thanks, ${esc(v.contact_name || "friend")}. The club referral program isn't available to clubs in ${esc(STATES[v.state] ?? v.state)} yet.
+  You're on our club list, so we'll email you as soon as it opens there.</p>
+  <p><a class="btn" href="/">See the tour</a></p></div></header>${FOOT}`, { noindex: true });
+  }
+  const closed = open ? "" : `<div class="notice">Registration isn't open yet. We'll email you when it is.</div>`;
+  const opt = (code: string) => `<option value="${code}"${v.state === code ? " selected" : ""}>${esc(STATES[code])}</option>`;
+  const f = (id: keyof Signup, label: string, type = "text", extra = "") =>
+    `<div class="field"><label class="label" for="${id}">${label}</label><input type="${type}" id="${id}" name="${id}" value="${esc(v[id])}" ${extra}></div>`;
+  const body = `${closed}
+<header class="hero"><div class="wrap">
+  <div class="marks"><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
+  <h1>Register for club referral commission</h1>
+  <p>Your members save ${esc(discountText())} on the Route 66 Pickleball Tour, and your club earns $250 for every member who books with your code and travels. Three short steps; we email your member flyer, newsletter graphic, link and code once they're set up.</p>
+</div></header>
+<main class="wrap">
+${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</p>` : ""}
+<form method="POST" action="/api/club-signup" id="reg">
+  <p style="display:none"><label>Leave blank <input name="bot-field"></label></p>
+  <div class="step"><p class="label">Step 1</p><h2>Your club</h2>
+    ${f("club_name", "Club name", "text", 'required maxlength="120" autocomplete="organization"')}
+    <div class="field"><label class="label" for="short">Short name for your link and code</label>
+      <div class="prefix"><input type="text" id="short" name="short" value="${esc(v.short)}" required maxlength="14" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"><span>${CODE_SUFFIX}</span></div>
+      <p class="hint" id="short-msg">3–14 letters or numbers, e.g. ABQE. Your members' code becomes ABQE${CODE_SUFFIX} and your link route66pickleballtour.com/abqe.</p></div>
+    ${f("website", "Club website (optional)", "text", 'maxlength="200" autocomplete="url"')}
+  </div>
+  <div class="step"><p class="label">Step 2</p><h2>Address and contact</h2>
+    ${f("address_1", "Street address", "text", 'required maxlength="200" autocomplete="address-line1"')}
+    ${f("city", "City", "text", 'required maxlength="80" autocomplete="address-level2"')}
+    <div class="field"><label class="label" for="state">State</label>
+      <select id="state" name="state" required style="font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)">
+        <option value="">Choose…</option>${Object.keys(STATES).map(opt).join("")}</select></div>
+    ${f("zip", "ZIP code", "text", 'required inputmode="numeric" maxlength="10" autocomplete="postal-code"')}
+    ${f("contact_name", "Your name", "text", 'required maxlength="120" autocomplete="name"')}
+    ${f("contact_title", "Your title at the club", "text", 'required maxlength="120" autocomplete="organization-title"')}
+    ${f("email", "Your email", "email", 'required maxlength="200" autocomplete="email"')}
+    ${f("phone", "Phone", "tel", 'required maxlength="40" autocomplete="tel"')}
+  </div>
+  <div class="step"><p class="label">Step 3</p><h2>Agree to the referral terms</h2>
+    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid after the trip. We handle every booking and payment.</p>
+    <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
+    <label class="check"><input type="checkbox" name="agree" value="yes" required><span>I'm authorized to act for this club, and the club agrees to the Club Referral Agreement.</span></label></div>
+  <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Register our club</button></p>
+</form>
+<script>
+(function(){
+  var s=document.getElementById('short'),m=document.getElementById('short-msg'),tm;
+  function check(){var v=s.value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(!v)return;
+    fetch('/api/club-check?kind=code&value='+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(j){
+      m.className='hint '+(j.ok?'ok':'bad');m.textContent=j.ok?(j.value+' and route66pickleballtour.com/'+j.value.replace(/${CODE_SUFFIX}$/,'').toLowerCase()+' are available.'):j.message;}).catch(function(){})}
+  s.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(check,350)});
+})();
+</script>
+</main>${FOOT}`;
+  return shell("Register your club | Route 66 Pickleball Tour", body, { noindex: true });
+}
+
+export function registeredPage(clubName = "Your club", email = "") {
+  return shell("You're registered | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
+  <span class="script">You're in!</span>
+  <h1>${esc(clubName)} is registered.</h1>
+  <p>We're setting up your members' code now. Your member flyer, newsletter graphic, club link and code will arrive by email${email ? ` at ${esc(email)}` : ""}, usually within a business day.</p>
+  <p>Questions? Call or text 1-888-774-DINK.</p>
+  <p><a class="btn" href="/">See the tour</a></p></div></header>${FOOT}`, { noindex: true });
 }
