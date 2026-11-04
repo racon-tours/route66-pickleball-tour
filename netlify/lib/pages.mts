@@ -154,6 +154,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     <div class="prefix"><input type="text" name="code" id="code" value="${esc(prefix)}" required maxlength="14" style="text-transform:uppercase"><span>${CODE_SUFFIX}</span></div>
     <p class="hint" id="code-msg">Members type this at checkout to save ${esc(discountText())}.</p></div>
   <div class="step"><p class="label">Step C</p><h2>Agree to the referral terms</h2>
+    <p>Your members save ${esc(discountText())}. The club earns $250 for every member who books with your code and travels, when your club page link or code goes out in at least one member email that month ($150 otherwise). We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <div class="field"><label class="label" for="sn">Your name</label><input type="text" id="sn" name="signer_name" required autocomplete="name" value="${esc(c.contact_name ?? "")}"></div>
     <div class="field"><label class="label" for="st">Your title at the club</label><input type="text" id="st" name="signer_title" required></div>

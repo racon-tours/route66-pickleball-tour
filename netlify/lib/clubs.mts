@@ -12,7 +12,7 @@
  */
 import { getStore } from "@netlify/blobs";
 
-export const TERMS_VERSION = "DRAFT-2026-10"; // bump when counsel finalises the agreement
+export const TERMS_VERSION = "2026-11-03";
 export const CODE_SUFFIX = "MEMBER500"; // was "FAM" until Nov 2026 — dropped: travel advisors read FAM as "familiarization trip"
 const LEGACY_SUFFIXES = ["FAM"];
 export const SITE = "https://route66pickleballtour.com";
@@ -126,7 +126,7 @@ export const esc = (s: unknown) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
 export function discountText(): string {
-  return Netlify.env.get("CLUB_DISCOUNT_TEXT") || "$500 per player";
+  return Netlify.env.get("CLUB_DISCOUNT_TEXT") || "$500 per person";
 }
 
 export function html(body: string, status = 200, extraHeaders: Record<string, string> = {}) {
