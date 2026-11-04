@@ -23,7 +23,7 @@ export const RESERVED = new Set([
   "book", "booking", "waitlist", "route66", "pickle", "pickletours", "tour", "tours", "netlify", "register",
 ]);
 
-export type Status = "prospect" | "active" | "declined";
+export type Status = "prospect" | "active" | "held" | "declined"; // held = registered but waiting on a state registration (FL)
 
 export interface ClubRecord {
   token: string;
@@ -71,14 +71,18 @@ export const STATES: Record<string, string> = {
   VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",
 };
 
-/**
- * Clubs in these states can't register for the referral program (yet): HI skipped; FL held until the FL
- * seller-of-travel registration clears; IL and CA held on seller-of-travel grounds. Override with the
- * CLUB_BLOCKED_STATES env var (comma-separated) without a code change.
- */
-export const BLOCKED_STATES = new Set(
-  ((globalThis as any).Netlify?.env.get("CLUB_BLOCKED_STATES") || "HI,FL,IL,CA").split(",").map((x) => x.trim().toUpperCase()).filter(Boolean),
+const stateSet = (env: string, dflt: string) => new Set(
+  ((globalThis as any).Netlify?.env.get(env) ?? dflt).split(",").map((x: string) => x.trim().toUpperCase()).filter(Boolean),
 );
+
+/** Clubs in these states can't register; Mike gets an email to follow up by hand (HI). Env: CLUB_BLOCKED_STATES. */
+export const BLOCKED_STATES = stateSet("CLUB_BLOCKED_STATES", "HI");
+
+/**
+ * Clubs in these states register normally but stay on hold (link off, no code, no kit) until the state's
+ * seller-of-travel registration clears (FL, Nov 2026). Env: CLUB_HELD_STATES. Release with clubs.py release.
+ */
+export const HELD_STATES = stateSet("CLUB_HELD_STATES", "FL");
 
 export function isProduction(ctx: any): boolean {
   return ctx?.deploy?.context === "production";

@@ -156,8 +156,8 @@ export function registerPage(v: Signup, open: boolean, error?: string, blocked =
   if (blocked) {
     return shell("Not available in your state yet | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
   <h1>We're not there yet.</h1>
-  <p>Thanks, ${esc(v.contact_name || "friend")}. The club referral program isn't available to clubs in ${esc(STATES[v.state] ?? v.state)} yet.
-  You're on our club list, so we'll email you as soon as it opens there.</p>
+  <p>Thanks, ${esc(v.contact_name || "friend")}. The club referral program isn't open to clubs in ${esc(STATES[v.state] ?? v.state)} yet.
+  Mike has your details and will be in touch personally.</p>
   <p><a class="btn" href="/">See the tour</a></p></div></header>${FOOT}`, { noindex: true });
   }
   const closed = open ? "" : `<div class="notice">Registration isn't open yet. We'll email you when it is.</div>`;
@@ -212,7 +212,15 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
   return shell("Register your club | Route 66 Pickleball Tour", body, { noindex: true });
 }
 
-export function registeredPage(clubName = "Your club", email = "") {
+export function registeredPage(clubName = "Your club", email = "", heldState?: string) {
+  if (heldState) {
+    return shell("You're registered | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
+  <span class="script">You're in!</span>
+  <h1>${esc(clubName)} is registered.</h1>
+  <p>We've reserved your club link and code. We're finishing our ${esc(heldState)} travel-seller registration, and as soon as it clears we'll switch your code on and email your member flyer, newsletter graphic, link and code${email ? ` to ${esc(email)}` : ""}.</p>
+  <p>Questions? Call or text 1-888-774-DINK.</p>
+  <p><a class="btn" href="/">See the tour</a></p></div></header>${FOOT}`, { noindex: true });
+  }
   return shell("You're registered | Route 66 Pickleball Tour", `<header class="hero"><div class="wrap">
   <span class="script">You're in!</span>
   <h1>${esc(clubName)} is registered.</h1>
