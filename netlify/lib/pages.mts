@@ -194,7 +194,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     ${f("phone", "Phone", "tel", 'required maxlength="40" autocomplete="tel"')}
   </div>
   <div class="step"><p class="label">Step 3</p><h2>Agree to the referral terms</h2>
-    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid after the trip. We handle every booking and payment.</p>
+    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid the first of the month after the trip departs. We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <label class="check"><input type="checkbox" name="agree" value="yes" required><span>I'm authorized to act for this club, and the club agrees to the Club Referral Agreement.</span></label></div>
   <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Register our club</button></p>
