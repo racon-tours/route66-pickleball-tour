@@ -61,8 +61,8 @@ export interface Signup {
   address_1: string; city: string; state: string; zip: string; website: string;
 }
 
-const blank = (email = ""): Signup => ({
-  club_name: "", short: "", contact_name: "", contact_title: "", email, phone: "",
+const blank = (email = "", short = ""): Signup => ({
+  club_name: "", short, contact_name: "", contact_title: "", email, phone: "",
   address_1: "", city: "", state: "", zip: "", website: "",
 });
 
@@ -193,7 +193,8 @@ export default async (req: Request, ctx: Context) => {
   const url = new URL(req.url);
   if (url.pathname === "/api/club-signup") return req.method === "POST" ? submit(req, ctx) : html(notFound(), 405);
   const email = (url.searchParams.get("email") ?? "").trim().slice(0, 200);
-  return html(registerPage(blank(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : ""), registrationOpen(ctx)), 200,
+  const short = normCodePrefix(url.searchParams.get("short") ?? "").slice(0, 14);
+  return html(registerPage(blank(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : "", short), registrationOpen(ctx)), 200,
     { "X-Robots-Tag": "noindex, nofollow" });
 };
 
