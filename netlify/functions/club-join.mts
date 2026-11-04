@@ -14,7 +14,7 @@ import { joinPage, donePage, notFound } from "../lib/pages.mts";
  *                              opts into MailerLite, flips the club to active (short link goes live)
  *
  * Sign-up is always open on previews/branch deploys. In production it stays closed until
- * the env var CLUB_REGISTRATION_OPEN=true (set once counsel finalises the agreement).
+ * the env var CLUB_REGISTRATION_OPEN=true (set 3 Nov 2026; counsel signed off on the agreement).
  */
 
 const registrationOpen = (ctx: Context) =>

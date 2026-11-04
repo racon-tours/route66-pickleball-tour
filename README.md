@@ -44,11 +44,14 @@ tags that subscriber with `referral_club`.
 
 | Path | What |
 |---|---|
-| `/join/<token>` | Four-step sign-up: A club link, B code, C agreement, D MailerLite opt-in |
+| `/register` | **Self-serve sign-up** (from the MailerLite welcome email, `?email=` prefills): one short name → link + code, club address/contact, agreement. Blocks `CLUB_BLOCKED_STATES` (default HI,FL,IL,CA). Opens a Trello card in Club Affiliates → Active and emails Mike. |
+| `/join/<token>` | Outreach sign-up (clubs Mike emailed first): A club link, B code, C agreement, D MailerLite opt-in |
 | `/club-preview/<token>` | Forwards to `/join/<token>` (older outreach emails link here) |
 | `/<slug>` | Club short link (clubs that finished sign-up, plus `MANUAL_LINKS` in `netlify/lib/clubs.mts` for clubs set up by hand) |
 | `/api/club-admin` | Mac pipeline only (`~/dev/pickle-ops/clubs/clubs.py`) |
-| `/club-terms.html` | Club Referral Agreement — **draft until counsel signs off** |
+| `/club-terms.html` | Club Referral Agreement (counsel signed off, Nov 2026) |
+
+**Onboarding:** club registers → card in Active → Claude adds the Tour Amigo partner and code (club-partner-onboarding skill) and moves the card to Onboarded → the Mac sync emails the kit (flyer, newsletter graphic, link, code).
 
 The code itself (the $500 discount) lives in Tour Amigo as a Tour Commercial Rule; the link only does tracking.
 
