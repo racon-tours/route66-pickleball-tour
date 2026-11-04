@@ -1,7 +1,7 @@
 import type { Context, Config } from "@netlify/functions";
 import {
   ClubRecord, putClub, store, isProduction, isFree, slugProblem, codeProblem, normCodePrefix,
-  CODE_SUFFIX, TERMS_VERSION, html, STATES, BLOCKED_STATES,
+  CODE_SUFFIX, TERMS_VERSION, html, STATES, BLOCKED_STATES, HELD_STATES,
 } from "../lib/clubs.mts";
 import { registerPage, registeredPage, notFound } from "../lib/pages.mts";
 
@@ -19,7 +19,9 @@ import { registerPage, registeredPage, notFound } from "../lib/pages.mts";
  *   Step C  Claude adds the partner and creates the code in Tour Amigo (club-partner-onboarding skill), then
  *           moves the card to Onboarded; the Mac sync (~/dev/pickle-ops/clubs/clubs.py) then emails the kit.
  *
- * States in BLOCKED_STATES get a "not available in your state yet" page instead of the form.
+ * BLOCKED_STATES (HI): "not available in your state yet" page; nothing is saved, Mike gets an email to follow up.
+ * HELD_STATES (FL): saved as "held" — the name and code are reserved but the link stays off and no kit goes out
+ * until the state registration clears; the Trello card is marked HOLD.
  */
 
 const registrationOpen = (ctx: Context) =>
@@ -81,7 +83,13 @@ async function submit(req: Request, ctx: Context) {
 
   if (!v.club_name) return fail("Please add your club's name.");
   if (!STATES[v.state]) return fail("Please choose your club's state.");
-  if (BLOCKED_STATES.has(v.state)) return html(registerPage(v, true, undefined, true), 200);
+  if (BLOCKED_STATES.has(v.state)) {
+    await alertMike(ctx, `Club registration from ${STATES[v.state]} needs you: ${v.club_name || "(no name)"}`,
+      `${v.club_name} (${v.city}, ${v.state}) tried to register for the club referral program. Registration is closed in ${STATES[v.state]}, so nothing was saved and they were told we'll be in touch.\n\n` +
+      `Contact: ${v.contact_name}, ${v.contact_title}\nEmail: ${v.email}\nPhone: ${v.phone}\nAddress: ${v.address_1}, ${v.city}, ${v.state} ${v.zip}\nWebsite: ${v.website}\nShort name asked for: ${v.short}`, v.email);
+    return html(registerPage(v, true, undefined, true), 200);
+  }
+  const held = HELD_STATES.has(v.state);
   const pre = normCodePrefix(v.short);
   const slug = pre.toLowerCase();
   const code = pre + CODE_SUFFIX;
@@ -102,7 +110,7 @@ async function submit(req: Request, ctx: Context) {
   const rec: ClubRecord = {
     token, club_name: v.club_name, city: v.city, state: v.state,
     contact_name: v.contact_name, contact_email: v.email, website: website || undefined,
-    suggested_slug: slug, suggested_code: code, status: "active", created_at: now, updated_at: now,
+    suggested_slug: slug, suggested_code: code, status: held ? "held" : "active", created_at: now, updated_at: now,
     address_1: v.address_1, zip: v.zip, phone: v.phone, contact_title: v.contact_title,
     meta: { source: "self-signup" },
     registration: {
@@ -145,12 +153,14 @@ async function submit(req: Request, ctx: Context) {
     `Agreed to the Club Referral Agreement v${TERMS_VERSION} on ${now.slice(0, 16).replace("T", " ")} UTC.`,
     `MailerLite tag: ${rec.registration!.mailerlite_ok ? "done" : "FAILED — check"}`,
     ``,
-    `**Next:** add the partner and create ${code} in Tour Amigo, then move this card to Onboarded — the kit email goes out from there.`,
+    held
+      ? `**ON HOLD (${v.state}):** link is off and no kit goes out until our ${STATES[v.state]} seller-of-travel registration clears. Then run \`clubs.py release ${v.state}\` on the Mac, add the partner and create ${code} in Tour Amigo, and move this card to Onboarded.`
+      : `**Next:** add the partner and create ${code} in Tour Amigo, then move this card to Onboarded — the kit email goes out from there.`,
   ].join("\n");
   if (tk && tt && isProduction(ctx)) {
     try {
       const q = new URLSearchParams({ key: tk, token: tt, idList: TRELLO_ACTIVE_LIST, pos: "top",
-        name: `${v.club_name} — ${code}`, desc });
+        name: `${held ? `HOLD (${v.state}) · ` : ""}${v.club_name} — ${code}`, desc });
       const r = await fetch(`https://api.trello.com/1/cards?${q}`, { method: "POST" });
       if (r.ok) rec.trello_card_id = (await r.json()).id;
       else console.error(`club-signup: Trello ${r.status} ${(await r.text()).slice(0, 300)}`);
@@ -158,23 +168,25 @@ async function submit(req: Request, ctx: Context) {
   }
   await putClub(ctx, rec);
 
-  // Email alert to Mike.
-  const rk = Netlify.env.get("RESEND_API_KEY");
-  if (rk && isProduction(ctx)) {
-    try {
-      const r = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${rk}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from: "Pickle Dot Tours <noreply@pickle.tours>", to: [Netlify.env.get("CLUB_ALERT_TO") || "mike@pickle.tours"],
-          reply_to: v.email, subject: `New club affiliate: ${v.club_name} (${code})`, text: desc.replace(/\*\*/g, ""),
-        }),
-      });
-      if (!r.ok) console.error(`club-signup: Resend ${r.status} ${(await r.text()).slice(0, 300)}`);
-    } catch (e) { console.error("club-signup: Resend failed", e); }
-  }
+  await alertMike(ctx, `New club affiliate${held ? ` (on hold, ${v.state})` : ""}: ${v.club_name} (${code})`, desc.replace(/\*\*/g, ""), v.email);
 
-  return html(registeredPage(v.club_name, v.email));
+  return html(registeredPage(v.club_name, v.email, held ? STATES[v.state] : undefined));
+}
+
+async function alertMike(ctx: Context, subject: string, text: string, replyTo: string) {
+  const rk = Netlify.env.get("RESEND_API_KEY");
+  if (!rk || !isProduction(ctx)) return;
+  try {
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${rk}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: "Pickle Dot Tours <noreply@pickle.tours>", to: [Netlify.env.get("CLUB_ALERT_TO") || "mike@pickle.tours"],
+        ...(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyTo) ? { reply_to: replyTo } : {}), subject, text,
+      }),
+    });
+    if (!r.ok) console.error(`club-signup: Resend ${r.status} ${(await r.text()).slice(0, 300)}`);
+  } catch (e) { console.error("club-signup: Resend failed", e); }
 }
 
 export default async (req: Request, ctx: Context) => {

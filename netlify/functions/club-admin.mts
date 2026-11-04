@@ -8,7 +8,8 @@ import { ClubRecord, getClub, putClub, listClubs, store, sha256Hex, normSlug, no
  *
  *   GET                                    → all club records
  *   POST {action:"upsert", club:{...}}     → create/update a prospect (never touches registration)
- *   POST {action:"set", token, trello_card_id?, meta?:{...}, status?:"prospect"|"declined"}
+ *   POST {action:"set", token, trello_card_id?, meta?:{...}, status?:"prospect"|"declined"|"active"}
+ *        status "active" only releases a "held" club (its link goes live).
  */
 export default async (req: Request, ctx: Context) => {
   // SHA-256 of the 36-byte random key in ~/.config/racon/club-admin.secret. A fingerprint of a
@@ -63,6 +64,7 @@ export default async (req: Request, ctx: Context) => {
       }
       rec.status = body.status;
     }
+    if (body.status === "active" && rec.status === "held" && rec.registration) rec.status = "active";
     await putClub(ctx, rec);
     return Response.json(rec);
   }
