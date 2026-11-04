@@ -39,7 +39,7 @@ background:var(--optic);color:var(--green);padding:1rem 1.8rem;box-shadow:4px 4p
 .btn.dark{background:var(--green);color:var(--optic)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 form.stack{display:grid;gap:1rem;max-width:36rem}
-input[type=text],input[type=email]{width:100%;font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
+input[type=text],input[type=email],input[type=tel]{width:100%;font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
 .field{display:grid;gap:.35rem}
 .hint{font-size:15px;color:var(--muted);margin:0}
 .ok{color:var(--green-line);font-weight:700}.bad{color:#B3261E;font-weight:700}
@@ -194,7 +194,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     ${f("phone", "Phone", "tel", 'required maxlength="40" autocomplete="tel"')}
   </div>
   <div class="step"><p class="label">Step 3</p><h2>Agree to the referral terms</h2>
-    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid the first of the month after the trip departs. We handle every booking and payment.</p>
+    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid after the trip. We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <label class="check"><input type="checkbox" name="agree" value="yes" required><span>I'm authorized to act for this club, and the club agrees to the Club Referral Agreement.</span></label></div>
   <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Register our club</button></p>
