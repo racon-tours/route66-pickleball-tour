@@ -104,7 +104,7 @@
   .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--navy)}
   .btn.small{padding:.5rem 1.1rem;font-size:.95rem;box-shadow:3px 3px 0 var(--ink)}
   a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
-  .strip-scroller:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+  .mr-scroller:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
 
   /* ---------- nav (company frame, A5) ---------- */
   nav{position:sticky;top:0;z-index:50;background:var(--chalk);border-bottom:3px solid var(--green)}
@@ -190,57 +190,53 @@
     .concept .photos{max-width:520px}
   }
 
-  /* ---------- route (B4 route map + day tags) ---------- */
+  /* ---------- the route: "7 Days on the Mother Road / 4 days in Paradise" ----------
+     Art: Canva prototype v5 (text-free copy). Titles and town names are live text placed
+     at the prototype's own positions; sizes scale with the picture (container units). */
   .route-section{padding-top:3rem}
-  .route-head{max-width:800px;margin-bottom:.5rem}
-  .strip-scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1.25rem 0 .5rem}
-  .strip{position:relative;min-width:1520px;height:150px;
-    background:linear-gradient(to bottom,rgba(217,208,162,0),rgba(217,208,162,.55) 35%,rgba(217,208,162,.55) 65%,rgba(217,208,162,0));
-    border-radius:12px}
-  .strip svg{position:absolute;inset:0;width:100%;height:100%}
-  .stops{display:grid;grid-template-columns:repeat(8,1fr);gap:1.25rem;min-width:1520px;padding-bottom:1.5rem}
-  .stop{padding:0 .25rem}
-  .stop .marker{
-    font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.92rem;
-    text-transform:uppercase;letter-spacing:.1em;color:var(--navy);background:var(--sand);
-    display:inline-block;padding:.2rem .65rem;margin-bottom:.65rem;border-radius:5px;
+  .route-head{max-width:800px}
+  .mr-scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0 .5rem;border-radius:10px;
+    box-shadow:0 0 0 8px var(--snap),0 14px 30px rgba(46,41,37,.28);background:var(--snap)}
+  .mother-road{position:relative;min-width:900px;container-type:inline-size;line-height:1}
+  .mother-road img{display:block;width:100%;height:auto;border-radius:10px}
+  .mother-road .mr-title{
+    position:absolute;left:0;right:0;top:2.2%;margin:0;text-align:center;
+    font-size:5cqw;transform:rotate(-1.5deg);transform-origin:center;
+    text-shadow:0 0 .35em rgba(255,250,240,.85);
   }
-  .stop.anchor .marker{background:var(--sunset);color:var(--snap)}
-  .stop .cap-city{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.14em;font-size:15px;color:var(--navy);display:block;
+  .mother-road .mr-sub{
+    position:absolute;left:0;right:0;top:89.5%;margin:0;text-align:center;
+    font-family:'Yellowtail',cursive;color:var(--navy);font-size:3.75cqw;line-height:1.1;
+    text-shadow:0 0 .3em rgba(255,250,240,.95),0 0 .6em rgba(255,250,240,.8);
   }
-  .stop .cap-landmark{
-    font-family:'Shrikhand',Georgia,serif;font-size:24px;line-height:1.2;
-    color:var(--red);display:block;margin:.2rem 0 .4rem;transform:rotate(-2deg);transform-origin:left center;
+  .mother-road .town,.mother-road .resort{
+    position:absolute;transform:translateX(-50%);white-space:nowrap;margin:0;
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--navy);font-size:1.77cqw;line-height:1.1;
+    text-shadow:0 0 .25em rgba(255,250,240,.95),0 0 .5em rgba(255,250,240,.85);
   }
-  .stop .cap-detail{font-size:15px;line-height:1.55;font-style:italic;color:var(--charcoal)}
-  .stop .cap-play{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.1em;font-size:.88rem;color:var(--mile);display:block;margin-top:.55rem;
-  }
-  .stop .cap-play.rest{color:var(--muted)}
-
-  /* direction tabs: the brochure's Westbound / Eastbound script headlines */
-  .tabs{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin:2rem 0 0;border-bottom:2px dashed var(--navy)}
-  .tab{
-    font-family:'Shrikhand',Georgia,serif;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;
-    cursor:pointer;text-align:left;background:none;border:none;
-    border-bottom:5px solid transparent;padding:.4rem .2rem .55rem;color:#B9A98A;margin-bottom:-2px;
-  }
-  .tab .dir{
-    display:block;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.12em;font-size:.95rem;color:var(--muted);margin-top:.2rem;
-  }
-  .tab[aria-selected="true"]{color:var(--red);border-bottom-color:var(--red)}
-  .tab[aria-selected="true"] .dir{color:var(--navy)}
-  .tab:hover{color:var(--red)}
-  @media(max-width:600px){.tab{flex:1 1 100%}}
+  .mother-road .resort{font-weight:700;font-size:1.9cqw}
+  .route-section .after{max-width:800px;margin-top:2rem}
   .scroll-hint{
     font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.14em;font-size:.95rem;color:var(--muted);margin-top:.25rem;
+    letter-spacing:.14em;font-size:.95rem;color:var(--muted);margin-top:.6rem;
   }
-  @media(min-width:1560px){.scroll-hint{display:none}}
+  .scroll-hint{display:none}
+  /* phones: whole picture, titles and town names set outside it */
+  @media(max-width:759px){
+    .mr-scroller{overflow:visible;box-shadow:none;background:none;margin-top:.5rem}
+    .mother-road{min-width:0;display:flex;flex-direction:column;container-type:normal}
+    .mother-road img{order:1;box-shadow:0 0 0 6px var(--snap),0 10px 22px rgba(46,41,37,.28);margin:.9rem 0 1rem}
+    .mother-road .mr-title{order:0;position:static;font-size:2rem;text-shadow:none;text-align:left;transform-origin:left center}
+    .mother-road ul{display:flex;flex-wrap:wrap;gap:.2rem .9rem}
+    .mother-road ul:first-of-type{order:2}
+    .mother-road .mr-sub{order:3;position:static;font-size:2rem;text-align:left;margin:1.2rem 0 .3rem;text-shadow:none}
+    .mother-road ul:last-of-type{order:4}
+    .mother-road .town,.mother-road .resort{position:static;transform:none;font-size:1rem;text-shadow:none}
+    .mother-road .town{top:auto!important;left:auto!important}
+    .mother-road li{left:auto!important;top:auto!important}
+  }
+  .route-section{padding-top:1.5rem}
 
   /* ---------- the country in between: scrapbook of painted stops ---------- */
   .terrain{padding:4rem 0 4.5rem;background:linear-gradient(to bottom,rgba(233,217,174,0),rgba(233,217,174,.7) 18%,rgba(233,217,174,.7) 82%,rgba(233,217,174,0))}
@@ -324,12 +320,9 @@
   @media(max-width:600px){.waitlist .wrap{margin-top:-3rem}.waitlist .card{padding:1.8rem 1.2rem}}
 
   /* ---------- motion ---------- */
-  .routePath{stroke-dasharray:1;stroke-dashoffset:1}
-  .drawn .routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
   figure{margin:0}
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .routePath{stroke-dashoffset:0 !important;transition:none !important}
     .btn{transition:none}
   }
 
@@ -443,175 +436,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="route-head">
       <span class="label">The route</span>
-      <h2>One road, both directions.</h2>
+    </div>
+    <div class="mr-scroller" role="group" aria-label="The route, west to east">
+      <figure class="mother-road">
+        <img src="/assets/img/r66/mother-road-1440.webp"
+             srcset="/assets/img/r66/mother-road-960.webp 960w, /assets/img/r66/mother-road-1440.webp 1440w, /assets/img/r66/mother-road-1920.webp 1920w"
+             sizes="(max-width:759px) 92vw, 1032px" width="1920" height="1080" loading="lazy" decoding="async"
+             alt="Illustrated Route 66 running west to east: the Santa Monica Pier, palm trees, Flagstaff pines, an Albuquerque pueblo, a cow and Cadillac Ranch at Amarillo, pickleball paddles, the St. Louis Arch and Chicago's Cloud Gate. Below the road, a pool among desert casitas in Palm Springs and a doubles match at Grand Lake, Oklahoma.">
+        <h2 class="mr-title">7 Days on the Mother Road</h2>
+        <ul style="list-style:none" aria-label="Road stops, west to east">
+        <li class="town" style="left:6.77%;top:37.0%">Santa Monica</li>
+        <li class="town" style="left:29.17%;top:36.1%">Flagstaff</li>
+        <li class="town" style="left:39.58%;top:36.1%">Albuquerque</li>
+        <li class="town" style="left:51.56%;top:36.1%">Amarillo</li>
+        <li class="town" style="left:81.77%;top:30.6%">St. Louis</li>
+        <li class="town" style="left:93.75%;top:30.6%">Chicago</li>
+        </ul>
+        <p class="mr-sub">4 days in Paradise</p>
+        <ul style="list-style:none" aria-label="Resort stays">
+        <li class="resort" style="left:10.94%;top:86.1%">Palm Springs</li>
+        <li class="resort" style="left:70.83%;top:86.1%">Grand Lake, OK</li>
+        </ul>
+      </figure>
+    </div>
+    <div class="after">
       <p>It's the same tour either way &mdash; same resorts, same landmarks, ten sessions each.
         Half the departures start in Chicago, half at the Santa Monica Pier. Pick the date that
         fits.</p>
     </div>
-    <div class="tabs" role="tablist" aria-label="Choose a direction">
-      <button class="tab" id="tab-wb" role="tab" type="button" aria-selected="true" aria-controls="panel-wb">
-        Westbound<span class="dir">Chicago to Santa Monica</span>
-      </button>
-      <button class="tab" id="tab-eb" role="tab" type="button" aria-selected="false" aria-controls="panel-eb" tabindex="-1">
-        Eastbound<span class="dir">Santa Monica to Chicago</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="wrap" id="panel-wb" role="tabpanel" aria-labelledby="tab-wb">
-    <div class="strip-scroller" tabindex="0" role="group" aria-label="Westbound route map — scroll horizontally">
-      <div class="strip">
-        <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                fill="none" stroke="#2E2925" stroke-width="10" stroke-linecap="round"/>
-          <path class="routePath"
-                d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                fill="none" stroke="#F16742" stroke-width="6" stroke-linecap="round" pathLength="1"/>
-          <g fill="#045920" stroke="#FFFAF0" stroke-width="3">
-            <circle cx="30" cy="95" r="7"/><circle cx="312" cy="85" r="7"/><circle cx="594" cy="80" r="10"/>
-            <circle cx="896" cy="85" r="7"/><circle cx="1187" cy="80" r="10"/><circle cx="1490" cy="90" r="7"/>
-          </g>
-        </svg>
-      </div>
-      <div class="stops">
-        <div class="stop">
-          <span class="marker">Day 1</span>
-          <span class="cap-city">Chicago, Illinois</span>
-          <span class="cap-landmark">The BEGIN sign</span>
-          <p class="cap-detail">a sidewalk photo on Adams Street, then the welcome reception</p>
-          <span class="cap-play rest">Arrival day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 2</span>
-          <span class="cap-city">St. Louis, Missouri</span>
-          <span class="cap-landmark">The Mississippi</span>
-          <p class="cap-detail">indoor courts on the way out of Chicago, the big river by evening</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 3&ndash;4</span>
-          <span class="cap-city">Grand Lake, Oklahoma</span>
-          <span class="cap-landmark">The dome</span>
-          <p class="cap-detail">a Missouri morning on the way down, then two nights at the lake</p>
-          <span class="cap-play">Three sessions</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 5</span>
-          <span class="cap-city">Amarillo, Texas</span>
-          <span class="cap-landmark">Cadillac Ranch</span>
-          <p class="cap-detail">spray paint at golden hour, steak afterwards</p>
-          <span class="cap-play rest">The road all day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 6</span>
-          <span class="cap-city">Albuquerque, New Mexico</span>
-          <span class="cap-landmark">Green chile</span>
-          <p class="cap-detail">a 1939 Conrad Hilton original downtown, and dinner off the old road</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 7</span>
-          <span class="cap-city">Flagstaff, Arizona</span>
-          <span class="cap-landmark">Ponderosa country</span>
-          <p class="cap-detail">seven thousand feet, pines and painted desert on the horizon</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 8&ndash;9</span>
-          <span class="cap-city">La Quinta, California</span>
-          <span class="cap-landmark">Under the lights</span>
-          <p class="cap-detail">a Flagstaff morning, then the old road down to two nights in the desert</p>
-          <span class="cap-play">Three sessions &middot; finals</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 10</span>
-          <span class="cap-city">Santa Monica, California</span>
-          <span class="cap-landmark">End of the Trail</span>
-          <p class="cap-detail">the pier, the Pacific, the group photo — paddles up</p>
-          <span class="cap-play">Farewell session</span>
-        </div>
-      </div>
-    </div>
-    <p class="scroll-hint">&larr; Drag or scroll the map &rarr;</p>
-  </div>
-
-  <div class="wrap" id="panel-eb" role="tabpanel" aria-labelledby="tab-eb" hidden>
-    <div class="strip-scroller" tabindex="0" role="group" aria-label="Eastbound route map — scroll horizontally">
-      <div class="strip">
-        <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
-          <g transform="translate(1520,0) scale(-1,1)">
-            <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                  fill="none" stroke="#2E2925" stroke-width="10" stroke-linecap="round"/>
-            <path class="routePath"
-                  d="M 1490 90 C 1385 45, 1187 80, 1187 80 S 896 85, 896 85 S 594 80, 594 80 S 312 85, 30 95"
-                  fill="none" stroke="#F16742" stroke-width="6" stroke-linecap="round" pathLength="1"/>
-            <g fill="#045920" stroke="#FFFAF0" stroke-width="3">
-              <circle cx="30" cy="95" r="7"/><circle cx="312" cy="85" r="7"/><circle cx="594" cy="80" r="10"/>
-              <circle cx="896" cy="85" r="7"/><circle cx="1187" cy="80" r="10"/><circle cx="1490" cy="90" r="7"/>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="stops">
-        <div class="stop">
-          <span class="marker">Day 1</span>
-          <span class="cap-city">Santa Monica, California</span>
-          <span class="cap-landmark">End of the Trail</span>
-          <p class="cap-detail">the sign on the pier in the last of the light, then the welcome reception</p>
-          <span class="cap-play rest">Arrival day</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 2&ndash;3</span>
-          <span class="cap-city">La Quinta, California</span>
-          <span class="cap-landmark">Under the lights</span>
-          <p class="cap-detail">a morning in Los Angeles, then east into the desert for two nights</p>
-          <span class="cap-play">Three sessions</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 4</span>
-          <span class="cap-city">Flagstaff, Arizona</span>
-          <span class="cap-landmark">Ponderosa country</span>
-          <p class="cap-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</p>
-          <span class="cap-play rest">The road all day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 5</span>
-          <span class="cap-city">Albuquerque, New Mexico</span>
-          <span class="cap-landmark">Green chile</span>
-          <p class="cap-detail">a high-country morning, the Wigwam Motel at Holbrook, a 1939 Hilton downtown</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 6</span>
-          <span class="cap-city">Amarillo, Texas</span>
-          <span class="cap-landmark">Cadillac Ranch</span>
-          <p class="cap-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 7&ndash;8</span>
-          <span class="cap-city">Grand Lake, Oklahoma</span>
-          <span class="cap-landmark">The dome</span>
-          <p class="cap-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</p>
-          <span class="cap-play">Three sessions &middot; finals</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 9</span>
-          <span class="cap-city">St. Louis, Missouri</span>
-          <span class="cap-landmark">Challenge Day</span>
-          <p class="cap-detail">one last morning on the resort courts, then the Ozarks and the big river</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 10</span>
-          <span class="cap-city">Chicago, Illinois</span>
-          <span class="cap-landmark">The BEGIN sign</span>
-          <p class="cap-detail">a last St. Louis morning, then the sidewalk where the whole road starts</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-      </div>
-    </div>
-    <p class="scroll-hint">&larr; Drag or scroll the map &rarr;</p>
   </div>
 </section>
 
@@ -782,45 +634,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if(code){sessionStorage.setItem('club_code',code)}else{code=sessionStorage.getItem('club_code')||''}
     }catch(e){}
     var f=document.getElementById('club-code'); if(f&&code){f.value=code}
-  })();
-</script>
-<script>
-  (function(){
-    /* draw the route line when a strip becomes visible */
-    var strips=[].slice.call(document.querySelectorAll('.strip'));
-    function draw(el){el.classList.add('drawn')}
-    if(!('IntersectionObserver' in window)){strips.forEach(draw)}
-    else{
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){if(e.isIntersecting){draw(e.target);io.unobserve(e.target)}})
-      },{threshold:.4});
-      strips.forEach(function(el){io.observe(el)});
-    }
-
-    /* direction tabs */
-    var tabs=[].slice.call(document.querySelectorAll('.tab'));
-    if(!tabs.length){return}
-    function select(tab,focus){
-      tabs.forEach(function(t){
-        var panel=document.getElementById(t.getAttribute('aria-controls'));
-        var on=(t===tab);
-        t.setAttribute('aria-selected',on?'true':'false');
-        t.tabIndex=on?0:-1;
-        if(panel){panel.hidden=!on}
-      });
-      var p=document.getElementById(tab.getAttribute('aria-controls'));
-      if(p){var st=p.querySelector('.strip'); if(st){draw(st)}}
-      if(focus){tab.focus()}
-    }
-    tabs.forEach(function(t,i){
-      t.addEventListener('click',function(){select(t,false)});
-      t.addEventListener('keydown',function(e){
-        var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
-        if(!d){return}
-        e.preventDefault();
-        select(tabs[(i+d+tabs.length)%tabs.length],true);
-      });
-    });
   })();
 </script>
 
