@@ -34,7 +34,10 @@ CROPS = {
 }
 
 for slug, (page, (a, b, c, d), widths, feather) in CROPS.items():
-    im = Image.open(os.path.join(SRC, f'p{page}.png')).convert('RGB')
+    path = os.path.join(SRC, f'p{page}.png')
+    if slug == 'santamonica' and os.path.exists(os.path.join(SRC, 'p10-clean.png')):
+        path = os.path.join(SRC, 'p10-clean.png')   # extra pier removed (fix-santamonica-pier.py)
+    im = Image.open(path).convert('RGB')
     W, H = im.size
     crop = im.crop((round(a * W), round(b * H), round(c * W), round(d * H)))
     if feather:  # soft oval edge so the card sits on the page's own parchment
