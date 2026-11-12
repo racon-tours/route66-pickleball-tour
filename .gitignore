@@ -2,3 +2,4 @@
 .netlify
 node_modules
 .env
+tools/__pycache__/

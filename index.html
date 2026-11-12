@@ -175,6 +175,9 @@
     letter-spacing:.1em;font-size:.85rem;color:var(--clay);display:block;margin-top:.55rem;
   }
   .stop .cap-play.rest{color:var(--muted)}
+  .stop a.cap-city{text-decoration:underline;text-decoration-color:var(--clay);text-underline-offset:3px}
+  .stop a.cap-city:hover{color:var(--clay)}
+  .route-more{font-size:16.5px}
 
   /* ---------- direction tabs ---------- */
   .tabs{display:flex;flex-wrap:wrap;margin:2rem 0 0;border-bottom:3px solid var(--green)}
@@ -438,6 +441,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>It's the same tour either way &mdash; same resorts, same landmarks, ten sessions each.
         Half the departures start in Chicago, half at the Santa Monica Pier. Pick the date that
         fits.</p>
+      <p class="route-more">Day by day: <a href="/westbound">westbound</a> &middot; <a href="/eastbound">eastbound</a>. Tap a city for its neighborhood guide.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Choose a direction">
       <button class="tab" id="tab-wb" role="tab" type="button" aria-selected="true" aria-controls="panel-wb">
@@ -467,56 +471,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="stops">
         <div class="stop">
           <span class="marker">Day 1</span>
-          <span class="cap-city">Chicago, Illinois</span>
+          <a class="cap-city" href="/cities/chicago">Chicago, Illinois</a>
           <span class="cap-landmark">The BEGIN sign</span>
           <p class="cap-detail">a sidewalk photo on Adams Street, then the Kickoff Reception</p>
           <span class="cap-play rest">Arrival day</span>
         </div>
         <div class="stop">
           <span class="marker">Day 2</span>
-          <span class="cap-city">St. Louis, Missouri</span>
+          <a class="cap-city" href="/cities/st-louis">St. Louis, Missouri</a>
           <span class="cap-landmark">The Mississippi</span>
           <p class="cap-detail">indoor courts on the way out of Chicago, the big river by evening</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 3&ndash;4</span>
-          <span class="cap-city">Grand Lake, Oklahoma</span>
+          <a class="cap-city" href="/cities/grand-lake">Grand Lake, Oklahoma</a>
           <span class="cap-landmark">The dome</span>
           <p class="cap-detail">a Missouri morning on the way down, then two nights at the lake</p>
           <span class="cap-play">Three sessions</span>
         </div>
         <div class="stop">
           <span class="marker">Day 5</span>
-          <span class="cap-city">Amarillo, Texas</span>
+          <a class="cap-city" href="/cities/amarillo">Amarillo, Texas</a>
           <span class="cap-landmark">Cadillac Ranch</span>
           <p class="cap-detail">spray paint at golden hour, steak afterwards</p>
           <span class="cap-play rest">The road all day</span>
         </div>
         <div class="stop">
           <span class="marker">Day 6</span>
-          <span class="cap-city">Albuquerque, New Mexico</span>
+          <a class="cap-city" href="/cities/albuquerque">Albuquerque, New Mexico</a>
           <span class="cap-landmark">Green chile</span>
           <p class="cap-detail">a boutique hotel in a restored 1926 railway hospital, and dinner off the old road</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop">
           <span class="marker">Day 7</span>
-          <span class="cap-city">Flagstaff, Arizona</span>
+          <a class="cap-city" href="/cities/flagstaff">Flagstaff, Arizona</a>
           <span class="cap-landmark">Ponderosa country</span>
           <p class="cap-detail">seven thousand feet, pines and painted desert on the horizon</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 8&ndash;9</span>
-          <span class="cap-city">La Quinta, California</span>
+          <a class="cap-city" href="/cities/la-quinta">La Quinta, California</a>
           <span class="cap-landmark">Under the lights</span>
           <p class="cap-detail">a Flagstaff morning, then the old road down to two nights in the desert</p>
           <span class="cap-play">Three sessions &middot; finals</span>
         </div>
         <div class="stop">
           <span class="marker">Day 10</span>
-          <span class="cap-city">Santa Monica, California</span>
+          <a class="cap-city" href="/cities/santa-monica">Santa Monica, California</a>
           <span class="cap-landmark">End of the Trail</span>
           <p class="cap-detail">the pier, the Pacific, the group photo — paddles up — then the Farewell Happy Hour</p>
           <span class="cap-play">Farewell session</span>
@@ -546,56 +550,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="stops">
         <div class="stop">
           <span class="marker">Day 1</span>
-          <span class="cap-city">Santa Monica, California</span>
+          <a class="cap-city" href="/cities/santa-monica">Santa Monica, California</a>
           <span class="cap-landmark">End of the Trail</span>
           <p class="cap-detail">the sign on the pier in the last of the light, then the Kickoff Reception</p>
           <span class="cap-play rest">Arrival day</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 2&ndash;3</span>
-          <span class="cap-city">La Quinta, California</span>
+          <a class="cap-city" href="/cities/la-quinta">La Quinta, California</a>
           <span class="cap-landmark">Under the lights</span>
           <p class="cap-detail">a morning in Los Angeles, then east into the desert for two nights</p>
           <span class="cap-play">Three sessions</span>
         </div>
         <div class="stop">
           <span class="marker">Day 4</span>
-          <span class="cap-city">Flagstaff, Arizona</span>
+          <a class="cap-city" href="/cities/flagstaff">Flagstaff, Arizona</a>
           <span class="cap-landmark">Ponderosa country</span>
           <p class="cap-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</p>
           <span class="cap-play rest">The road all day</span>
         </div>
         <div class="stop">
           <span class="marker">Day 5</span>
-          <span class="cap-city">Albuquerque, New Mexico</span>
+          <a class="cap-city" href="/cities/albuquerque">Albuquerque, New Mexico</a>
           <span class="cap-landmark">Green chile</span>
           <p class="cap-detail">a high-country morning, the Wigwam Motel at Holbrook, a boutique hotel in a restored 1926 railway hospital</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop">
           <span class="marker">Day 6</span>
-          <span class="cap-city">Amarillo, Texas</span>
+          <a class="cap-city" href="/cities/amarillo">Amarillo, Texas</a>
           <span class="cap-landmark">Cadillac Ranch</span>
           <p class="cap-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop anchor">
           <span class="marker">Days 7&ndash;8</span>
-          <span class="cap-city">Grand Lake, Oklahoma</span>
+          <a class="cap-city" href="/cities/grand-lake">Grand Lake, Oklahoma</a>
           <span class="cap-landmark">The dome</span>
           <p class="cap-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</p>
           <span class="cap-play">Three sessions &middot; finals</span>
         </div>
         <div class="stop">
           <span class="marker">Day 9</span>
-          <span class="cap-city">St. Louis, Missouri</span>
+          <a class="cap-city" href="/cities/st-louis">St. Louis, Missouri</a>
           <span class="cap-landmark">Challenge Day</span>
           <p class="cap-detail">one last morning on the resort courts, then the Ozarks and the big river</p>
           <span class="cap-play">Morning session</span>
         </div>
         <div class="stop">
           <span class="marker">Day 10</span>
-          <span class="cap-city">Chicago, Illinois</span>
+          <a class="cap-city" href="/cities/chicago">Chicago, Illinois</a>
           <span class="cap-landmark">The BEGIN sign</span>
           <p class="cap-detail">a last St. Louis morning, the sidewalk where the whole road starts, then the Farewell Happy Hour</p>
           <span class="cap-play">Morning session</span>
