@@ -30,7 +30,6 @@ CROPS = {
     'flagstaff':    (9,  (0.010, 0.260, 0.660, 0.540), (800, 1400, 2000), False),
     'santamonica':  (10, (0.010, 0.520, 0.990, 0.985), (800, 1400, 2000), False),
     'winslow':      (2,  (0.600, 0.340, 0.950, 0.640), (400, 700), False),
-    'bucket-list':  (1,  (0.790, 0.485, 0.950, 0.625), (300, 500), True),
 }
 
 for slug, (page, (a, b, c, d), widths, feather) in CROPS.items():
