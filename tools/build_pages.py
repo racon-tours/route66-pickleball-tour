@@ -36,7 +36,7 @@ EXTRA_CSS = """
   .crumbs a{color:var(--chalk)}
   .guide{padding:3.5rem 0}
   .guide .wrap{max-width:880px}
-  .stay{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:3rem}
+  .stay{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:1rem}
   .card{background:#FFFFFF;border:3px solid var(--green);padding:1.3rem 1.4rem}
   .card h3{font-size:1.2rem;color:var(--green);margin-bottom:.35rem}
   .card .where{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.95rem;color:var(--clay);display:block;margin-bottom:.4rem}
@@ -189,6 +189,7 @@ def city_page(c, i):
       {hotels}
       <div class="card when"><span class="where">When we're here</span><dl>{when}</dl></div>
     </div>
+    <p class="checked">Hotels named are those contracted for 2027. Where a property becomes unavailable we substitute one of comparable or superior standard &mdash; see <a href="https://pickle.tours/booking-terms">Terms</a>.</p>
     <div class="photos">{slots}</div>
 {sections}
     <div class="tips"><h2>Good to know</h2><ul>{tips}</ul></div>
@@ -232,6 +233,7 @@ def direction_page(key, days, other):
   <div class="wrap">
     <ol class="days">
 {items}    </ol>
+    <p class="checked">Hotels named are those contracted for 2027. Where a property becomes unavailable we substitute one of comparable or superior standard &mdash; see <a href="https://pickle.tours/booking-terms">Terms</a>.</p>
     <p class="checked">Exact stops and times are in the route book every guest receives before departure. Landmarks along the way can change with road conditions.</p>
     <div class="pager"><a href="/">&larr; The tour</a><a href="/{other}">{other.capitalize()} day by day &rarr;</a></div>
   </div>
