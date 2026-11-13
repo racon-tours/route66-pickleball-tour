@@ -35,6 +35,12 @@ In production it also opens a card on Trello board "Travel Advisors" (list Regis
 `TRELLO_KEY` + `TRELLO_TOKEN` are set, and emails mike@pickle.tours via Resend when `RESEND_API_KEY`
 is set (optional `TRELLO_ADVISOR_LIST_ID`, `ADVISOR_ALERT_TO`).
 
+The form carries a required acceptance box for the Travel Advisor Agreement (https://pickle.tours/advisor-terms)
+and a hidden `terms_version`. The function stores the version, time, IP and browser on the advisor record and
+appends a never-overwritten entry at `acceptance/<email>/<time>` in the same store; the Trello card and
+MailerLite field `advisor_terms` show the version and time. When the agreement text changes, change the
+version on the page and in the form's hidden field together.
+
 ## Club affiliate links
 Pickleball clubs refer members with a code (`<CLUB>500`, e.g. `ABQE500`; never "MEMBER", never "FAM", which travel advisors read as a familiarization trip).
 Clubs do **not** get a web page (dropped 3 Nov 2026). Each club gets a short link, `/<slug>`, that forwards (302) to the

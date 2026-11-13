@@ -11,6 +11,10 @@ import { getStore } from "@netlify/blobs";
  *   2. upserted into MailerLite group "Pickle Dot Tours — Travel Advisors" (created on first use)
  *      with their agency, host, advisor ID and address as fields. The hourly advisor sync reads that
  *      group, opens a Trello card per new advisor, and the Tour Amigo portal login is created from it.
+ *   3. Acceptance of the Travel Advisor Agreement (https://pickle.tours/advisor-terms): the form sends
+ *      agree=yes and the version shown on the page (terms_version). We keep the version, time, IP and
+ *      browser on the advisor record, and also append a separate, never-overwritten entry under
+ *      acceptance/<email>/<time> so a later re-registration cannot erase an earlier acceptance.
  * Then the browser goes to https://pickle.tours/advisors-thanks (or ?status=error on failure).
  *
  * Env vars: MAILERLITE_API_KEY (already set for the waitlist).
@@ -25,6 +29,7 @@ const CUSTOM_FIELDS: Record<string, string> = {
   advisor_id: "Advisor ID",
   advisor_address: "Advisor Address",
   advisor_webinar: "Advisor Webinar",
+  advisor_terms: "Advisor Terms",
 };
 
 const redirect = (to: string) => new Response(null, { status: 303, headers: { Location: to } });
@@ -77,7 +82,20 @@ export default async (req: Request, ctx: Context) => {
     webinar: form.get("webinar") ? "yes" : "no",
     submitted_at: new Date().toISOString(),
     ip: req.headers.get("x-nf-client-connection-ip") ?? undefined,
+    terms_version: undefined as string | undefined,
+    agreed_at: undefined as string | undefined,
+    agreed_ip: undefined as string | undefined,
+    agreed_user_agent: undefined as string | undefined,
   };
+  // A form that carries terms_version is the version with the acceptance box: the box must be ticked.
+  const termsVersion = s("terms_version", 20);
+  if (termsVersion) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(termsVersion) || s("agree") !== "yes") return redirect(`${DONE}?status=error`);
+    rec.terms_version = termsVersion;
+    rec.agreed_at = rec.submitted_at;
+    rec.agreed_ip = rec.ip;
+    rec.agreed_user_agent = (req.headers.get("user-agent") ?? "").slice(0, 300) || undefined;
+  }
   if (!rec.first_name || !rec.last_name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return redirect(`${DONE}?status=error`);
   }
@@ -85,8 +103,16 @@ export default async (req: Request, ctx: Context) => {
   const prod = ctx?.deploy?.context === "production";
   let saved = false;
   try {
-    await getStore(prod ? "advisors" : "advisors-preview").setJSON(`advisor/${email}`, rec);
+    const store = getStore(prod ? "advisors" : "advisors-preview");
+    await store.setJSON(`advisor/${email}`, rec);
     saved = true;
+    if (rec.terms_version) {
+      await store.setJSON(`acceptance/${email}/${rec.agreed_at}`, {
+        email, name: `${rec.first_name} ${rec.last_name}`, agency: rec.agency, host: rec.host,
+        agreement: "Travel Advisor Agreement", terms_version: rec.terms_version,
+        agreed_at: rec.agreed_at, agreed_ip: rec.agreed_ip, agreed_user_agent: rec.agreed_user_agent,
+      });
+    }
   } catch (err) {
     console.error("advisor-signup: blob save failed", err);
   }
@@ -115,6 +141,7 @@ export default async (req: Request, ctx: Context) => {
           advisor_id: rec.advisor_id,
           advisor_address: address,
           advisor_webinar: rec.webinar,
+          ...(rec.terms_version ? { advisor_terms: `v${rec.terms_version} agreed ${rec.agreed_at}` } : {}),
         },
       }),
     });
@@ -130,8 +157,11 @@ export default async (req: Request, ctx: Context) => {
     `Address: ${[rec.street, rec.city, rec.state, rec.zip, rec.country].filter(Boolean).join(", ")}`,
     `Webinar invite: ${rec.webinar}`,
     `Submitted: ${rec.submitted_at}`,
+    rec.terms_version
+      ? `Agreed to the Travel Advisor Agreement v${rec.terms_version} on ${rec.agreed_at!.slice(0, 16).replace("T", " ")} UTC.`
+      : `Advisor Agreement: NOT accepted (registered before the acceptance box existed).`,
     ``,
-    `Next: create the Tour Amigo distribution partner (group "Fora Travel Advisors" if Fora) and a user login, then move this card to Portal Sent.`,
+    `Next: create the Tour Amigo distribution partner (group "Fora Travel Advisors" if Fora) and a user login, then move this card to Portal Sent. Link the agreement (https://pickle.tours/advisor-terms) in the login email.`,
   ].join("\n");
 
   // Trello card on the Travel Advisors board (only when the Trello credentials are set).
