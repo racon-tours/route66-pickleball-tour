@@ -147,12 +147,13 @@
     transform:scale(1.06);filter:sepia(.4) saturate(1.15) contrast(1.03)}
   .hero-video::after{content:"";position:absolute;inset:0;pointer-events:none;
     background:linear-gradient(to bottom,rgba(46,41,37,.05) 0,rgba(46,41,37,.15) 40%,rgba(46,41,37,.6) 82%,var(--parchment) 100%)}
-  .hero-video-text{position:absolute;left:0;right:0;bottom:9%;z-index:1;text-align:center;padding:0 1.5rem}
+  .hero-video-text{position:absolute;left:0;right:0;bottom:8%;z-index:1;text-align:center;padding:0 1.5rem}
+  .hero-video-text .badge{width:170px;margin:0 auto 1.2rem;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
   .hero-video-text .caps{color:var(--snap);font-size:1.05rem;margin-bottom:.8rem;text-shadow:0 1px 6px rgba(0,0,0,.5)}
   .hero-video-text h1{color:var(--snap);margin:0 auto;transform-origin:center;
     text-shadow:0 2px 0 rgba(196,30,26,.9),0 4px 18px rgba(0,0,0,.45)}
-  .hero .hero-inner{padding-top:2.2rem}
-  @media(max-width:760px){.hero-video{height:70vh;min-height:420px}.hero .badge{width:150px}}
+  .hero .hero-inner{padding-top:1.8rem}
+  @media(max-width:760px){.hero-video{height:70vh;min-height:420px}.hero .badge{width:120px;margin-bottom:.8rem}}
 
   .hero .vignette img{max-height:560px}
   @media(max-width:760px){.hero .vignette{margin-top:.5rem}}
@@ -389,13 +390,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <source src="/assets/video/hero-r66.mp4" type="video/mp4">
     </video>
     <div class="hero-video-text">
+      <img class="badge" src="/assets/route66-pickleball-tour-logo.png"
+           alt="Route 66 Pickleball Tour" width="804" height="883">
       <p class="caps">Chicago to Santa Monica &middot; Sixteen departures</p>
       <h1>2,400 miles.<br>11 days.<br>31 new friends.</h1>
     </div>
   </div>
   <div class="hero-inner">
-    <img class="badge" src="/assets/route66-pickleball-tour-logo.png"
-         alt="Route 66 Pickleball Tour" width="804" height="883">
     <p class="lede">Eleven days between the BEGIN sign in Chicago and the Pacific, and ten pickleball
       sessions on courts booked for us alone. Beginner or 4.0, trophy hunter or don't-keep-score
       &mdash; there's something for you in every one.</p>
