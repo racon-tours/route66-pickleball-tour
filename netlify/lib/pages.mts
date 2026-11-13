@@ -107,7 +107,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     <div class="prefix"><input type="text" name="code" id="code" value="${esc(prefix)}" required maxlength="14" style="text-transform:uppercase"><span>${CODE_SUFFIX}</span></div>
     <p class="hint" id="code-msg">Members type this at checkout to save ${esc(discountText())}.</p></div>
   <div class="step"><p class="label">Step C</p><h2>Agree to the referral terms</h2>
-    <p>Your members save ${esc(discountText())}. The club earns $250 for every member who books with your code and travels, when your club link or code goes out in at least one member email that month ($150 otherwise). We handle every booking and payment.</p>
+    <p>Your members save ${esc(discountText())}. The club earns $500 for every booking made with your code, once the guests travel. We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <div class="field"><label class="label" for="sn">Your name</label><input type="text" id="sn" name="signer_name" required autocomplete="name" value="${esc(c.contact_name ?? "")}"></div>
     <div class="field"><label class="label" for="st">Your title at the club</label><input type="text" id="st" name="signer_title" required></div>
@@ -168,7 +168,7 @@ export function registerPage(v: Signup, open: boolean, error?: string, blocked =
 <header class="hero"><div class="wrap">
   <div class="marks"><img src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="87" height="96"></div>
   <h1>Register for club referral commission</h1>
-  <p>Your members save ${esc(discountText())} on the Route 66 Pickleball Tour, and your club earns $250 for every member who books with your code and travels. Three short steps; we email your member flyer, newsletter graphic, link and code once they're set up.</p>
+  <p>Your members save ${esc(discountText())} on the Route 66 Pickleball Tour, and your club earns $500 for every booking made with your code. Three short steps; we email your member flyer, newsletter graphic, link and code once they're set up.</p>
 </div></header>
 <main class="wrap">
 ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</p>` : ""}
@@ -194,7 +194,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     ${f("phone", "Phone", "tel", 'required maxlength="40" autocomplete="tel"')}
   </div>
   <div class="step"><p class="label">Step 3</p><h2>Agree to the referral terms</h2>
-    <p>Your members save ${esc(discountText())} with your code. The club earns $250 for every member who books with it and travels, when your club link or code goes out in at least one member email that month ($150 otherwise), paid the first of the month after the trip departs. We handle every booking and payment.</p>
+    <p>Your members save ${esc(discountText())} with your code. The club earns $500 for every booking made with it, paid the first of the month after the trip departs. We handle every booking and payment.</p>
     <p><a href="/club-terms.html" target="_blank" rel="noopener">Read the Club Referral Agreement</a> (version ${TERMS_VERSION}).</p>
     <label class="check"><input type="checkbox" name="agree" value="yes" required><span>I'm authorized to act for this club, and the club agrees to the Club Referral Agreement.</span></label></div>
   <p style="margin:2rem 0 3rem"><button class="btn dark" type="submit" ${open ? "" : "disabled"}>Register our club</button></p>
