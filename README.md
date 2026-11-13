@@ -41,6 +41,14 @@ appends a never-overwritten entry at `acceptance/<email>/<time>` in the same sto
 MailerLite field `advisor_terms` show the version and time. When the agreement text changes, change the
 version on the page and in the form's hidden field together.
 
+## Tour-director applications
+`netlify/functions/director-apply.mts` serves `POST /api/director-apply`, the target of the form at
+https://pickle.tours/directors (married/partnered couples applying to be tour directors). It saves each
+application to Netlify Blobs (store `directors`, key `director/<email>`), and in production opens a card on
+Trello board "Director Bench" (list Applied) and emails mike@pickle.tours via Resend — same `TRELLO_KEY`,
+`TRELLO_TOKEN`, `RESEND_API_KEY` as the advisor sign-up (optional `TRELLO_DIRECTOR_LIST_ID`, `DIRECTOR_ALERT_TO`).
+Applicants are not added to MailerLite. Then redirects to https://pickle.tours/directors-thanks.
+
 ## Club affiliate links
 Pickleball clubs refer members with a code (`<CLUB>500`, e.g. `ABQE500`; never "MEMBER", never "FAM", which travel advisors read as a familiarization trip).
 Clubs do **not** get a web page (dropped 3 Nov 2026). Each club gets a short link, `/<slug>`, that forwards (302) to the
