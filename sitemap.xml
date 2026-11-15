@@ -3,4 +3,15 @@
   <url><loc>https://route66pickleballtour.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority>
     <image:image><image:loc>https://route66pickleballtour.com/assets/route66-pickleball-tour-2027-badge.png</image:loc><image:title>Route 66 Pickleball Tour 2027</image:title></image:image>
   </url>
+  <url><loc>https://route66pickleballtour.com/westbound</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://route66pickleballtour.com/eastbound</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://route66pickleballtour.com/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/chicago</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/st-louis</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/grand-lake</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/amarillo</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/albuquerque</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/flagstaff</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/la-quinta</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://route66pickleballtour.com/cities/santa-monica</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
