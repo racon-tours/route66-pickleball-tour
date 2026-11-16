@@ -25,349 +25,195 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">
 <style>
+  /* Route 66 Pickleball Tour — Kimp design (05 Nov 2026 R4), built for the sandbox */
   :root{
-    --green:#04421D;      /* Pickle Green — dominant */
-    --optic:#E7FB20;      /* Optic Yellow — once per section */
-    --chalk:#F7F5EE;      /* Chalk — primary background */
-    --ink:#14211F;        /* Ink — body copy */
-    --clay:#E9603E;       /* Clay — warm accent */
-    --muted:#6B7A70;      /* muted green-grey on Chalk (no low-opacity text) */
-    --green-line:#1C6234; /* decorative rules on Pickle Green */
-    --chalk-dim:#CFD6CD;  /* supporting text on Pickle Green */
-    --rule:#DBD7CA;       /* hairlines on Chalk */
-    --max:1080px;
+    --red:#D40000; --blue:#0135A4; --ink:#2E2925; --dark:#1C1C1E; --cream:#FEEFD0; --tan:#F0B478;
+    --optic:#E7FB20; --green:#04421D; --max:1728px;
+    --pad:clamp(20px,5vw,96px);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    font-family:'Merriweather',Georgia,serif;
-    background:var(--chalk);
-    color:var(--ink);
-    font-size:18px;
-    line-height:1.75;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:var(--optic);color:var(--green)}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
-  section{padding:5.5rem 0}
+  body{font-family:'Merriweather',Georgia,serif;color:var(--ink);font-size:18px;line-height:1.65;
+    background:#F5DFA9 url(/assets/kimp/parchment.webp) center top/100% auto repeat-y;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
   a{color:inherit}
-  p{margin-bottom:1.2rem}
-  p:last-child{margin-bottom:0}
+  .skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:99}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .center{text-align:center}
+  .two{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,96px);align-items:center}
+  section{padding:clamp(48px,5vw,96px) 0;position:relative}
+  h1,h2,h3{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.05;color:var(--red)}
+  h2{font-size:clamp(2.4rem,5vw,6rem);margin:.15em 0 .35em}
+  h3{font-size:clamp(1.4rem,1.7vw,2rem)}
+  .body-lg{font-size:clamp(1.05rem,1.25vw,1.5rem);line-height:1.6;margin-bottom:1em}
+  .script{display:inline-block;font-family:'Yesteryear',cursive;font-size:clamp(1.5rem,1.9vw,2.2rem);color:#000;
+    background:#fff;padding:.05em .55em .1em;border-radius:40% 55% 45% 60%/60% 40% 55% 45%;line-height:1.2}
+  .btn,.pill{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.06em;text-decoration:none;cursor:pointer;border:0;font-size:clamp(1rem,1.25vw,1.5rem)}
+  .pill{border-radius:64px;padding:.55em 1.6em;color:#fff}
+  .pill.red{background:var(--red)}
+  .btn{padding:.75em 1.5em}
+  .btn.optic{background:var(--optic);color:var(--green)}
+  .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff}
+  .btn:hover,.pill:hover{filter:brightness(1.08)}
 
-  /* ---------- type system ---------- */
-  h1,h2,h3,.display{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;line-height:1.12}
-  h1{font-size:clamp(2.6rem,6.4vw,4.4rem)}
-  h2{font-size:clamp(2rem,3.8vw,2.6rem);margin-bottom:1.4rem;color:var(--green)}
-  .label{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;
-    text-transform:uppercase;letter-spacing:.14em;font-size:1rem;
-    display:block;margin-bottom:.85rem;
-  }
-  .script{font-family:'Yesteryear',cursive;font-weight:400}
-  .lede{font-size:clamp(1.1rem,1.6vw,1.22rem);line-height:1.7}
-  .fine{font-size:15px;line-height:1.6;color:var(--muted)}
+  /* nav */
+  .topnav{display:flex;align-items:center;gap:32px;padding:clamp(16px,3vw,56px) var(--pad) 24px;max-width:1920px;margin:0 auto}
+  .topnav .brand img{width:clamp(52px,4vw,76px);height:auto}
+  .menu{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+  .menu a{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(1rem,1.25vw,1.5rem);
+    color:var(--dark);text-decoration:none;padding:6px 14px;border-radius:10px}
+  .menu a:hover{background:rgba(255,255,255,.5)}
 
-  /* ---------- buttons ---------- */
-  .btn{
-    display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
-    text-transform:uppercase;letter-spacing:.12em;font-size:1.05rem;
-    text-decoration:none;cursor:pointer;border:none;
-    background:var(--optic);color:var(--green);
-    padding:.85rem 1.8rem;
-    box-shadow:4px 4px 0 var(--ink);
-    transition:transform .12s ease,box-shadow .12s ease;
-  }
-  .btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
-  .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-  .btn.clay{background:var(--clay);color:var(--chalk)}
-  .btn.small{padding:.5rem 1.1rem;font-size:.95rem;box-shadow:3px 3px 0 var(--ink)}
-  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,
-  .strip-scroller:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+  /* hero */
+  .hero{padding:16px 32px 32px;max-width:1920px;margin:0 auto}
+  .hero-frame{position:relative;border-radius:64px;overflow:hidden;border:2px solid var(--tan);min-height:min(1030px,92vh);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(240,180,120,.25)}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-inner{position:relative;max-width:760px;text-align:center;color:#fff;padding:96px 24px}
+  .hero-badge{width:clamp(110px,10vw,170px);height:auto;margin:0 auto 28px;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+  .eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:clamp(.9rem,1vw,1.15rem);margin-bottom:18px}
+  .hero h1{color:#fff;font-size:clamp(2.6rem,5vw,5.4rem);margin-bottom:28px}
+  .hero-lede{font-size:clamp(1rem,1.2vw,1.35rem);line-height:1.7;margin-bottom:36px}
+  .hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
-  /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:50;background:var(--chalk);border-bottom:3px solid var(--green)}
-  .nav-inner{
-    max-width:var(--max);margin:0 auto;padding:.8rem 1.5rem;
-    display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  }
-  .wordmark{
-    font-family:'Alfa Slab One',Georgia,serif;font-size:1.25rem;
-    text-decoration:none;color:var(--green);line-height:1;
-    display:flex;align-items:center;gap:.6rem;
-  }
-  .wordmark img{display:block;width:42px;height:42px}
-  footer .wordmark img{width:34px;height:34px}
-  .wordmark img.pdt-head{width:auto;height:38px}
-  .nav-links{display:flex;align-items:center;gap:1.6rem}
-  .nav-links a{
-    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.11em;font-size:1.02rem;text-decoration:none;color:var(--ink);
-  }
-  .nav-links a:hover{color:var(--clay)}
-  @media(max-width:760px){.nav-links a:not(.btn){display:none}}
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);background:url(/assets/kimp/paper-wide.webp) center/100% 100%;
+    max-width:1920px;margin:0 auto;padding:clamp(20px,3vw,48px) var(--pad)}
+  .stat{text-align:center;padding:8px;border-right:2px dashed rgba(150,100,50,.35)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:'Alfa Slab One',serif;font-weight:400;font-size:clamp(2.4rem,3.4vw,4rem);line-height:1.1}
+  .stat b.red{color:var(--red)} .stat b.blue{color:var(--blue)}
+  .stat span{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;font-size:clamp(.85rem,1vw,1.25rem);color:var(--ink)}
 
-  /* ---------- hero ---------- */
-  .hero{background:var(--green);color:var(--chalk);position:relative;overflow:hidden;padding:5rem 0 6rem}
-  .hero::before,.hero::after{content:"";position:absolute;left:0;right:0;height:4px;background:var(--green-line)}
-  .hero::before{top:3.25rem}
-  .hero::after{bottom:3.25rem}
-  .kitchen-line{position:absolute;top:0;bottom:0;width:4px;background:var(--green-line)}
-  .kl-left{left:7%}
-  .kl-right{right:7%}
-  @media(max-width:900px){.kl-left{left:1rem}.kl-right{right:1rem}}
-  .hero-inner{position:relative;text-align:center;max-width:840px;margin:0 auto;padding:0 1.5rem}
-  .hero .badge{width:200px;height:auto;display:block;margin:0 auto 2rem}
-  .hero .label{color:var(--chalk);letter-spacing:.16em}
-  .hero h1{margin-bottom:1.6rem}
-  .hero .lede{max-width:40rem;margin:0 auto 2.6rem;color:var(--chalk)}
+  /* idea */
+  .idea-art{position:relative;min-height:clamp(300px,26vw,480px)}
+  .idea-art .pier{position:absolute;right:calc(-1 * var(--pad));top:-6%;width:115%;max-width:none;opacity:.95}
+  .idea-art .coach{position:absolute;left:4%;top:8%;width:62%;aspect-ratio:1;object-fit:cover;border-radius:48px;transform:rotate(1.4deg);
+    border:10px solid #E9A54C;box-shadow:0 0 0 4px #F7D08A,0 18px 40px rgba(80,40,0,.35)}
 
-  /* ---------- stat strip ---------- */
-  .stats{background:var(--ink);color:var(--chalk)}
-  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding-left:0;padding-right:0}
-  .stat{padding:1.6rem .75rem;text-align:center;border-left:1px solid #33403B}
-  .stat:first-child{border-left:none}
-  .stat b{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.6rem;
-    display:block;line-height:1;margin-bottom:.35rem;color:var(--chalk);
-  }
-  .stat.key b{color:var(--optic)}
-  .stat span{
-    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.12em;font-size:.95rem;color:var(--chalk);
-  }
-  @media(max-width:760px){
-    .stats .wrap{grid-template-columns:1fr 1fr}
-    .stat:nth-child(3){border-left:none}
-    .stat:nth-child(n+3){border-top:1px solid #33403B}
-  }
+  /* route */
+  .route-head{align-items:end;margin-bottom:24px}
+  .dir-toggle{display:flex;justify-content:center;gap:4px;margin:24px auto 48px}
+  .dir-toggle button{font:inherit;border:2px solid var(--tan);background:#FFEBC9;color:var(--ink);border-radius:16px;padding:14px 48px;cursor:pointer;
+    box-shadow:0 6px 0 rgba(150,90,30,.25)}
+  .dir-toggle button b{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(1.3rem,1.7vw,2rem);text-transform:uppercase}
+  .dir-toggle button span{font-size:clamp(.85rem,.95vw,1.1rem)}
+  .dir-toggle button[aria-selected=true]{background:var(--blue);border-color:var(--blue);color:var(--cream)}
+  .road{position:relative;height:84px;background:#1d1a17;margin:0 0 40px;
+    background-image:repeating-linear-gradient(90deg,transparent 0 40px,#fff 40px 135px,transparent 135px 175px);
+    background-size:100% 10px;background-repeat:no-repeat;background-position:0 50%;
+    clip-path:polygon(0 6%,3% 0,20% 5%,40% 0,60% 6%,80% 1%,100% 5%,100% 95%,80% 100%,60% 94%,40% 100%,20% 95%,3% 100%,0 94%)}
+  .bus{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);width:clamp(180px,16vw,300px)}
+  .bus img{width:100%;transform:scaleX(-1)}
+  .bus span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(1.1rem,1.6vw,2rem);text-transform:uppercase;padding-left:12%}
+  .cards{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);padding:8px var(--pad) 28px;scrollbar-width:thin}
+  .cards::after{content:'';flex:0 0 1px}
+  .cards[hidden]{display:none}
+  .day-card{flex:0 0 clamp(250px,17.5vw,320px);scroll-snap-align:start;text-decoration:none;color:var(--ink);
+    background:url(/assets/kimp/paper-plain.webp) center/cover;border-radius:16px;padding:14px 14px 18px;display:flex;flex-direction:column;
+    box-shadow:0 8px 18px rgba(120,70,20,.22);transition:transform .15s}
+  .day-card:hover{transform:translateY(-4px)}
+  .day-photo{position:relative;display:block;border-radius:12px;overflow:hidden;aspect-ratio:1.45;margin-bottom:18px;background:#d9c08b}
+  .day-photo img{width:100%;height:100%;object-fit:cover}
+  .day-pill{position:absolute;left:10px;top:10px;background:var(--red);color:var(--cream);border-radius:20px;padding:2px 12px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:1rem;text-transform:uppercase}
+  .day-city{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;color:var(--blue);font-size:clamp(1.05rem,1.2vw,1.4rem)}
+  .day-title{font-family:'Alfa Slab One',serif;color:var(--red);font-size:clamp(1.4rem,1.6vw,1.9rem);line-height:1.1;margin:8px 0 10px}
+  .day-detail{font-size:clamp(.9rem,.95vw,1.05rem);line-height:1.55;flex:1}
+  .day-tag{align-self:flex-start;margin-top:12px;font-family:'Yesteryear',cursive;font-size:1.15rem;background:#fff;color:#000;padding:0 10px;border-radius:12px}
+  .scroll-hint{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;color:var(--ink);opacity:.8}
 
-  /* ---------- concept ---------- */
-  .concept .wrap{max-width:780px}
-  .concept .label{color:var(--clay)}
-  .concept h2{max-width:32rem}
+  /* country */
+  .country{overflow:hidden;padding-top:clamp(80px,10vw,180px)}
+  .country .vig{position:absolute;top:-10px;width:clamp(180px,22vw,460px)}
+  .vig-l{left:-6%} .vig-r{right:-6%}
+  .passage{font-family:'Alfa Slab One',serif;color:var(--red);font-size:clamp(1.8rem,3.3vw,4rem);line-height:1.15;max-width:1080px;margin:clamp(28px,6vw,110px) auto 36px}
+  .kicker{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;font-size:clamp(1.1rem,1.6vw,2rem)}
+  .quarry{width:clamp(280px,30vw,560px);margin:36px auto 0}
 
-  /* ---------- route strip ---------- */
-  .route-section{padding-top:4rem}
-  .route-section .label{color:var(--clay)}
-  .route-head{max-width:800px;margin-bottom:.5rem}
-  .strip-scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1.25rem 0 .5rem}
-  .strip{position:relative;min-width:1520px;height:150px}
-  .strip svg{position:absolute;inset:0;width:100%;height:100%}
-  .stops{display:grid;grid-template-columns:repeat(8,1fr);gap:1.25rem;min-width:1520px;padding-bottom:1.5rem}
-  .stop{padding:0 .25rem}
-  .stop .marker{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;
-    text-transform:uppercase;letter-spacing:.1em;color:var(--chalk);background:var(--green);
-    display:inline-block;padding:.15rem .6rem;margin-bottom:.65rem;
-  }
-  .stop.anchor .marker{background:var(--clay)}
-  .stop .cap-city{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.16em;font-size:15px;color:var(--ink);display:block;
-  }
-  .stop .cap-landmark{
-    font-family:'Yesteryear',cursive;font-size:30px;line-height:1.15;
-    color:var(--green);display:block;margin:.1rem 0 .35rem;
-  }
-  .stop .cap-detail{font-size:15px;line-height:1.55;font-style:italic;color:var(--muted)}
-  .stop .cap-play{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.1em;font-size:.85rem;color:var(--clay);display:block;margin-top:.55rem;
-  }
-  .stop .cap-play.rest{color:var(--muted)}
-  .stop a.cap-city{text-decoration:underline;text-decoration-color:var(--clay);text-underline-offset:3px}
-  .stop a.cap-city:hover{color:var(--clay)}
-  .route-more{font-size:16.5px}
+  /* pickleball */
+  .tourn .wrap{position:relative}
+  .tourn h2{padding-right:clamp(0px,16vw,300px)}
+  .paddles{position:absolute;right:var(--pad);top:-20px;width:clamp(120px,14vw,260px);transform:rotate(8deg)}
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);max-width:1300px;margin:48px auto 0}
+  .note{position:relative;background:url(/assets/kimp/paper-torn.webp) center/100% 100% no-repeat;padding:clamp(36px,4vw,64px) clamp(28px,3.4vw,56px) clamp(48px,5vw,80px);
+    filter:drop-shadow(0 10px 18px rgba(90,50,10,.3))}
+  .note.n1{transform:rotate(-2deg)} .note.n2{transform:rotate(2deg)}
+  .note .num{position:absolute;right:28px;top:14px;font-family:'Alfa Slab One',serif;color:#fff;font-size:clamp(2.6rem,3.4vw,4rem);
+    -webkit-text-stroke:2px rgba(160,100,40,.35)}
+  .note h3{margin:0 70px 18px 0}
+  .note p{font-size:clamp(.95rem,1vw,1.15rem);margin-bottom:1em}
 
-  /* ---------- direction tabs ---------- */
-  .tabs{display:flex;flex-wrap:wrap;margin:2rem 0 0;border-bottom:3px solid var(--green)}
-  .tab{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.11em;font-size:1.05rem;cursor:pointer;text-align:left;
-    background:none;border:none;border-bottom:5px solid transparent;
-    padding:.75rem 1.3rem .65rem;color:var(--muted);margin-bottom:-3px;
-  }
-  .tab .dir{
-    display:block;text-transform:none;letter-spacing:.02em;font-weight:600;
-    font-size:.92rem;color:var(--muted);margin-top:.15rem;
-  }
-  .tab[aria-selected="true"]{color:var(--green);border-bottom-color:var(--clay)}
-  .tab[aria-selected="true"] .dir{color:var(--ink)}
-  .tab:hover{color:var(--clay)}
-  @media(max-width:600px){.tab{flex:1 1 100%;padding-left:0}}
-  .scroll-hint{
-    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
-    letter-spacing:.14em;font-size:.95rem;color:var(--muted);margin-top:.25rem;
-  }
-  @media(min-width:1560px){.scroll-hint{display:none}}
+  /* comfort */
+  .comforts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,32px);margin-top:48px;text-align:left}
+  .c-card{background:url(/assets/kimp/paper-card.webp) center/100% 100%;border-radius:18px;padding:18px 18px 28px;box-shadow:0 10px 24px rgba(120,70,20,.25)}
+  .c-card img{width:100%;aspect-ratio:1.8;object-fit:cover;border-radius:14px;margin-bottom:18px}
+  .c-card h3{margin:0 8px 10px} .c-card p{margin:0 8px;font-size:clamp(.9rem,.95vw,1.05rem)}
 
-  /* ---------- terrain ---------- */
-  .terrain{padding:4.5rem 0}
-  .terrain .wrap{max-width:56rem}
-  .terrain .label{color:var(--clay)}
-  .passage{
-    font-family:'Alfa Slab One',Georgia,serif;font-weight:400;
-    font-size:clamp(1.45rem,3vw,2.05rem);line-height:1.38;color:var(--green);
-    margin:0 0 1.3rem;
-  }
-  .kicker{font-style:italic;font-size:17px;color:var(--muted);margin:0}
+  /* season */
+  .facts{background:rgba(255,240,210,.85);border-radius:16px;overflow:hidden;margin-top:24px;box-shadow:0 6px 18px rgba(120,70,20,.15)}
+  .facts div{display:grid;grid-template-columns:minmax(150px,22%) 1fr;border-bottom:2px dashed rgba(220,150,90,.55)}
+  .facts div:last-child{border-bottom:0}
+  .facts dt{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(1rem,1.2vw,1.4rem);
+    padding:26px 32px;border-right:2px dashed rgba(220,150,90,.55)}
+  .facts dd{padding:26px 32px;font-size:clamp(1rem,1.2vw,1.4rem)}
 
-  /* ---------- tournament ---------- */
-  .tournament{background:var(--green);color:var(--chalk)}
-  .tournament h2{color:var(--chalk)}
-  .tournament .label{color:var(--chalk)}
-  .tournament p{color:var(--chalk)}
-  .tournament .intro{max-width:44rem}
-  .halves{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem 3rem;margin-top:2.4rem}
-  .half{border-top:4px solid var(--optic);padding-top:1.3rem}
-  .half:last-child{border-top-color:var(--clay)}
-  .half h3{font-size:1.45rem;color:var(--chalk);margin-bottom:.9rem;line-height:1.3}
-  .half p{font-size:16.5px;line-height:1.7;color:var(--chalk)}
-  @media(max-width:820px){.halves{grid-template-columns:1fr;gap:2.2rem}}
+  /* booking (Tour Amigo) */
+  .book .lede{font-size:clamp(1.05rem,1.25vw,1.5rem);margin-bottom:28px}
+  .dir-block{background:rgba(255,240,210,.9);border-radius:18px;padding:24px;margin-bottom:28px;box-shadow:0 6px 18px rgba(120,70,20,.15)}
+  .dir-block h3{margin-bottom:14px}
+  .dir-block h3 span{font-family:'Barlow Condensed',sans-serif;color:var(--blue);font-size:.7em;text-transform:uppercase;margin-left:10px}
+  .book-help{font-size:1rem}
 
-  /* ---------- comfort ---------- */
-  .comfort .label{color:var(--clay)}
-  .comforts{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;margin-top:2.4rem}
-  .comfort-item{border-top:3px solid var(--green);padding-top:1rem}
-  .comfort-item h3{font-size:1.25rem;color:var(--green);margin-bottom:.5rem}
-  .comfort-item p{font-size:16.5px;line-height:1.68;margin:0}
-  @media(max-width:720px){.comforts{grid-template-columns:1fr}}
+  /* info session */
+  .live .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .live p{font-size:clamp(1rem,1.15vw,1.3rem)}
 
-  /* ---------- season ---------- */
-  .season .wrap{max-width:800px}
-  .season .label{color:var(--clay)}
-  .season-facts{margin-top:2.2rem;border:3px solid var(--green);background:#FFFFFF}
-  .season-facts div{
-    display:grid;grid-template-columns:12rem 1fr;gap:1rem;
-    padding:1rem 1.35rem;border-top:1px solid var(--rule);align-items:baseline;
-  }
-  .season-facts div:first-child{border-top:none}
-  .season-facts dt{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.12em;font-size:1rem;color:var(--clay);
-  }
-  .season-facts dd{font-size:17px;line-height:1.6}
-  @media(max-width:620px){.season-facts div{grid-template-columns:1fr;gap:.2rem}}
+  /* faq */
+  .faq-group{margin-top:36px}
+  .faq-group h3{color:var(--blue);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:clamp(1.3rem,1.6vw,1.9rem);margin-bottom:10px}
+  .faq details{background:rgba(255,240,210,.85);border-radius:12px;margin-bottom:10px;padding:16px 24px}
+  .faq summary{cursor:pointer;font-weight:700;font-size:clamp(1rem,1.1vw,1.25rem)}
+  .faq details p{margin-top:10px}
 
-  /* ---------- booking ---------- */
-  .book{background:var(--chalk)}
-  .book .wrap{max-width:900px}
-  .book .label{color:var(--clay)}
-  .book .lede{margin:0 0 1.6rem;max-width:36rem}
-  .club-note{border:3px solid var(--green);background:#FFFFFF;padding:.8rem 1rem;margin:0 0 1.6rem}
-  .dir-block{margin:0 0 2.4rem}
-  .dir-block h3{margin:0 0 .8rem;font-size:1.5rem}
-  .dir-block h3 span{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:1rem;
-    letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
-  .ta-widget{min-height:6rem;background:#FFFFFF;border:3px solid var(--green);padding:.5rem}
-  .book-help{font-size:16px;color:var(--muted)}
-  /* ---------- waitlist ---------- */
-  .waitlist{background:var(--green);color:var(--chalk);position:relative}
-  .waitlist::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--green-line)}
-  .waitlist .wrap{max-width:700px;text-align:center}
-  .waitlist h2{color:var(--chalk)}
-  .waitlist .label{color:var(--chalk)}
-  .waitlist p.lede{margin:0 auto 2.4rem;max-width:34rem;color:var(--chalk)}
-  form{
-    display:grid;gap:1.1rem;text-align:left;
-    background:var(--chalk);color:var(--ink);
-    padding:2.1rem;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);
-  }
-  .field label{
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
-    letter-spacing:.12em;font-size:.98rem;display:block;margin-bottom:.35rem;
-  }
-  .field label .opt{text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
-  input,select{
-    width:100%;font-family:'Merriweather',Georgia,serif;font-size:17px;
-    padding:.75rem .85rem;border:2px solid var(--ink);background:#FFFFFF;color:var(--ink);
-  }
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-  @media(max-width:580px){.two-col{grid-template-columns:1fr}}
-  form .btn{justify-self:start;margin-top:.4rem}
+  /* waitlist */
+  .waitlist{overflow:hidden;padding-bottom:clamp(120px,14vw,260px)}
+  .wl-l,.wl-r{position:absolute;bottom:0;width:clamp(260px,44vw,900px)}
+  .wl-l{left:-6%} .wl-r{right:-8%}
+  .form-card{position:relative;z-index:1;max-width:820px;margin:36px auto 0;background:url(/assets/kimp/paper-torn.webp) center/100% 100%;
+    padding:clamp(28px,4vw,56px);filter:drop-shadow(0 10px 20px rgba(80,40,0,.3))}
+  .form-card label{display:block;font-family:'Alfa Slab One',serif;color:var(--red);font-size:clamp(1.4rem,1.7vw,2rem);margin-bottom:14px}
+  .form-card input[type=email]{width:100%;font:inherit;font-size:clamp(1rem,1.25vw,1.4rem);padding:16px;border:0;border-radius:12px;background:#FFF6E3}
+  .form-card button{margin-top:20px;width:100%;background:var(--blue);color:#fff;border-radius:40px;padding:18px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(1.05rem,1.25vw,1.5rem);border:0;cursor:pointer}
+  .form-card .fine{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;font-size:clamp(.9rem,1.05vw,1.25rem);margin-top:16px}
 
-  /* ---------- footer ---------- */
-  footer{background:var(--ink);color:#E4E2D9;padding:2.75rem 0}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-  footer .wordmark{color:var(--chalk);font-size:1.1rem}
-  footer p{font-size:15px;margin:0}
-  footer a{color:#E4E2D9}
+  /* footer */
+  .pdt-foot{background:url(/assets/kimp/paper-wide.webp) center/100% 100%;padding:clamp(32px,4vw,64px) 0;font-size:clamp(.85rem,.95vw,1.05rem)}
+  .pdt-grid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+  .pdt-right{text-align:right}
+  .pdt-right nav a,.sot-phone a{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;text-decoration:none;
+    font-size:clamp(1rem,1.25vw,1.5rem);color:var(--dark);margin-left:20px}
+  .pdt-tag{font-family:'Alfa Slab One',serif;color:var(--red)}
+  .pdt-logo{display:none}
 
-  /* ---------- motion ---------- */
-  #routePath{stroke-dasharray:1;stroke-dashoffset:1}
-  .routePath{stroke-dasharray:1;stroke-dashoffset:1}
-  .drawn .routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
-  .drawn #routePath{transition:stroke-dashoffset 2.2s ease;stroke-dashoffset:0}
-  /* ---------- photography ---------- */
-  figure{margin:0}
-  .ph{display:block;width:100%;height:auto;object-fit:cover;background:var(--rule)}
-  .cap{
-    font-family:'Barlow Condensed',sans-serif;font-weight:600;
-    text-transform:uppercase;letter-spacing:.12em;font-size:.92rem;line-height:1.5;
-    display:block;margin-top:.75rem;color:var(--muted);
+  @media (max-width:900px){
+    .two,.notes,.comforts,.live .wrap,.pdt-grid{grid-template-columns:1fr}
+    .menu{display:none}
+    .topnav{justify-content:space-between}
+    .hero{padding:8px 12px 20px}.hero-frame{border-radius:32px;min-height:auto}
+    .stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}
+    .idea-art{min-height:300px}
+    .country .vig{display:none}
+    .paddles{position:static;margin-left:auto;width:120px}
+    .facts div{grid-template-columns:1fr}.facts dt{border-right:0;padding-bottom:0}
+    .pdt-right{text-align:left}.pdt-right nav a{margin:0 16px 0 0}
+    .dir-toggle button{padding:12px 18px}
+    .wl-l,.wl-r{width:60vw;opacity:.9}
   }
 
-  /* full-bleed band between sections */
-  .band{position:relative;line-height:0;background:var(--ink)}
-  .band .ph{height:clamp(260px,42vh,440px)}
-  .band figcaption{
-    position:absolute;left:0;right:0;bottom:0;
-    padding:4rem 0 1.25rem;
-    background:linear-gradient(to top,rgba(20,33,31,.85),rgba(20,33,31,0));
-  }
-  .band .cap{color:var(--chalk);margin-top:0}
-
-  /* concept: photo beside the copy */
-  .concept.has-media .wrap{
-    max-width:var(--max);
-    display:grid;grid-template-columns:.82fr 1fr;gap:3rem;align-items:center;
-  }
-  .concept.has-media .ph{aspect-ratio:1/1;box-shadow:12px 12px 0 var(--optic)}
-  @media(max-width:860px){
-    .concept.has-media .wrap{grid-template-columns:1fr;gap:2.2rem}
-    .concept.has-media .ph{aspect-ratio:4/3;box-shadow:8px 8px 0 var(--optic)}
-  }
-
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    #routePath{stroke-dashoffset:0 !important;transition:none !important}
-    .routePath{stroke-dashoffset:0 !important;transition:none !important}
-    .btn{transition:none}
-  }
-  footer.pdt-foot .pdt-grid{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1.5rem 2.5rem}
-  footer.pdt-foot .pdt-legal{flex:1 1 280px;order:1;margin:0;font-size:10px;line-height:1.6;letter-spacing:.01em}
-  footer.pdt-foot .pdt-right{flex:0 1 auto;order:2;margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:.75rem}
-  footer.pdt-foot .pdt-right nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem 1.1rem}
-  footer.pdt-foot .sot-phone{margin:0;font-weight:700;font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.2;letter-spacing:.01em}
-  footer.pdt-foot .sot-phone a{text-decoration:none}
-  footer.pdt-foot .pdt-logo{width:220px;max-width:100%;height:auto;display:block}
-  @media (max-width:640px){footer.pdt-foot .pdt-right{order:0;align-items:flex-start;text-align:left}footer.pdt-foot .pdt-right nav{justify-content:flex-start}}
-  footer.pdt-foot .sot-phone a{color:#E7FB20}
-  footer.pdt-foot nav{position:static;background:none;border:0;z-index:auto;font-size:15px}
-
-  /* FAQ (launch section 3) */
-  /* ---------- live info session (widget from pickle.tours/webinars/widget.js) ---------- */
-  .live{background:#FFFFFF;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-  .live .wrap{max-width:800px;display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:start}
-  .live .label{color:var(--clay)}
-  .live .widget-slot{min-height:24rem}
-  .live .pdt-wbw{border-color:var(--green)}
-  .live .pdt-wbw-title{font-family:'Alfa Slab One',Georgia,serif;font-weight:400}
-  .live .pdt-wbw-eyebrow,.live .pdt-wbw-label,.live .pdt-wbw-btn,.live .pdt-wbw-next{font-family:'Barlow Condensed',sans-serif}
-  .live .pdt-wbw-blurb{display:none}
-  .live .pdt-wbw-dates li{font-size:16px}
-  @media(max-width:760px){.live .wrap{grid-template-columns:1fr;gap:1.6rem}}
-  .faq{padding:5rem 0;background:var(--chalk)}
-  .faq .wrap{max-width:800px}
-  .faq .label{color:var(--clay)}
-  .faq-group{margin-top:2.4rem}
-  .faq-group h3{font-size:1.25rem;color:var(--green);margin-bottom:.6rem;border-top:3px solid var(--green);padding-top:1rem}
-  .faq details{border-bottom:1px solid var(--rule);padding:.9rem 0}
-  .faq summary{cursor:pointer;font-weight:600;font-size:17px;line-height:1.5;color:var(--ink);list-style:none;position:relative;padding-right:2rem}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";position:absolute;right:.2rem;top:0;font-size:1.3rem;color:var(--green)}
-  .faq details[open] summary::after{content:"\2013"}
-  .faq details p{font-size:16.5px;line-height:1.68;margin:.7rem 0 0}
 </style>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -378,268 +224,193 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5XQRL26"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<nav>
-  <div class="nav-inner">
-    <a class="wordmark" href="#top">
-      <img class="pdt-head" src="/assets/pdt-wordmark-green.png" alt="Pickle Dot Tours" width="640" height="163">
-    </a>
-    <div class="nav-links">
-      <a href="#route">The Route</a>
-      <a href="#country">The Country</a>
-      <a href="#tournament">The Pickleball</a>
-      <a href="#season">2027 Season</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn small clay" href="#book">Book Now</a>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="topnav" aria-label="Main">
+  <a class="brand" href="/" aria-label="Route 66 Pickleball Tour home"><img src="/assets/route66-pickleball-tour-logo.png" alt="" width="76" height="80"></a>
+  <div class="menu">
+    <a href="#route">The Route</a><a href="#country">The Country</a><a href="#tournament">The Pickleball</a><a href="#season">2027 Season</a><a href="#faq">FAQ</a>
   </div>
+  <a class="pill red" href="#book">Book Now</a>
 </nav>
 
+<main id="main">
 <header class="hero" id="top">
-  <div class="kitchen-line kl-left" aria-hidden="true"></div>
-  <div class="kitchen-line kl-right" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <img class="badge" src="/assets/route66-pickleball-tour-logo.png"
-         alt="Route 66 Pickleball Tour" width="804" height="883">
-    <p class="label">Chicago &#8644; Santa Monica &middot; 16 departures in 2027</p>
-    <h1>7 days on the road.<br>4 days in paradise.</h1>
-    <p class="lede">Eleven days between the BEGIN sign in Chicago and the end of the Santa Monica Pier,
+  <div class="hero-frame">
+    <img class="hero-bg" src="/assets/kimp/hero.webp" alt="" fetchpriority="high">
+    <div class="hero-inner">
+      <img class="hero-badge" src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="160" height="176">
+      <p class="eyebrow">Chicago &#8644; Santa Monica &middot; 16 departures in 2027</p>
+      <h1>7 days on the road.<br>4 days in paradise.</h1>
+      <p class="hero-lede">Eleven days between the BEGIN sign in Chicago and the end of the Santa Monica Pier,
       with courts booked for our group alone most mornings. Beginner or 4.5, trophy hunter or
       don't-keep-score: there's a place for you on every court.</p>
-    <a class="btn" href="#waitlist">Get the brochure</a>
-    <a class="btn clay" href="#book">See dates &amp; book</a>
+      <div class="hero-ctas"><a class="btn optic" href="#book">See dates &amp; book</a><a class="btn ghost" href="#waitlist">Get the brochure</a></div>
+    </div>
   </div>
 </header>
 
 <div class="stats" aria-label="The tour at a glance">
-  <div class="wrap">
-    <div class="stat"><b>11</b><span>days, 10 nights</span></div>
-    <div class="stat"><b>32</b><span>players per departure</span></div>
-    <div class="stat"><b>16</b><span>departures</span></div>
-    <div class="stat key"><b>512</b><span>player seats in 2027, and there will not be more</span></div>
-  </div>
+  <div class="stat"><b class="red">11</b><span>days, 10 nights</span></div>
+  <div class="stat"><b class="blue">32</b><span>players per departure</span></div>
+  <div class="stat"><b class="red">16</b><span>departures</span></div>
+  <div class="stat"><b class="blue">512</b><span>player seats in 2027, and there will not be more</span></div>
 </div>
 
-<section class="concept has-media">
-  <div class="wrap">
-    <figure>
-      <img class="ph" src="/assets/img/coach-boarding-800.webp"
-           srcset="/assets/img/coach-boarding-400.webp 400w,
-                   /assets/img/coach-boarding-800.webp 800w"
-           sizes="(max-width:860px) 92vw, 40vw"
-           width="1024" height="1024" loading="lazy" decoding="async"
-           alt="Two guests stepping down from the motorcoach door, paddles in hand.">
-    </figure>
+<section class="idea">
+  <div class="wrap two">
     <div>
-    <span class="label">The idea</span>
-    <h2>A road trip you play through.</h2>
-    <p>Most pickleball trips are a resort with courts attached. This one moves. Thirty-two players
-      board; friends emerge 2,400 miles later.</p>
-    <p>Mornings are courts. Afternoons are the road. Partners don't have to play &mdash; just a few
+      <span class="script">The idea</span>
+      <h2>A road trip you play through.</h2>
+      <p class="body-lg">Most pickleball trips are a resort with courts attached. This one moves. Thirty-two players
+      board; friends emerge 2,400 miles later.</p><p class="body-lg">Mornings are courts. Afternoons are the road. Partners don't have to play &mdash; just a few
       non-playing companion seats ride with every departure.</p>
     </div>
+    <div class="idea-art" aria-hidden="true">
+      <img class="pier" src="/assets/kimp/pier-sign.webp" alt="" loading="lazy">
+      <img class="coach" src="/assets/kimp/coach-boarding.webp" alt="" loading="lazy">
+    </div>
   </div>
 </section>
 
-
-<section class="route-section" id="route">
+<section class="route" id="route">
   <div class="wrap">
-    <div class="route-head">
-      <span class="label">The route</span>
-      <h2>One road, both directions.</h2>
-      <p>It's the same tour either way &mdash; same resorts, same landmarks, ten sessions each.
+    <div class="two route-head">
+      <div><span class="script">The route</span><h2>One road, both directions.</h2></div>
+      <p class="body-lg">It's the same tour either way &mdash; same resorts, same landmarks, ten sessions each.
         Half the departures start in Chicago, half at the Santa Monica Pier. Pick the date that
         fits.</p>
-      <p class="route-more">Day by day: <a href="/westbound">westbound</a> &middot; <a href="/eastbound">eastbound</a>. Tap a city for its neighborhood guide.</p>
     </div>
-    <div class="tabs" role="tablist" aria-label="Choose a direction">
-      <button class="tab" id="tab-wb" role="tab" type="button" aria-selected="true" aria-controls="panel-wb">
-        Westbound<span class="dir">Chicago to Santa Monica</span>
-      </button>
-      <button class="tab" id="tab-eb" role="tab" type="button" aria-selected="false" aria-controls="panel-eb" tabindex="-1">
-        Eastbound<span class="dir">Santa Monica to Chicago</span>
-      </button>
+    <div class="dir-toggle" role="tablist" aria-label="Choose a direction">
+      <button role="tab" id="tab-wb" aria-controls="cards-wb" aria-selected="true"><b>Westbound</b><span>Chicago to Santa Monica</span></button>
+      <button role="tab" id="tab-eb" aria-controls="cards-eb" aria-selected="false" tabindex="-1"><b>Eastbound</b><span>Santa Monica to Chicago</span></button>
     </div>
   </div>
-
-  <div class="wrap" id="panel-wb" role="tabpanel" aria-labelledby="tab-wb">
-    <div class="strip-scroller" tabindex="0" role="group" aria-label="Westbound route map — scroll horizontally">
-      <div class="strip">
-        <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                fill="none" stroke="#14211F" stroke-width="10" stroke-linecap="round"/>
-          <path class="routePath"
-                d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                fill="none" stroke="#E9603E" stroke-width="6" stroke-linecap="round" pathLength="1"/>
-          <g fill="#F7F5EE" stroke="#14211F" stroke-width="2">
-            <circle cx="30" cy="95" r="7"/><circle cx="312" cy="85" r="7"/><circle cx="594" cy="80" r="10"/>
-            <circle cx="896" cy="85" r="7"/><circle cx="1187" cy="80" r="10"/><circle cx="1490" cy="90" r="7"/>
-          </g>
-        </svg>
-      </div>
-      <div class="stops">
-        <div class="stop">
-          <span class="marker">Day 1</span>
-          <a class="cap-city" href="/cities/chicago">Chicago, Illinois</a>
-          <span class="cap-landmark">The BEGIN sign</span>
-          <p class="cap-detail">a sidewalk photo on Adams Street, then the Kickoff Reception</p>
-          <span class="cap-play rest">Arrival day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 2</span>
-          <a class="cap-city" href="/cities/st-louis">St. Louis, Missouri</a>
-          <span class="cap-landmark">The Mississippi</span>
-          <p class="cap-detail">indoor courts on the way out of Chicago, the big river by evening</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 3&ndash;4</span>
-          <a class="cap-city" href="/cities/grand-lake">Grand Lake, Oklahoma</a>
-          <span class="cap-landmark">The dome</span>
-          <p class="cap-detail">a Missouri morning on the way down, then two nights at the lake</p>
-          <span class="cap-play">Three sessions</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 5</span>
-          <a class="cap-city" href="/cities/amarillo">Amarillo, Texas</a>
-          <span class="cap-landmark">Cadillac Ranch</span>
-          <p class="cap-detail">spray paint at golden hour, steak afterwards</p>
-          <span class="cap-play rest">The road all day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 6</span>
-          <a class="cap-city" href="/cities/albuquerque">Albuquerque, New Mexico</a>
-          <span class="cap-landmark">Green chile</span>
-          <p class="cap-detail">a boutique hotel in a restored 1926 railway hospital, and dinner off the old road</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 7</span>
-          <a class="cap-city" href="/cities/flagstaff">Flagstaff, Arizona</a>
-          <span class="cap-landmark">Ponderosa country</span>
-          <p class="cap-detail">seven thousand feet, pines and painted desert on the horizon</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 8&ndash;9</span>
-          <a class="cap-city" href="/cities/la-quinta">La Quinta, California</a>
-          <span class="cap-landmark">Under the lights</span>
-          <p class="cap-detail">a Flagstaff morning, then the old road down to two nights in the desert</p>
-          <span class="cap-play">Three sessions &middot; finals</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 10</span>
-          <a class="cap-city" href="/cities/santa-monica">Santa Monica, California</a>
-          <span class="cap-landmark">End of the Trail</span>
-          <p class="cap-detail">the pier, the Pacific, the group photo — paddles up — then the Farewell Happy Hour</p>
-          <span class="cap-play">Farewell session</span>
-        </div>
-      </div>
-    </div>
-    <p class="scroll-hint">&larr; Drag or scroll the map &rarr;</p>
+  <div class="road" aria-hidden="true"><div class="bus"><img src="/assets/kimp/bus-top.webp" alt=""><span id="bus-day">Day 1</span></div></div>
+  <div class="cards" id="cards-wb" role="tabpanel" aria-labelledby="tab-wb" tabindex="0">
+        <a class="day-card" href="/cities/chicago">
+          <span class="day-photo"><img src="/assets/kimp/card-chicago.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 1</span></span>
+          <span class="day-city">Chicago, Illinois</span>
+          <span class="day-title">The BEGIN sign</span>
+          <span class="day-detail">a sidewalk photo on Adams Street, then the Kickoff Reception</span>
+          <span class="day-tag">Arrival day</span>
+        </a>
+        <a class="day-card" href="/cities/st-louis">
+          <span class="day-photo"><img src="/assets/kimp/card-stlouis.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 2</span></span>
+          <span class="day-city">St. Louis, Missouri</span>
+          <span class="day-title">The Mississippi</span>
+          <span class="day-detail">indoor courts on the way out of Chicago, the big river by evening</span>
+          <span class="day-tag">Morning session</span>
+        </a>
+        <a class="day-card" href="/cities/grand-lake">
+          <span class="day-photo"><img src="/assets/kimp/card-grandlake.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 3&ndash;4</span></span>
+          <span class="day-city">Grand Lake, Oklahoma</span>
+          <span class="day-title">The dome</span>
+          <span class="day-detail">a Missouri morning on the way down, then two nights at the lake</span>
+          <span class="day-tag">Three sessions</span>
+        </a>
+        <a class="day-card" href="/cities/amarillo">
+          <span class="day-photo"><img src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 5</span></span>
+          <span class="day-city">Amarillo, Texas</span>
+          <span class="day-title">Cadillac Ranch</span>
+          <span class="day-detail">spray paint at golden hour, steak afterwards</span>
+          <span class="day-tag">The road all day</span>
+        </a>
+        <a class="day-card" href="/cities/albuquerque">
+          <span class="day-photo"><img src="/assets/kimp/card-albuquerque.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 6</span></span>
+          <span class="day-city">Albuquerque, New Mexico</span>
+          <span class="day-title">Green chile</span>
+          <span class="day-detail">a boutique hotel in a restored 1926 railway hospital, and dinner off the old road</span>
+          <span class="day-tag">Morning session</span>
+        </a>
+        <a class="day-card" href="/cities/flagstaff">
+          <span class="day-photo"><img src="/assets/kimp/card-flagstaff.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 7</span></span>
+          <span class="day-city">Flagstaff, Arizona</span>
+          <span class="day-title">Ponderosa country</span>
+          <span class="day-detail">seven thousand feet, pines and painted desert on the horizon</span>
+          <span class="day-tag">Morning session</span>
+        </a>
+        <a class="day-card" href="/cities/la-quinta">
+          <span class="day-photo"><img src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 8&ndash;9</span></span>
+          <span class="day-city">La Quinta, California</span>
+          <span class="day-title">Under the lights</span>
+          <span class="day-detail">a Flagstaff morning, then the old road down to two nights in the desert</span>
+          <span class="day-tag">Three sessions &middot; finals</span>
+        </a>
   </div>
-
-  <div class="wrap" id="panel-eb" role="tabpanel" aria-labelledby="tab-eb" hidden>
-    <div class="strip-scroller" tabindex="0" role="group" aria-label="Eastbound route map — scroll horizontally">
-      <div class="strip">
-        <svg viewBox="0 0 1520 150" preserveAspectRatio="none" aria-hidden="true">
-          <g transform="translate(1520,0) scale(-1,1)">
-            <path d="M 30 95 C 145 40, 230 40, 312 85 S 500 130, 594 80 S 792 35, 896 85 S 1083 130, 1187 80 S 1385 45, 1490 90"
-                  fill="none" stroke="#14211F" stroke-width="10" stroke-linecap="round"/>
-            <path class="routePath"
-                  d="M 1490 90 C 1385 45, 1187 80, 1187 80 S 896 85, 896 85 S 594 80, 594 80 S 312 85, 30 95"
-                  fill="none" stroke="#E9603E" stroke-width="6" stroke-linecap="round" pathLength="1"/>
-            <g fill="#F7F5EE" stroke="#14211F" stroke-width="2">
-              <circle cx="30" cy="95" r="7"/><circle cx="312" cy="85" r="7"/><circle cx="594" cy="80" r="10"/>
-              <circle cx="896" cy="85" r="7"/><circle cx="1187" cy="80" r="10"/><circle cx="1490" cy="90" r="7"/>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="stops">
-        <div class="stop">
-          <span class="marker">Day 1</span>
-          <a class="cap-city" href="/cities/santa-monica">Santa Monica, California</a>
-          <span class="cap-landmark">End of the Trail</span>
-          <p class="cap-detail">the sign on the pier in the last of the light, then the Kickoff Reception</p>
-          <span class="cap-play rest">Arrival day</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 2&ndash;3</span>
-          <a class="cap-city" href="/cities/la-quinta">La Quinta, California</a>
-          <span class="cap-landmark">Under the lights</span>
-          <p class="cap-detail">a morning in Los Angeles, then east into the desert for two nights</p>
-          <span class="cap-play">Three sessions</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 4</span>
-          <a class="cap-city" href="/cities/flagstaff">Flagstaff, Arizona</a>
-          <span class="cap-landmark">Ponderosa country</span>
-          <p class="cap-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</p>
-          <span class="cap-play rest">The road all day</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 5</span>
-          <a class="cap-city" href="/cities/albuquerque">Albuquerque, New Mexico</a>
-          <span class="cap-landmark">Green chile</span>
-          <p class="cap-detail">a high-country morning, the Wigwam Motel at Holbrook, a boutique hotel in a restored 1926 railway hospital</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 6</span>
-          <a class="cap-city" href="/cities/amarillo">Amarillo, Texas</a>
-          <span class="cap-landmark">Cadillac Ranch</span>
-          <p class="cap-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop anchor">
-          <span class="marker">Days 7&ndash;8</span>
-          <a class="cap-city" href="/cities/grand-lake">Grand Lake, Oklahoma</a>
-          <span class="cap-landmark">The dome</span>
-          <p class="cap-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</p>
-          <span class="cap-play">Three sessions &middot; finals</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 9</span>
-          <a class="cap-city" href="/cities/st-louis">St. Louis, Missouri</a>
-          <span class="cap-landmark">Challenge Day</span>
-          <p class="cap-detail">one last morning on the resort courts, then the Ozarks and the big river</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-        <div class="stop">
-          <span class="marker">Day 10</span>
-          <a class="cap-city" href="/cities/chicago">Chicago, Illinois</a>
-          <span class="cap-landmark">The BEGIN sign</span>
-          <p class="cap-detail">a last St. Louis morning, the sidewalk where the whole road starts, then the Farewell Happy Hour</p>
-          <span class="cap-play">Morning session</span>
-        </div>
-      </div>
-    </div>
-    <p class="scroll-hint">&larr; Drag or scroll the map &rarr;</p>
+  <div class="cards" id="cards-eb" role="tabpanel" aria-labelledby="tab-eb" tabindex="0" hidden>
+        <a class="day-card" href="/cities/santa-monica">
+          <span class="day-photo"><img src="/assets/kimp/pier-sunset.webp" alt="" loading="lazy" style="object-position:center 60%"><span class="day-pill">Day 1</span></span>
+          <span class="day-city">Santa Monica, California</span>
+          <span class="day-title">End of the Trail</span>
+          <span class="day-detail">the sign on the pier in the last of the light, then the Kickoff Reception</span>
+          <span class="day-tag">Arrival day</span>
+        </a>
+        <a class="day-card" href="/cities/la-quinta">
+          <span class="day-photo"><img src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 2&ndash;3</span></span>
+          <span class="day-city">La Quinta, California</span>
+          <span class="day-title">Under the lights</span>
+          <span class="day-detail">a morning in Los Angeles, then east into the desert for two nights</span>
+          <span class="day-tag">Three sessions</span>
+        </a>
+        <a class="day-card" href="/cities/flagstaff">
+          <span class="day-photo"><img src="/assets/kimp/card-flagstaff.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 4</span></span>
+          <span class="day-city">Flagstaff, Arizona</span>
+          <span class="day-title">Ponderosa country</span>
+          <span class="day-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</span>
+          <span class="day-tag">The road all day</span>
+        </a>
+        <a class="day-card" href="/cities/albuquerque">
+          <span class="day-photo"><img src="/assets/kimp/card-albuquerque.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 5</span></span>
+          <span class="day-city">Albuquerque, New Mexico</span>
+          <span class="day-title">Green chile</span>
+          <span class="day-detail">a high-country morning, the Wigwam Motel at Holbrook, a boutique hotel in a restored 1926 railway hospital</span>
+          <span class="day-tag">Morning session</span>
+        </a>
+        <a class="day-card" href="/cities/amarillo">
+          <span class="day-photo"><img src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 6</span></span>
+          <span class="day-city">Amarillo, Texas</span>
+          <span class="day-title">Cadillac Ranch</span>
+          <span class="day-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</span>
+          <span class="day-tag">Morning session</span>
+        </a>
+        <a class="day-card" href="/cities/grand-lake">
+          <span class="day-photo"><img src="/assets/kimp/card-grandlake.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 7&ndash;8</span></span>
+          <span class="day-city">Grand Lake, Oklahoma</span>
+          <span class="day-title">The dome</span>
+          <span class="day-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</span>
+          <span class="day-tag">Three sessions &middot; finals</span>
+        </a>
+        <a class="day-card" href="/cities/st-louis">
+          <span class="day-photo"><img src="/assets/kimp/card-stlouis.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 9</span></span>
+          <span class="day-city">St. Louis, Missouri</span>
+          <span class="day-title">Challenge Day</span>
+          <span class="day-detail">one last morning on the resort courts, then the Ozarks and the big river</span>
+          <span class="day-tag">Morning session</span>
+        </a>
   </div>
+  <p class="wrap scroll-hint">&larr; Scroll for every stop &rarr; &nbsp;Tap a card for that city&rsquo;s neighborhood guide.</p>
 </section>
 
-<section class="terrain" id="country">
-  <div class="wrap">
-    <span class="label">The country in between</span>
+<section class="country" id="country">
+  <img class="vig vig-l" src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy">
+  <img class="vig vig-r" src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy">
+  <div class="wrap center">
+    <span class="script">The country in between</span>
     <p class="passage">From the rolling plains of the Midwest to the crystal-blue Pacific, across
       the mountains and deserts that separate them &mdash; an American boulevard of hopes and
       dreams for a hundred years.</p>
     <p class="kicker">Mornings are pickleball. Afternoons are all of this, at ground level.</p>
+    <img class="quarry" src="/assets/kimp/quarry.webp" alt="" loading="lazy">
   </div>
 </section>
 
-<section class="tournament" id="tournament">
+<section class="tourn" id="tournament">
   <div class="wrap">
-    <span class="label">The pickleball</span>
+    <img class="paddles" src="/assets/kimp/paddles.webp" alt="" loading="lazy">
+    <span class="script">The pickleball</span>
     <h2>Ten sessions. Every level. Nobody on the sideline.</h2>
-    <div class="halves">
-      <div class="half">
-        <h3>Come to win.</h3>
+    <div class="notes">
+      <article class="note n1"><span class="num">01</span><h3>Come to win.</h3>
         <p>Local pros at every club session prepare you to claw your way through the doubles
           and blind doubles brackets with one-on-one instruction. Seeds come from
           watching you actually play, not from your self-reported rating. It ends on one court at
@@ -647,47 +418,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Come as a pair, compete as a pair &mdash; bring your partner and the (non-blind)
           doubles bracket is yours together, start to finish. Come alone and the draw deals you
           in.</p>
-      </div>
-      <div class="half">
-        <h3>The real fun starts when you get knocked out of the bracket.</h3>
+      </article>
+      <article class="note n2"><span class="num">02</span><h3>The real fun starts when you get knocked out of the bracket.</h3>
         <p>Lose on Tuesday, you're back on court Wednesday &mdash; clinics with local pros, rec
           play, and games that matter to nobody but the four people laughing through them. No
           rating gate, no minimum, no partner required. By the pier you'll have played with (and
           against) all 31 of your new friends.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <section class="comfort" id="comfort">
-  <div class="wrap">
-    <span class="label">Comfort off the court</span>
+  <div class="wrap center">
+    <span class="script">Comfort off the court</span>
     <h2>Eleven days, zero roughing it.</h2>
     <div class="comforts">
-      <div class="comfort-item">
-        <h3>Historic hotels</h3>
-        <p>Every night in a hotel with a story &mdash; a lakeside resort under a landmark dome, a boutique hotel in a restored 1926 railway hospital, a desert resort with courts under the lights.</p>
-      </div>
-      <div class="comfort-item">
-        <h3>The motorcoach</h3>
-        <p>A full-size luxury motorcoach with a restroom on board and room to spread out. The windows do the entertaining.</p>
-      </div>
-      <div class="comfort-item">
-        <h3>The table</h3>
-        <p>Breakfast and lunch every day, a Kickoff Reception on the first night and a Farewell Happy Hour on the last. Every other evening you're loose in the best roadfood country in America, and dinner is yours to choose.</p>
-      </div>
+      <article class="c-card"><img src="/assets/kimp/comfort-hotel.webp" alt="" loading="lazy"><h3>Historic hotels</h3><p>Every night in a hotel with a story &mdash; a lakeside resort under a landmark dome, a boutique hotel in a restored 1926 railway hospital, a desert resort with courts under the lights.</p></article>
+      <article class="c-card"><img src="/assets/kimp/comfort-coach.webp" alt="" loading="lazy"><h3>The motorcoach</h3><p>A full-size luxury motorcoach with a restroom on board and room to spread out. The windows do the entertaining.</p></article>
+      <article class="c-card"><img src="/assets/kimp/card-albuquerque.webp" alt="" loading="lazy"><h3>The table</h3><p>Breakfast and lunch every day, a Kickoff Reception on the first night and a Farewell Happy Hour on the last. Every other evening you're loose in the best roadfood country in America, and dinner is yours to choose.</p></article>
     </div>
   </div>
 </section>
 
-
 <section class="season" id="season">
   <div class="wrap">
-    <span class="label">2027 season</span>
-    <h2>Sixteen departures. Two directions.</h2>
-    <p>March through October 2027. Westbound leaves Chicago on Sundays; eastbound leaves the Santa
+    <div class="two route-head">
+      <div><span class="script">2027 season</span><h2>Sixteen departures. Two directions.</h2></div>
+      <p class="body-lg">March through October 2027. Westbound leaves Chicago on Sundays; eastbound leaves the Santa
       Monica Pier on Tuesdays. Same tour either way &mdash; pick the date that fits.</p>
-    <dl class="season-facts">
+    </div>
+    <dl class="facts">
       <div><dt>Season</dt><dd>March &ndash; October 2027</dd></div>
       <div><dt>Departures</dt><dd>Sixteen &mdash; eight each direction</dd></div>
       <div><dt>Duration</dt><dd>11 days, 10 nights, Chicago &#8646; Santa Monica</dd></div>
@@ -703,7 +464,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="book" id="book">
   <div class="wrap">
-    <span class="label">Book your seat</span>
+
+    <span class="script">Book your seat</span>
     <h2>Pick your departure.</h2>
     <p class="lede">A $500 deposit per person holds your seat. When a departure fills, it&rsquo;s full.</p>
     <div class="dir-block">
@@ -717,13 +479,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="book-help">Questions before you book? Call or text <a href="tel:+18887743465">1-888-774-DINK</a>
       or email <a href="mailto:hello@pickle.tours">hello@pickle.tours</a>.
       <noscript>All departures are also at <a href="https://pickletours.touramigo.com/">pickletours.touramigo.com</a>.</noscript></p>
+  
   </div>
 </section>
 
 <section class="live" id="info-session">
   <div class="wrap">
+
     <div>
-      <span class="label">Every Tuesday, live</span>
+      <span class="script">Every Tuesday, live</span>
       <h2>Ask us anything.</h2>
       <p>Join Mike and Trina, your tour directors, for a free 45-minute info session on Zoom. We walk
         the route day by day, cover what's included, pricing and how to reserve, and answer every
@@ -732,13 +496,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="widget-slot" data-pdt-webinar="info-session">
       <noscript><p><a class="btn" href="https://us06web.zoom.us/meeting/register/nJAW2r6mQCalLkIpCCsKOA">Register on Zoom</a></p></noscript>
     </div>
+  
   </div>
 </section>
 
-
 <section class="faq" id="faq">
   <div class="wrap">
-    <span class="label">Questions</span>
+
+    <span class="script">Questions</span>
     <h2>Before you ask.</h2>
     <div class="faq-group">
       <h3>The pickleball</h3>
@@ -816,15 +581,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>A normal suitcase plus your paddle bag. The coach has full-size luggage bays, and baggage handling at every hotel is covered.</p>
       </details>
     </div>
+  
   </div>
 </section>
 
 <section class="waitlist" id="waitlist">
-  <div class="wrap">
-    <span class="label">Not ready to book?</span>
+  <img class="wl-l" src="/assets/kimp/canyon.webp" alt="" loading="lazy">
+  <img class="wl-r" src="/assets/kimp/pier-sunset.webp" alt="" loading="lazy">
+  <div class="wrap center">
+    <span class="script">Not ready to book?</span>
     <h2>Get on the list.</h2>
-    <p class="lede">Get the brochure and hear first about new departures. No deposit, no obligation.</p>
-    <form name="waitlist" method="POST" action="/api/waitlist">
+    <p class="body-lg">Get the brochure and hear first about new departures. No deposit, no obligation.</p>
+    <div class="form-card">
+<form name="waitlist" method="POST" action="/api/waitlist">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
       <input type="hidden" name="club" id="club-code" value="">
       <div class="field">
@@ -834,8 +603,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="btn" type="submit">Get the brochure</button>
       <p class="fine">We'll only email you about the tour. Unsubscribe anytime.</p>
     </form>
+    </div>
   </div>
 </section>
+</main>
 
 <footer class="pdt-foot">
   <div class="wrap pdt-grid">
@@ -848,6 +619,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </footer>
+<script>
+  /* Westbound / eastbound cards */
+  (function(){
+    var tabs=[].slice.call(document.querySelectorAll('.dir-toggle [role=tab]'));
+    function sel(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus()}
+    tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(t)});
+      t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();sel(tabs[(i+d+tabs.length)%tabs.length],true)}})});
+    /* the bus label follows the first card in view */
+    var lab=document.getElementById('bus-day');
+    [].forEach.call(document.querySelectorAll('.cards'),function(c){c.addEventListener('scroll',function(){
+      var cs=c.querySelectorAll('.day-card'),best=cs[0];for(var k=0;k<cs.length;k++){if(cs[k].offsetLeft-c.scrollLeft>-80){best=cs[k];break}}
+      lab.textContent=best.querySelector('.day-pill').textContent},{passive:true})});
+  })();
+</script>
+
 
 <script>
   /* Club short links (route66pickleballtour.com/<club>) land here with utm_medium=club&utm_content=<CODE>.
@@ -879,46 +666,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 </script>
-<script>
-  (function(){
-    /* draw the route line when a strip becomes visible */
-    var strips=[].slice.call(document.querySelectorAll('.strip'));
-    function draw(el){el.classList.add('drawn')}
-    if(!('IntersectionObserver' in window)){strips.forEach(draw)}
-    else{
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){if(e.isIntersecting){draw(e.target);io.unobserve(e.target)}})
-      },{threshold:.4});
-      strips.forEach(function(el){io.observe(el)});
-    }
 
-    /* direction tabs */
-    var tabs=[].slice.call(document.querySelectorAll('.tab'));
-    if(!tabs.length){return}
-    function select(tab,focus){
-      tabs.forEach(function(t){
-        var panel=document.getElementById(t.getAttribute('aria-controls'));
-        var on=(t===tab);
-        t.setAttribute('aria-selected',on?'true':'false');
-        t.tabIndex=on?0:-1;
-        if(panel){panel.hidden=!on}
-      });
-      var p=document.getElementById(tab.getAttribute('aria-controls'));
-      if(p){var st=p.querySelector('.strip'); if(st){draw(st)}}
-      if(focus){tab.focus()}
-    }
-    tabs.forEach(function(t,i){
-      t.addEventListener('click',function(){select(t,false)});
-      t.addEventListener('keydown',function(e){
-        var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
-        if(!d){return}
-        e.preventDefault();
-        select(tabs[(i+d+tabs.length)%tabs.length],true);
-      });
-    });
-  })();
-</script>
 
 <script src="https://pickle.tours/webinars/widget.js" defer></script>
+
 </body>
 </html>
