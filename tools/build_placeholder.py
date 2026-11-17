@@ -44,7 +44,7 @@ page = f"""{head}<body>
     <img class="badge" src="/assets/route66-pickleball-tour-logo.png" alt="Route 66 Pickleball Tour" width="804" height="883">
     <p class="label">Chicago &#8644; Santa Monica &middot; 16 departures in 2027</p>
     <h1>7 days on the road.<br>4 days in paradise.</h1>
-    <p class="lede">The Great American Pickleball Road Trip: eleven days by motorcoach from the BEGIN sign in Chicago
+    <p class="lede">Eleven days by motorcoach from the BEGIN sign in Chicago
       to the end of the Santa Monica Pier, with courts booked for our group most mornings.
       512 player seats in 2027, and there will not be more.</p>
     <a class="btn" href="#waitlist">Join the waitlist</a>
