@@ -6,7 +6,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Merriweather',Georgia,serif;color:var(--ink);font-size:18px;line-height:1.65;
+  body{font-family:'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);font-size:18px;line-height:1.65;
     background:#F5DFA9 url(/assets/kimp/parchment.webp) center top/100% auto repeat-y;-webkit-font-smoothing:antialiased}
   img{display:block;max-width:100%}
   a{color:inherit}

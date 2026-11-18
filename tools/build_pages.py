@@ -52,7 +52,7 @@ EXTRA_CSS = """
   .picks{margin-bottom:2.6rem}
   .picks h2{font-size:clamp(1.5rem,3vw,1.9rem);border-top:3px solid var(--green);padding-top:1rem;margin-bottom:1rem}
   .pick{padding:.9rem 0;border-bottom:1px solid var(--rule)}
-  .pick h3{font-size:1.15rem;color:var(--ink);margin-bottom:.15rem;font-family:'Merriweather',Georgia,serif;font-weight:700}
+  .pick h3{font-size:1.15rem;color:var(--ink);margin-bottom:.15rem;font-family:'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;font-weight:700}
   .pick .where{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.92rem;color:var(--clay);display:block;margin-bottom:.25rem}
   .pick p{font-size:16.5px;line-height:1.65;margin:0}
   .tips{background:#FFFFFF;border-left:6px solid var(--optic);padding:1.2rem 1.4rem;margin:2rem 0}
@@ -125,7 +125,7 @@ def page(path, title, desc, body, jsonld, fonts=""):
 <script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@700&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@700&family=Barlow+Condensed:wght@600;700&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">
 {font_link}<style>{BASE_CSS}{EXTRA_CSS}</style>
 {GTM_HEAD}
 </head>

@@ -3,7 +3,7 @@ import { ClubRecord, esc, discountText, CODE_SUFFIX, TERMS_VERSION, normCodePref
 import type { Signup } from "../functions/club-signup.mts";
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@700&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">`;
+<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@700&family=Barlow+Condensed:wght@600;700&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">`;
 
 const GTM_HEAD = `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M5XQRL26');</script>`;
 
@@ -11,7 +11,7 @@ const CSS = `
 :root{--green:#04421D;--green-line:#1C6234;--optic:#E7FB20;--blue:#30BCED;--orange:#FC5130;--white:#FFFAFF;
 --chalk:#F7F5EE;--ink:#14211F;--muted:#6B7A70;--rule:#DBD7CA}
 *{box-sizing:border-box}html,body{margin:0}
-body{background:var(--chalk);color:var(--ink);font:400 18px/1.75 Merriweather,Georgia,serif}
+body{background:var(--chalk);color:var(--ink);font:400 18px/1.75 'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif}
 a{color:var(--green)}
 .label{font:700 .95rem/1.4 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em}
 h1,h2{font-family:'Passion One','Arial Black',sans-serif;font-weight:700;line-height:1.1;margin:.2em 0 .4em}
@@ -39,7 +39,7 @@ background:var(--optic);color:var(--green);padding:1rem 1.8rem;box-shadow:4px 4p
 .btn.dark{background:var(--green);color:var(--optic)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 form.stack{display:grid;gap:1rem;max-width:36rem}
-input[type=text],input[type=email],input[type=tel]{width:100%;font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
+input[type=text],input[type=email],input[type=tel]{width:100%;font:400 1rem 'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)}
 .field{display:grid;gap:.35rem}
 .hint{font-size:15px;color:var(--muted);margin:0}
 .ok{color:var(--green-line);font-weight:700}.bad{color:#B3261E;font-weight:700}
@@ -185,7 +185,7 @@ ${error ? `<p class="bad" role="alert" style="margin-top:1.4rem">${esc(error)}</
     ${f("address_1", "Street address", "text", 'required maxlength="200" autocomplete="address-line1"')}
     ${f("city", "City", "text", 'required maxlength="80" autocomplete="address-level2"')}
     <div class="field"><label class="label" for="state">State</label>
-      <select id="state" name="state" required style="font:400 1rem Merriweather,serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)">
+      <select id="state" name="state" required style="font:400 1rem 'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;padding:.75rem .9rem;border:2px solid var(--green);background:var(--white)">
         <option value="">Choose…</option>${Object.keys(STATES).map(opt).join("")}</select></div>
     ${f("zip", "ZIP code", "text", 'required inputmode="numeric" maxlength="10" autocomplete="postal-code"')}
     ${f("contact_name", "Your name", "text", 'required maxlength="120" autocomplete="name"')}
