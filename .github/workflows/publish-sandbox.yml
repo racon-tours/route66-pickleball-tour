@@ -1,4 +1,5 @@
-# Publishes this branch to the password-protected preview at sandbox.pickle.tours/r66/
+# Publishes this branch to the password-protected preview at sandbox.pickle.tours/r66/,
+# plus the pickle.tours "sandbox" branch at sandbox.pickle.tours/pdt/ (run it from the Actions tab after changing that branch)
 # every time the "sandbox" branch changes (or on demand from the Actions tab), with no Mac involved.
 #
 # Credentials come from 1Password (vault RaconTours) through the read-only service account:
@@ -40,8 +41,16 @@ jobs:
             favicon.svg
             assets/pdt-wordmark-green.png
           sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: racon-tours/pickle-tours
+          ref: sandbox
+          token: ${{ env.GH_READ_TOKEN }}
+          path: ptsb
       - name: Build
-        run: bash ps/build-public.sh r66 pt
+        run: |
+          python3 -m pip install --quiet markdown
+          bash ps/build-public.sh r66 pt ptsb
       - name: Publish to Cloudflare
         working-directory: ps
         run: npx --yes wrangler@4 deploy
