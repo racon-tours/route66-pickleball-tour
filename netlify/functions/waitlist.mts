@@ -60,16 +60,18 @@ export default async (req: Request, _context: Context) => {
     return redirect(`${THANKS}?status=error`);
   }
 
-  const kind = clean(form.get("kind"), 20) === "news" ? "news" : "brochure";
+  const rawKind = clean(form.get("kind"), 20);
+  // waitlist (live home page): same Prospective Guests group, but the thanks page says "on the list", not "brochure".
+  const kind = rawKind === "news" ? "news" : rawKind === "waitlist" ? "waitlist" : "brochure";
   const wantsNews = kind === "news" || clean(form.get("news"), 10) === "yes";
   const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "204488616319124956"; // "Pickle Dot Tours News" group
   if (wantsNews && !newsGroup) console.error("waitlist: MAILERLITE_NEWS_GROUP_ID not set; news opt-in not recorded");
   const groups = [
-    ...(kind === "brochure" ? [groupId] : []),
+    ...(kind !== "news" ? [groupId] : []),
     ...(wantsNews && newsGroup ? [newsGroup] : []),
   ];
   if (!groups.length) return redirect(`${THANKS}?for=news&status=error`);
-  const forWhat = kind === "news" ? "news" : wantsNews ? "both" : "brochure";
+  const forWhat = kind === "news" ? "news" : kind === "waitlist" ? (wantsNews ? "both" : "waitlist") : wantsNews ? "both" : "brochure";
 
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
   // Visitors who arrived by a club's short link post its members' code, so the signup is credited to that club.
