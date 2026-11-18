@@ -62,7 +62,7 @@ export default async (req: Request, _context: Context) => {
 
   const kind = clean(form.get("kind"), 20) === "news" ? "news" : "brochure";
   const wantsNews = kind === "news" || clean(form.get("news"), 10) === "yes";
-  const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "";
+  const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "204488616319124956"; // "Pickle Dot Tours News" group
   if (wantsNews && !newsGroup) console.error("waitlist: MAILERLITE_NEWS_GROUP_ID not set; news opt-in not recorded");
   const groups = [
     ...(kind === "brochure" ? [groupId] : []),
