@@ -31,8 +31,8 @@ ld = [
         "Chicago, Illinois","St. Louis, Missouri","Grand Lake, Oklahoma","Amarillo, Texas",
         "Albuquerque, New Mexico","Flagstaff, Arizona","Coachella Valley, California","Santa Monica, California"])]},
   "subjectOf":{"@type":"WebPage","url":SITE+"/"},
-  "offers":{"@type":"Offer","url":SITE+"/#waitlist","availability":"https://schema.org/PreOrder",
-            "description":"Join the 2027 waitlist for first access to dates and pricing."}}
+  "offers":{"@type":"Offer","url":SITE+"/#book","availability":"https://schema.org/InStock",
+            "description":"Every 2027 departure is on sale now."}}
 ]
 ld_tag = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False, separators=(",",":")) + '</script>'
 

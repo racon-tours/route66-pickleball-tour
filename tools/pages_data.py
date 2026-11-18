@@ -298,7 +298,7 @@ FAQ = [
     ("What happens if I'm knocked out of the bracket?", "You keep playing. Every session has clinics with local pros and rec play, and nobody's tour ends in elimination."),
   ]),
   ("Who's coming", [
-    ("How big is the group?", "Thirty-two players per departure, plus just a few non-playing companions, and your tour directors, Mike and Trina, who ride every departure."),
+    ("How big is the group?", "Thirty-two players per departure, plus just a few non-playing companions and two tour directors."),
     ("Can a non-player come along?", "Yes. There are just a few non-playing companion seats on each departure. Companions ride, stay, eat and celebrate with the group; they just skip the draw."),
     ("Is there a minimum age?", "Every guest must be 21 or older."),
     ("I'm traveling solo. Will you match me with a roommate?", "We don't match roommates. Solo travelers book a single room, or bring a friend and share."),
@@ -310,7 +310,7 @@ FAQ = [
     ("What's the motorcoach like?", "A full-size luxury motorcoach with a restroom on board and room to spread out."),
   ]),
   ("Booking and payment", [
-    ("How much is the deposit?", "$500 per person holds your seat. It's fully refundable for 3 days after you book; after that it's non-refundable."),
+    ("How does the deposit work?", "A deposit holds your seat, and you'll see the amount when you pick your departure. The full cancellation schedule is in our <a href=\"https://pickle.tours/booking-terms\">booking terms</a>."),
     ("When is the balance due?", "75 days before departure. Inside 60 days, payments are non-refundable."),
     ("What if I can't go?", "You can hand your seat to someone else up to 45 days before departure. Full details are in our <a href=\"https://pickle.tours/booking-terms\">booking terms</a>."),
     ("Should I buy travel insurance?", "We recommend it, though it isn't required. A policy that covers trip cancellation and medical care away from home is the one to look for."),

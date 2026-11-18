@@ -92,7 +92,7 @@ def nav():
       <a href="/westbound">Westbound</a>
       <a href="/eastbound">Eastbound</a>
       <a href="/faq">FAQ</a>
-      <a class="btn small clay" href="/#waitlist">Join the Waitlist</a>
+      <a class="btn small clay" href="/#book">Book Now</a>
     </div>
   </div>
 </nav>"""
@@ -148,9 +148,10 @@ def cta():
     return """<section class="cta-band">
   <div class="wrap">
     <h2>Eleven days, Chicago to the Pacific.</h2>
-    <p>Ten pickleball sessions, historic hotels and the whole of Route 66. Waitlist members hear the dates first.</p>
-    <a class="btn" href="/#waitlist">Join the 2027 waitlist</a>
+    <p>Ten pickleball sessions, historic hotels and the whole of Route 66. Every 2027 departure is on sale now.</p>
+    <a class="btn" href="/#book">Book now</a>
     <a class="btn clay" href="/#info-session">Join a Tuesday info session</a>
+    <a class="btn" href="/#brochure">Get the brochure</a>
   </div>
 </section>"""
 

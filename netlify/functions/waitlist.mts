@@ -1,7 +1,14 @@
 import type { Context, Config } from "@netlify/functions";
 
 /**
- * Waitlist form → MailerLite.
+ * Brochure form + Pickle Dot Tours News signup → MailerLite.
+ *
+ * Two kinds of post (field "kind"):
+ *   brochure (default, and what older forms send) — joins the brochure group
+ *     (MAILERLITE_GROUP_ID), whose automation emails the brochure. If the
+ *     "news" box was ticked (news=yes) it also joins the News group.
+ *   news — the footer signup on both sites; joins only the News group.
+ * The thanks page gets ?for=brochure|news|both so it can say the right thing.
  *
  * The form on index.html posts here natively (no JS required). On success the
  * subscriber (email only) is upserted into the Route 66 Waitlist group as
@@ -13,7 +20,8 @@ import type { Context, Config } from "@netlify/functions";
  *
  * Env vars (Netlify → Project configuration → Environment variables):
  *   MAILERLITE_API_KEY   — secret; a MailerLite API token
- *   MAILERLITE_GROUP_ID  — the group new signups land in
+ *   MAILERLITE_GROUP_ID       — brochure group (its automation sends the brochure)
+ *   MAILERLITE_NEWS_GROUP_ID  — "Pickle Dot Tours News" group (general prospecting list)
  */
 
 const THANKS = "/thanks.html";
@@ -52,6 +60,17 @@ export default async (req: Request, _context: Context) => {
     return redirect(`${THANKS}?status=error`);
   }
 
+  const kind = clean(form.get("kind"), 20) === "news" ? "news" : "brochure";
+  const wantsNews = kind === "news" || clean(form.get("news"), 10) === "yes";
+  const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "";
+  if (wantsNews && !newsGroup) console.error("waitlist: MAILERLITE_NEWS_GROUP_ID not set; news opt-in not recorded");
+  const groups = [
+    ...(kind === "brochure" ? [groupId] : []),
+    ...(wantsNews && newsGroup ? [newsGroup] : []),
+  ];
+  if (!groups.length) return redirect(`${THANKS}?for=news&status=error`);
+  const forWhat = kind === "news" ? "news" : wantsNews ? "both" : "brochure";
+
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
   // Visitors who arrived by a club's short link post its members' code, so the signup is credited to that club.
   const club = clean(form.get("club"), 20).toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -66,7 +85,7 @@ export default async (req: Request, _context: Context) => {
       },
       body: JSON.stringify({
         email,
-        groups: [groupId],
+        groups,
         ...(club ? { fields: { referral_club: club } } : {}),
         status: "active",
         ip_address: ip,
@@ -77,14 +96,14 @@ export default async (req: Request, _context: Context) => {
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.error(`waitlist: MailerLite ${res.status} ${body.slice(0, 500)}`);
-      return redirect(`${THANKS}?status=error`);
+      return redirect(`${THANKS}?for=${forWhat}&status=error`);
     }
   } catch (err) {
     console.error("waitlist: request failed", err);
-    return redirect(`${THANKS}?status=error`);
+    return redirect(`${THANKS}?for=${forWhat}&status=error`);
   }
 
-  return redirect(THANKS);
+  return redirect(`${THANKS}?for=${forWhat}`);
 };
 
 export const config: Config = {

@@ -55,12 +55,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main>
     <img class="badge" src="/assets/route66-pickleball-tour-logo.png"
          alt="Route 66 Pickleball Tour" width="804" height="883">
-    <p class="label">You're in</p>
-    <h1>You&rsquo;re on the list.</h1>
-    <p class="body">You'll get the 2027 departure dates and prices by email
-      48 hours before booking opens to anyone else.</p>
-    <p class="body">Add hello@pickle.tours to your contacts so we don't land in spam. Until then —
-      work on that third-shot drop.</p>
+    <p class="label" id="t-label">On its way</p>
+    <h1 id="t-head">Check your inbox.</h1>
+    <p class="body" id="t-brochure">Your Route 66 Pickleball Tour brochure is on its way to your email.</p>
+    <p class="body" id="t-news" hidden>You&rsquo;re signed up for Pickle Dot Tours News: new tours and departures, now and then.</p>
+    <p class="body">Every 2027 departure is on sale now. Ready to pick a date, or want to talk it through first?</p>
+    <p class="body"><a class="btn" href="/#book">Book now</a> <a class="btn" href="/#info-session">Join an info session</a></p>
+    <p class="body">Add hello@pickle.tours to your contacts so we don't land in spam.</p>
     <p class="body" id="fallback" hidden>One thing: our mailing list didn't answer just now, so if you
       don't hear from us within a week, email <a href="mailto:hello@pickle.tours">hello@pickle.tours</a>
       and we'll add you by hand.</p>
@@ -68,6 +69,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </main>
   <script>
     if(/[?&]status=error/.test(location.search)){document.getElementById('fallback').hidden=false}
+    var w=(location.search.match(/[?&]for=(\w+)/)||[])[1];
+    if(w==='news'||w==='both'){document.getElementById('t-news').hidden=false}
+    if(w==='news'){document.getElementById('t-brochure').hidden=true;document.getElementById('t-label').textContent="You're in";document.getElementById('t-head').textContent="You\u2019re on the list."}
   </script>
 <footer class="pdt-legal-foot" style="position:relative;z-index:1;background:#04421D;color:#FFFAFF;font-family:Merriweather,Georgia,serif;font-size:15px;line-height:1.6;padding:1.5rem 1.25rem;margin-top:3rem">
   <div style="max-width:760px;margin:0 auto">
