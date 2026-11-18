@@ -1,0 +1,46 @@
+# Publishes this branch to the password-protected preview at sandbox.pickle.tours/r66/
+# every time the "sandbox" branch changes (or on demand from the Actions tab), with no Mac involved.
+#
+# Credentials come from 1Password (vault RaconTours) through the read-only service account:
+#   repo secret OP_SERVICE_ACCOUNT_TOKEN             — the service account's token (Mike adds it once)
+#   op://RaconTours/Cloudflare - Sandbox Deploy/credential — Cloudflare API token, Workers edit
+#   op://RaconTours/GitHub - Sandbox Read/credential      — GitHub token, read-only on pickle-sandbox + pickle-tours
+name: Publish sandbox
+on:
+  push:
+    branches: [sandbox]
+  workflow_dispatch:
+concurrency: { group: publish-sandbox, cancel-in-progress: true }
+permissions: { contents: read }
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load credentials from 1Password
+        uses: 1password/load-secrets-action@v2
+        with: { export-env: true }
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          CLOUDFLARE_API_TOKEN: op://RaconTours/Cloudflare - Sandbox Deploy/credential
+          GH_READ_TOKEN: op://RaconTours/GitHub - Sandbox Read/credential
+      - uses: actions/checkout@v4
+        with: { ref: sandbox, path: r66 }
+      - uses: actions/checkout@v4
+        with: { repository: racon-tours/pickle-sandbox, token: '${{ env.GH_READ_TOKEN }}', path: ps }
+      - uses: actions/checkout@v4
+        with:
+          repository: racon-tours/pickle-tours
+          ref: directors-page
+          token: ${{ env.GH_READ_TOKEN }}
+          path: pt
+          sparse-checkout: |
+            directors.html
+            directors-thanks.html
+            favicon.svg
+            assets/pdt-wordmark-green.png
+          sparse-checkout-cone-mode: false
+      - name: Build
+        run: bash ps/build-public.sh r66 pt
+      - name: Publish to Cloudflare
+        working-directory: ps
+        run: npx --yes wrangler@4 deploy
