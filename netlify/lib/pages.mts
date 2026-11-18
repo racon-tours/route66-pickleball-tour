@@ -3,7 +3,7 @@ import { ClubRecord, esc, discountText, CODE_SUFFIX, TERMS_VERSION, normCodePref
 import type { Signup } from "../functions/club-signup.mts";
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">`;
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Yesteryear&display=swap" rel="stylesheet">`;
 
 const GTM_HEAD = `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M5XQRL26');</script>`;
 
@@ -14,7 +14,7 @@ const CSS = `
 body{background:var(--chalk);color:var(--ink);font:400 18px/1.75 Merriweather,Georgia,serif}
 a{color:var(--green)}
 .label{font:700 .95rem/1.4 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em}
-h1,h2{font-family:'Alfa Slab One',serif;font-weight:400;line-height:1.1;margin:.2em 0 .4em}
+h1,h2{font-family:'Archivo Black','Arial Black',sans-serif;font-weight:400;line-height:1.1;margin:.2em 0 .4em}
 .script{font-family:Yesteryear,cursive;font-size:clamp(28px,4vw,40px);color:var(--optic);line-height:1}
 .wrap{max-width:62rem;margin:0 auto;padding:0 16px}
 .notice{background:var(--orange);color:var(--white);text-align:center;padding:.7rem 16px;font:700 1rem/1.4 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase}
@@ -24,12 +24,12 @@ h1,h2{font-family:'Alfa Slab One',serif;font-weight:400;line-height:1.1;margin:.
 .marks{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
 .marks img{height:96px;width:auto}
 .clublogo{height:96px;max-width:200px;object-fit:contain;background:var(--white);padding:8px;border-radius:6px}
-.monogram{height:96px;min-width:96px;padding:0 14px;display:grid;place-items:center;background:var(--white);color:var(--green);border-radius:6px;font:400 2rem 'Alfa Slab One',serif}
+.monogram{height:96px;min-width:96px;padding:0 14px;display:grid;place-items:center;background:var(--white);color:var(--green);border-radius:6px;font:400 2rem 'Archivo Black','Arial Black',sans-serif}
 .x{font:700 1.6rem 'Barlow Condensed';color:var(--optic)}
 .hero h1{font-size:clamp(2rem,5.5vw,3.6rem);margin:0}
 .hero p{max-width:40rem;margin:0}
 .codebox{display:inline-grid;gap:.2rem;background:var(--optic);color:var(--green);padding:1rem 1.4rem;box-shadow:5px 5px 0 var(--ink);justify-self:start}
-.codebox b{font:400 clamp(2rem,6vw,3rem)/1 'Alfa Slab One',serif;letter-spacing:.04em}
+.codebox b{font:400 clamp(2rem,6vw,3rem)/1 'Archivo Black','Arial Black',sans-serif;letter-spacing:.04em}
 section{padding:3rem 0;border-bottom:1px solid var(--rule)}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;margin-top:1.4rem}
 .fact{background:var(--white);border:2px solid var(--green);padding:1rem 1.2rem}
