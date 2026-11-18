@@ -3,8 +3,8 @@
 #
 # Credentials come from 1Password (vault RaconTours) through the read-only service account:
 #   repo secret OP_SERVICE_ACCOUNT_TOKEN             — the service account's token (Mike adds it once)
-#   op://RaconTours/Cloudflare - Sandbox Deploy/credential — Cloudflare API token, Workers edit
-#   op://RaconTours/GitHub - Sandbox Read/credential      — GitHub token, read-only on pickle-sandbox + pickle-tours
+#   op://RaconTours/Cloudflare API Token/credential + /Account ID — needs Workers Scripts edit + Workers Routes edit
+#   op://RaconTours/GitHub Personal Access Token/token          — reads pickle-sandbox + pickle-tours
 name: Publish sandbox
 on:
   push:
@@ -21,8 +21,9 @@ jobs:
         with: { export-env: true }
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          CLOUDFLARE_API_TOKEN: op://RaconTours/Cloudflare - Sandbox Deploy/credential
-          GH_READ_TOKEN: op://RaconTours/GitHub - Sandbox Read/credential
+          CLOUDFLARE_API_TOKEN: op://RaconTours/Cloudflare API Token/credential
+          CLOUDFLARE_ACCOUNT_ID: op://RaconTours/Cloudflare API Token/Account ID
+          GH_READ_TOKEN: op://RaconTours/GitHub Personal Access Token/token
       - uses: actions/checkout@v4
         with: { ref: sandbox, path: r66 }
       - uses: actions/checkout@v4
