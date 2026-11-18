@@ -1,7 +1,7 @@
 import type { Context, Config } from "@netlify/functions";
 
 /**
- * Brochure form + Pickle Dot Tours News signup → MailerLite.
+ * Brochure form + Postcards from the Kitchen signup → MailerLite.
  *
  * Two kinds of post (field "kind"):
  *   brochure (default, and what older forms send) — joins the brochure group
@@ -21,7 +21,7 @@ import type { Context, Config } from "@netlify/functions";
  * Env vars (Netlify → Project configuration → Environment variables):
  *   MAILERLITE_API_KEY   — secret; a MailerLite API token
  *   MAILERLITE_GROUP_ID       — brochure group (its automation sends the brochure)
- *   MAILERLITE_NEWS_GROUP_ID  — "Pickle Dot Tours News" group (general prospecting list)
+ *   MAILERLITE_NEWS_GROUP_ID  — "Postcards from the Kitchen" group (general prospecting list)
  */
 
 const THANKS = "/thanks.html";
@@ -62,7 +62,7 @@ export default async (req: Request, _context: Context) => {
 
   const kind = clean(form.get("kind"), 20) === "news" ? "news" : "brochure";
   const wantsNews = kind === "news" || clean(form.get("news"), 10) === "yes";
-  const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "204488616319124956"; // "Pickle Dot Tours News" group
+  const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "204488616319124956"; // "Postcards from the Kitchen" group
   if (wantsNews && !newsGroup) console.error("waitlist: MAILERLITE_NEWS_GROUP_ID not set; news opt-in not recorded");
   const groups = [
     ...(kind === "brochure" ? [groupId] : []),
