@@ -386,25 +386,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lede">Eleven days by motorcoach from the BEGIN sign in Chicago
       to the end of the Santa Monica Pier, with courts booked for our group most mornings.
       512 player seats in 2027, and there will not be more.</p>
-    <a class="btn" href="#waitlist">Join the waitlist</a>
+    <p class="ph-ctas"><a class="btn" href="https://pickletours.touramigo.com/">Book now</a> <a class="btn" href="https://pickle.tours/webinars/info-session">Join an info session</a> <a class="btn" href="#brochure">Get the brochure</a></p>
   </div>
 </header>
 
-<section class="waitlist" id="waitlist">
+<section class="waitlist" id="brochure"><span id="waitlist"></span>
   <div class="wrap">
-    <span class="label">First serve priority</span>
-    <h2>Get on the list.</h2>
-    <p class="lede">Waitlist members see the dates and the price first, and choose a departure before
-      booking opens to the public. No deposit, no obligation.</p>
-    <form name="waitlist" method="POST" action="/api/waitlist">
+    <span class="label">Every 2027 departure is on sale now</span>
+    <h2>Take the brochure home.</h2>
+    <p class="lede">The whole road in one download: the route both ways, the hotels, how the courts
+      and brackets work, and what&rsquo;s included.</p>
+    <form name="brochure" method="POST" action="/api/waitlist" data-lead="brochure">
+      <input type="hidden" name="kind" value="brochure">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
       <input type="hidden" name="club" id="club-code" value="">
       <div class="field">
         <label for="email">Email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
       </div>
-      <button class="btn" type="submit">Join the 2027 waitlist</button>
-      <p class="fine">We'll only email you about the tour. Unsubscribe anytime.</p>
+      <label class="optin" style="display:flex;gap:.6rem;align-items:flex-start;font-size:16px"><input type="checkbox" name="news" value="yes" style="width:20px;height:20px;flex:none;margin-top:3px"> <span>Also send me Pickle Dot Tours News: new tours and departures, now and then.</span></label>
+      <button class="btn" type="submit">Send me the brochure</button>
+      <p class="fine">We&rsquo;ll email your brochure link. News only if you tick the box. Unsubscribe anytime.</p>
     </form>
   </div>
 </section>
@@ -413,6 +415,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap pdt-grid">
     <p class="pdt-legal">Pickle Dot Tours | St. Louis, MO USA<br>CA Registered Seller of Travel CST 2175274-50<br>WA Seller of Travel UBI 606297094<br>FL Seller of Travel Pending<br>Registration as a Seller of Travel does not constitute approval by the State of California.<br>&copy; 2026 Nichols &amp; Company</p>
     <div class="pdt-right">
+      <div class="news-foot"><style>.news-foot{margin:0 0 18px}.news-foot b{display:block;font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:1.2rem;margin-bottom:6px}.news-foot form{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;background:none;padding:0;border:0;box-shadow:none;color:inherit}.news-foot input[type=email]{font:inherit;padding:10px 14px;border:1px solid rgba(0,0,0,.15);border-radius:10px;background:#FFFAFF;min-width:220px;width:auto;color:#04421D}.news-foot button{font-family:'Barlow Condensed',Arial,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:0;border-radius:30px;padding:10px 20px;background:#30BCED;color:#fff;cursor:pointer}.news-foot .hp,.news-foot .sr{position:absolute;left:-9999px}@media(max-width:760px){.news-foot form{justify-content:flex-start}}</style><b>Pickle Dot Tours News</b>
+        <form method="POST" action="/api/waitlist" data-lead="news"><input type="hidden" name="kind" value="news"><input class="hp" type="text" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr" for="news-email">Email for Pickle Dot Tours News</label><input id="news-email" type="email" name="email" required autocomplete="email" placeholder="Your email"><button type="submit">Sign me up</button></form></div>
       <nav aria-label="Footer"><a href="/">The Route 66 tour</a> <a href="https://pickle.tours/advisors">Travel advisors</a> <a href="https://pickle.tours/#partners">Clubs</a> <a href="https://pickle.tours/blog/">Blog</a> <a href="https://pickle.tours/privacy">Privacy</a> <a href="https://pickle.tours/terms">Terms</a></nav>
       <p class="sot-phone"><a href="mailto:hello@pickle.tours">hello@pickle.tours</a> &middot; <a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
       <img class="pdt-logo" src="/assets/pdt-wordmark-optic.png" alt="Pickle Dot Tours" width="640" height="164">
