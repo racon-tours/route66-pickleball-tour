@@ -139,6 +139,8 @@
   .vig-l{left:-6%} .vig-r{right:-6%}
   .passage{font-family:'Passion One','Arial Black',sans-serif;color:var(--red);font-size:clamp(1.8rem,3.3vw,4rem);line-height:1.15;max-width:1080px;margin:clamp(28px,6vw,110px) auto 36px}
   .kicker{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;font-size:clamp(1.1rem,1.6vw,2rem)}
+  .otr-lede{max-width:760px;margin:0 auto}
+  .otr-preview{font-weight:700;margin-top:12px;color:var(--red)}
   .quarry{width:clamp(280px,30vw,560px);margin:36px auto 0}
 
   /* pickleball */
@@ -315,7 +317,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="country" id="country">
   <img class="vig vig-l" src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy">
   <img class="vig vig-r" src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy">
-  <div class="wrap center">
+  <div class="wrap center" id="on-the-road">
+    <span class="script">Ride along by email</span>
+    <h2>On the Road</h2>
+    <p class="route-sub">11 days on the Route 66 Pickleball Tour</p>
+    <p class="body-lg otr-lede">One email a morning, day by day, westbound and eastbound side by side: the hotels, the courts, the landmarks and the long lunches. See the whole tour before you choose your departure.</p>
+    <div class="form-card">
+    <form name="on-the-road" method="POST" action="/api/waitlist" data-lead="on-the-road" data-preview="1">
+      <input type="hidden" name="kind" value="ontheroad">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <input type="hidden" name="club" value="">
+      <div class="field">
+        <label for="otr-email">Your email</label>
+        <input id="otr-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <button class="btn" type="submit">Start the tour</button>
+      <p class="fine">One email a day until Day 11, then you decide whether to hear from us again. Unsubscribe anytime.</p>
+      <p class="otr-preview" hidden>Preview only: signups switch on once the On the Road emails are live.</p>
+    </form>
+    </div>
     <img class="quarry" src="/assets/kimp/quarry.webp" alt="" loading="lazy">
   </div>
 </section>
@@ -553,5 +573,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script src="https://pickle.tours/webinars/widget.js" defer></script>
 
+<script>
+  /* On the Road form is a preview until the MailerLite series is live (Technical card: don't switch forms on before the series exists) */
+  (function(){var f=document.querySelector('form[data-preview="1"]');if(!f)return;
+    f.addEventListener('submit',function(e){e.preventDefault();var m=f.querySelector('.otr-preview');if(m)m.hidden=false;});})();
+</script>
 </body>
 </html>
