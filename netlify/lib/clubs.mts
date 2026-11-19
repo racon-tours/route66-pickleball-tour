@@ -80,9 +80,10 @@ export const BLOCKED_STATES = stateSet("CLUB_BLOCKED_STATES", "HI");
 
 /**
  * Clubs in these states register normally but stay on hold (link off, no code, no kit) until the state's
- * seller-of-travel registration clears (FL, Nov 2026). Env: CLUB_HELD_STATES. Release with clubs.py release.
+ * seller-of-travel registration clears. None right now (FL cleared 19 Nov 2026, ST150318). Env: CLUB_HELD_STATES.
+ * Release with clubs.py release.
  */
-export const HELD_STATES = stateSet("CLUB_HELD_STATES", "FL");
+export const HELD_STATES = stateSet("CLUB_HELD_STATES", "");
 
 export function isProduction(ctx: any): boolean {
   return ctx?.deploy?.context === "production";

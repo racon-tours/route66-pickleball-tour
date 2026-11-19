@@ -20,7 +20,7 @@ import { registerPage, registeredPage, notFound } from "../lib/pages.mts";
  *           moves the card to Onboarded; the Mac sync (~/dev/pickle-ops/clubs/clubs.py) then emails the kit.
  *
  * BLOCKED_STATES (HI): "not available in your state yet" page; nothing is saved, Mike gets an email to follow up.
- * HELD_STATES (FL): saved as "held" — the name and code are reserved but the link stays off and no kit goes out
+ * HELD_STATES (none now; FL cleared 19 Nov 2026): saved as "held" — the name and code are reserved but the link stays off and no kit goes out
  * until the state registration clears; the Trello card is marked HOLD.
  */
 
