@@ -151,12 +151,14 @@
   .tourn h2{padding-right:clamp(0px,16vw,300px)}
   .paddles{position:absolute;right:var(--pad);top:-20px;width:clamp(120px,14vw,260px);transform:rotate(8deg)}
   .notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);max-width:1300px;margin:48px auto 0;align-items:stretch}
-  .note{position:relative;background:#FFF6E3;border:2px solid var(--tan);border-radius:24px;padding:clamp(28px,3vw,48px);
-    box-shadow:0 12px 28px rgba(90,50,10,.16)}
-  .note.n1{border-top:10px solid var(--red)} .note.n2{border-top:10px solid var(--blue)}
-  .note .num{display:inline-block;font-family:'Passion One','Arial Black',sans-serif;font-weight:700;color:#fff;background:var(--red);
-    border-radius:999px;padding:.1em .7em;font-size:clamp(1.1rem,1.3vw,1.4rem);margin-bottom:14px}
-  .note.n2 .num{background:var(--blue)}
+  .note{position:relative;background:url(/assets/kimp/paper-card.webp) center/100% 100%;padding:clamp(32px,3.4vw,56px);
+    filter:drop-shadow(0 12px 18px rgba(90,50,10,.28));transform:rotate(-1.5deg)}
+  .note.n2{transform:rotate(1.5deg)}
+  .note .num{position:absolute;top:clamp(14px,1.6vw,26px);right:clamp(18px,2vw,32px);font-family:'Passion One','Arial Black',sans-serif;
+    font-weight:700;color:#fff;font-size:clamp(3rem,4.4vw,4.8rem);line-height:1;
+    text-shadow:0 2px 0 rgba(120,70,20,.35),0 0 2px rgba(120,70,20,.5)}
+  .note h3{padding-right:clamp(64px,6vw,110px)}
+  .court-band{display:block;width:min(100%,1400px);height:auto;margin:clamp(24px,3vw,48px) auto 0}
   .note h3{margin:0 0 16px;font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.1}
   .note p{font-size:clamp(1rem,1.1vw,1.2rem);margin-bottom:1em}
 
@@ -344,6 +346,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </article>
     </div>
   </div>
+  <img class="court-band" src="/assets/kimp/pickleball-court.webp" width="1208" height="506" alt="Four players mid-rally on a resort court at sunset, palms and desert mountains behind" loading="lazy">
 </section>
 
 <section class="country" id="country">
