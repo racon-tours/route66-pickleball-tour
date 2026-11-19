@@ -76,7 +76,7 @@ function clubMark(c: ClubRecord) {
 
 const FOOT = `<footer class="pdt-foot">
   <div class="wrap pdt-grid">
-    <p class="pdt-legal">Pickle Dot Tours | St. Louis, MO USA<br>CA Registered Seller of Travel CST 2175274-50<br>WA Seller of Travel UBI 606297094<br>FL Seller of Travel Reg. No. ST150318<br>Registration as a Seller of Travel does not constitute approval by the State of California.<br>&copy; 2026 Nichols &amp; Company</p>
+    <p class="pdt-legal">Pickle Dot Tours | St. Louis, MO USA<br>CA Registered Seller of Travel CST 2175274-50<br>WA Seller of Travel UBI 606297094<br>Fla. Seller of Travel Reg. No. ST150318<br>Registration as a Seller of Travel does not constitute approval by the State of California.<br>&copy; 2026 Nichols &amp; Company</p>
     <div class="pdt-right">
       <nav aria-label="Footer"><a href="mailto:hello@pickle.tours">hello@pickle.tours</a> <a href="https://pickle.tours/terms">Terms</a> <a href="https://pickle.tours/privacy">Privacy</a></nav>
       <p class="sot-phone"><a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
