@@ -150,14 +150,15 @@
   .tourn .wrap{position:relative}
   .tourn h2{padding-right:clamp(0px,16vw,300px)}
   .paddles{position:absolute;right:var(--pad);top:-20px;width:clamp(120px,14vw,260px);transform:rotate(8deg)}
-  .notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);max-width:1300px;margin:48px auto 0}
-  .note{position:relative;background:url(/assets/kimp/paper-torn.webp) center/100% 100% no-repeat;padding:clamp(36px,4vw,64px) clamp(28px,3.4vw,56px) clamp(48px,5vw,80px);
-    filter:drop-shadow(0 10px 18px rgba(90,50,10,.3))}
-  .note.n1{transform:rotate(-2deg)} .note.n2{transform:rotate(2deg)}
-  .note .num{position:absolute;right:28px;top:14px;font-family:'Passion One','Arial Black',sans-serif;color:#fff;font-size:clamp(2.6rem,3.4vw,4rem);
-    -webkit-text-stroke:2px rgba(160,100,40,.35)}
-  .note h3{margin:0 70px 18px 0}
-  .note p{font-size:clamp(.95rem,1vw,1.15rem);margin-bottom:1em}
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);max-width:1300px;margin:48px auto 0;align-items:stretch}
+  .note{position:relative;background:#FFF6E3;border:2px solid var(--tan);border-radius:24px;padding:clamp(28px,3vw,48px);
+    box-shadow:0 12px 28px rgba(90,50,10,.16)}
+  .note.n1{border-top:10px solid var(--red)} .note.n2{border-top:10px solid var(--blue)}
+  .note .num{display:inline-block;font-family:'Passion One','Arial Black',sans-serif;font-weight:700;color:#fff;background:var(--red);
+    border-radius:999px;padding:.1em .7em;font-size:clamp(1.1rem,1.3vw,1.4rem);margin-bottom:14px}
+  .note.n2 .num{background:var(--blue)}
+  .note h3{margin:0 0 16px;font-size:clamp(1.5rem,2vw,2.2rem);line-height:1.1}
+  .note p{font-size:clamp(1rem,1.1vw,1.2rem);margin-bottom:1em}
 
   /* comfort */
   .comforts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,32px);margin-top:48px;text-align:left}
