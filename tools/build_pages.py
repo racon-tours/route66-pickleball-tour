@@ -151,7 +151,6 @@ def cta():
     <p>Ten pickleball sessions, historic hotels and the whole of Route 66. Every 2027 departure is on sale now.</p>
     <a class="btn" href="/#book">Book now</a>
     <a class="btn clay" href="/#info-session">Join a Tuesday info session</a>
-    <a class="btn" href="/#brochure">Get the brochure</a>
   </div>
 </section>"""
 
