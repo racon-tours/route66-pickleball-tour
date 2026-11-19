@@ -320,30 +320,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
-<section class="country" id="country">
-  <div class="wrap center" id="on-the-road">
-    <img class="quarry quarry-top" src="/assets/kimp/quarry.webp" alt="" loading="lazy">
-    <span class="script">On the Road</span>
-    <h2>Not Quite Ready to Jump In?</h2>
-    <p class="route-sub">Experience the Route 66 Pickleball Tour by Email</p>
-    <p class="body-lg otr-lede">12 daily emails detailing each day of the Route 66 Pickleball Tour. The hotels, the landmarks, the roadside wonders and posh resorts &mdash; you&rsquo;ll get a day-by-day story of a uniquely stress-free adventure with zero roughing it required.</p>
-    <div class="form-card">
-    <form name="on-the-road" method="POST" action="/api/waitlist" data-lead="on-the-road" data-preview="1">
-      <input type="hidden" name="kind" value="ontheroad">
-      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
-      <input type="hidden" name="club" value="">
-      <div class="field">
-        <label for="otr-email">Your email</label>
-        <input id="otr-email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <button class="btn" type="submit">Show Me the Tour</button>
-      <p class="fine">Unsubscribe anytime.</p>
-      <p class="otr-preview" hidden>Preview only: signups switch on once the On the Road emails are live.</p>
-    </form>
-    </div>
-  </div>
-</section>
-
 <section class="tourn" id="tournament">
   <div class="wrap">
     <img class="paddles" src="/assets/kimp/paddles.webp" alt="" loading="lazy">
@@ -366,6 +342,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           rating gate, no minimum, no partner required. By the pier you'll have played with (and
           against) all 31 of your new friends.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="country" id="country">
+  <div class="wrap center" id="on-the-road">
+    <img class="quarry quarry-top" src="/assets/kimp/quarry.webp" alt="" loading="lazy">
+    <span class="script">On the Road</span>
+    <h2>Not Quite Ready to Jump In?</h2>
+    <p class="route-sub">Experience the Route 66 Pickleball Tour by Email</p>
+    <p class="body-lg otr-lede">12 daily emails detailing each day of the Route 66 Pickleball Tour. The hotels, the landmarks, the roadside wonders and posh resorts &mdash; you&rsquo;ll get a day-by-day story of a uniquely stress-free adventure with zero roughing it required.</p>
+    <div class="form-card">
+    <form name="on-the-road" method="POST" action="/api/waitlist" data-lead="on-the-road" data-preview="1">
+      <input type="hidden" name="kind" value="ontheroad">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <input type="hidden" name="club" value="">
+      <div class="field">
+        <label for="otr-email">Your email</label>
+        <input id="otr-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <button class="btn" type="submit">Show Me the Tour</button>
+      <p class="fine">Unsubscribe anytime.</p>
+      <p class="otr-preview" hidden>Preview only: signups switch on once the On the Road emails are live.</p>
+    </form>
     </div>
   </div>
 </section>
