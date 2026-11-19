@@ -98,6 +98,7 @@
 
   /* route */
   .route-head{align-items:end;margin-bottom:24px}
+  .route-map{margin:8px 0 0}.route-map img{display:block;width:100%;height:auto;border-radius:24px}
   .dir-toggle{display:flex;justify-content:center;gap:4px;margin:24px auto 48px}
   .dir-toggle button{font:inherit;border:2px solid var(--tan);background:#FFEBC9;color:var(--ink);border-radius:16px;padding:14px 48px;cursor:pointer;
     box-shadow:0 6px 0 rgba(150,90,30,.25)}
@@ -299,115 +300,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="route-head">
       <span class="script">The route</span><h2>The legendary Mother Road &mdash; you choose the direction.</h2>
     </div>
-    <div class="dir-toggle" role="tablist" aria-label="Choose a direction">
-      <button role="tab" id="tab-wb" aria-controls="cards-wb" aria-selected="true"><b>Westbound</b><span>Chicago to Santa Monica</span></button>
-      <button role="tab" id="tab-eb" aria-controls="cards-eb" aria-selected="false" tabindex="-1"><b>Eastbound</b><span>Santa Monica to Chicago</span></button>
-    </div>
+    <figure class="route-map">
+      <img src="/assets/kimp/route-infographic.webp" srcset="/assets/kimp/route-infographic-1200.webp 1200w, /assets/kimp/route-infographic.webp 2400w" sizes="(max-width: 1400px) 100vw, 1400px"
+           width="2400" height="1350" loading="lazy"
+           alt="Map of the tour: 7 days on the Mother Road through Santa Monica, Flagstaff, Albuquerque, Amarillo, St. Louis and Chicago, plus 4 days in paradise at La Quinta Resort &amp; Club in Palm Springs and Shangri-La Resort on Grand Lake, Oklahoma">
+    </figure>
   </div>
-  <div class="road" aria-hidden="true"><div class="bus"><img src="/assets/kimp/bus-top.webp" alt=""><span id="bus-day">Day 1</span></div></div>
-  <div class="cards" id="cards-wb" role="tabpanel" aria-labelledby="tab-wb" tabindex="0">
-        <a class="day-card" href="/cities/chicago">
-          <span class="day-photo"><img src="/assets/kimp/card-chicago.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 1</span></span>
-          <span class="day-city">Chicago, Illinois</span>
-          <span class="day-title">The BEGIN sign</span>
-          <span class="day-detail">a sidewalk photo on Adams Street, then the Kickoff Reception</span>
-          <span class="day-tag">Arrival day</span>
-        </a>
-        <a class="day-card" href="/cities/st-louis">
-          <span class="day-photo"><img src="/assets/kimp/card-stlouis.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 2</span></span>
-          <span class="day-city">St. Louis, Missouri</span>
-          <span class="day-title">The Mississippi</span>
-          <span class="day-detail">indoor courts on the way out of Chicago, the big river by evening</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-        <a class="day-card" href="/cities/grand-lake">
-          <span class="day-photo"><img src="/assets/kimp/card-grandlake.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 3&ndash;4</span></span>
-          <span class="day-city">Grand Lake, Oklahoma</span>
-          <span class="day-title">The dome</span>
-          <span class="day-detail">a Missouri morning on the way down, then two nights at the lake</span>
-          <span class="day-tag">Three sessions</span>
-        </a>
-        <a class="day-card" href="/cities/amarillo">
-          <span class="day-photo"><img src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 5</span></span>
-          <span class="day-city">Amarillo, Texas</span>
-          <span class="day-title">Cadillac Ranch</span>
-          <span class="day-detail">spray paint at golden hour, steak afterwards</span>
-          <span class="day-tag">The road all day</span>
-        </a>
-        <a class="day-card" href="/cities/albuquerque">
-          <span class="day-photo"><img src="/assets/kimp/card-albuquerque.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 6</span></span>
-          <span class="day-city">Albuquerque, New Mexico</span>
-          <span class="day-title">Green chile</span>
-          <span class="day-detail">a boutique hotel in a restored 1926 railway hospital, and dinner off the old road</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-        <a class="day-card" href="/cities/flagstaff">
-          <span class="day-photo"><img src="/assets/kimp/card-flagstaff.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 7</span></span>
-          <span class="day-city">Flagstaff, Arizona</span>
-          <span class="day-title">Ponderosa country</span>
-          <span class="day-detail">seven thousand feet, pines and painted desert on the horizon</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-        <a class="day-card" href="/cities/la-quinta">
-          <span class="day-photo"><img src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 8&ndash;9</span></span>
-          <span class="day-city">La Quinta, California</span>
-          <span class="day-title">Under the lights</span>
-          <span class="day-detail">a Flagstaff morning, then the old road down to two nights in the desert</span>
-          <span class="day-tag">Three sessions &middot; finals</span>
-        </a>
-  </div>
-  <div class="cards" id="cards-eb" role="tabpanel" aria-labelledby="tab-eb" tabindex="0" hidden>
-        <a class="day-card" href="/cities/santa-monica">
-          <span class="day-photo"><img src="/assets/kimp/pier-sunset.webp" alt="" loading="lazy" style="object-position:center 60%"><span class="day-pill">Day 1</span></span>
-          <span class="day-city">Santa Monica, California</span>
-          <span class="day-title">End of the Trail</span>
-          <span class="day-detail">the sign on the pier in the last of the light, then the Kickoff Reception</span>
-          <span class="day-tag">Arrival day</span>
-        </a>
-        <a class="day-card" href="/cities/la-quinta">
-          <span class="day-photo"><img src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 2&ndash;3</span></span>
-          <span class="day-city">La Quinta, California</span>
-          <span class="day-title">Under the lights</span>
-          <span class="day-detail">a morning in Los Angeles, then east into the desert for two nights</span>
-          <span class="day-tag">Three sessions</span>
-        </a>
-        <a class="day-card" href="/cities/flagstaff">
-          <span class="day-photo"><img src="/assets/kimp/card-flagstaff.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 4</span></span>
-          <span class="day-city">Flagstaff, Arizona</span>
-          <span class="day-title">Ponderosa country</span>
-          <span class="day-detail">Kingman's museum and Angel Delgadillo's barbershop in Seligman, then the climb</span>
-          <span class="day-tag">The road all day</span>
-        </a>
-        <a class="day-card" href="/cities/albuquerque">
-          <span class="day-photo"><img src="/assets/kimp/card-albuquerque.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 5</span></span>
-          <span class="day-city">Albuquerque, New Mexico</span>
-          <span class="day-title">Green chile</span>
-          <span class="day-detail">a high-country morning, the Wigwam Motel at Holbrook, a boutique hotel in a restored 1926 railway hospital</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-        <a class="day-card" href="/cities/amarillo">
-          <span class="day-photo"><img src="/assets/kimp/vignette-ranch.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 6</span></span>
-          <span class="day-city">Amarillo, Texas</span>
-          <span class="day-title">Cadillac Ranch</span>
-          <span class="day-detail">the Blue Swallow at Tucumcari, then spray paint at golden hour</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-        <a class="day-card" href="/cities/grand-lake">
-          <span class="day-photo"><img src="/assets/kimp/card-grandlake.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Days 7&ndash;8</span></span>
-          <span class="day-city">Grand Lake, Oklahoma</span>
-          <span class="day-title">The dome</span>
-          <span class="day-detail">an Amarillo morning, the Blue Whale on the way in, two nights at the lake</span>
-          <span class="day-tag">Three sessions &middot; finals</span>
-        </a>
-        <a class="day-card" href="/cities/st-louis">
-          <span class="day-photo"><img src="/assets/kimp/card-stlouis.webp" alt="" loading="lazy" style="object-position:center"><span class="day-pill">Day 9</span></span>
-          <span class="day-city">St. Louis, Missouri</span>
-          <span class="day-title">Challenge Day</span>
-          <span class="day-detail">one last morning on the resort courts, then the Ozarks and the big river</span>
-          <span class="day-tag">Morning session</span>
-        </a>
-  </div>
-  <p class="wrap scroll-hint">&larr; Scroll for every stop &rarr; &nbsp;Tap a card for that city&rsquo;s neighborhood guide.</p>
 </section>
 
 <section class="country" id="country">
@@ -642,23 +540,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 </footer>
-<script>
-  /* Westbound / eastbound cards */
-  (function(){
-    var tabs=[].slice.call(document.querySelectorAll('.dir-toggle [role=tab]'));
-    function sel(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
-      document.getElementById(x.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus()}
-    tabs.forEach(function(t,i){t.addEventListener('click',function(){sel(t)});
-      t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();sel(tabs[(i+d+tabs.length)%tabs.length],true)}})});
-    /* the bus label follows the first card in view */
-    var lab=document.getElementById('bus-day');
-    [].forEach.call(document.querySelectorAll('.cards'),function(c){c.addEventListener('scroll',function(){
-      var cs=c.querySelectorAll('.day-card'),best=cs[0];for(var k=0;k<cs.length;k++){if(cs[k].offsetLeft-c.scrollLeft>-80){best=cs[k];break}}
-      lab.textContent=best.querySelector('.day-pill').textContent},{passive:true})});
-  })();
-</script>
-
-
 <script>
   /* Club short links (route66pickleballtour.com/<club>) land here with utm_medium=club&utm_content=<CODE>.
      Keep the code for the visit so a waitlist signup is credited to the club in MailerLite. */
