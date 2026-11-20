@@ -180,8 +180,9 @@
   .facts dd{padding:26px 32px;font-size:clamp(1rem,1.2vw,1.4rem)}
 
   /* booking (Tour Amigo) */
-  .book .wrap>.script{justify-self:start}
-  .book-ranch{display:block;width:clamp(180px,22vw,460px);height:auto;margin:0 auto 30px;grid-column:1/-1}
+  .book-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .book-ranch{display:block;flex:none;width:clamp(160px,20vw,420px);height:auto}
+  @media(max-width:640px){.book-ranch{width:120px}}
   .book .lede{font-size:clamp(1.05rem,1.25vw,1.5rem);margin-bottom:28px}
   .dir-block{background:rgba(255,240,210,.9);border-radius:18px;padding:24px;margin-bottom:28px;box-shadow:0 6px 18px rgba(120,70,20,.15)}
   .dir-block h3{margin-bottom:14px}
@@ -373,9 +374,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <section class="book" id="book">
   <div class="wrap">
 
-    <img class="book-ranch" src="/assets/kimp/vignette-ranch.webp" alt="" aria-hidden="true" loading="lazy">
-    <span class="script">Book your seat</span>
-    <h2>Pick your departure.</h2>
+    <div class="book-head">
+      <div><span class="script">Book your seat</span>
+      <h2>Pick your departure.</h2></div>
+      <img class="book-ranch" src="/assets/kimp/vignette-ranch.webp" alt="" aria-hidden="true" loading="lazy">
+    </div>
     <p class="lede">Every 2027 departure is on sale now. Pick your date and direction below. When a departure fills, it&rsquo;s full.</p>
     <div class="dir-block">
       <h3>Westbound <span>Chicago to Santa Monica &middot; leaves Sundays</span></h3>
