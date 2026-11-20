@@ -180,9 +180,9 @@
   .facts dd{padding:26px 32px;font-size:clamp(1rem,1.2vw,1.4rem)}
 
   /* booking (Tour Amigo) */
-  .book-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .book-ranch{display:block;flex:none;width:clamp(160px,20vw,420px);height:auto}
-  @media(max-width:640px){.book-ranch{width:120px}}
+  .book-head,.sec-head{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left}
+  .book-ranch,.sec-head-art{display:block;flex:none;width:clamp(160px,20vw,420px);height:auto}
+  @media(max-width:640px){.book-ranch,.sec-head-art{width:120px}}
   .book .lede{font-size:clamp(1.05rem,1.25vw,1.5rem);margin-bottom:28px}
   .dir-block{background:rgba(255,240,210,.9);border-radius:18px;padding:24px;margin-bottom:28px;box-shadow:0 6px 18px rgba(120,70,20,.15)}
   .dir-block h3{margin-bottom:14px}
@@ -355,14 +355,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <img class="court-band" src="/assets/kimp/pickleball-court.webp" width="1208" height="395" alt="Four players mid-rally on a resort court at sunset, palms and desert mountains behind" loading="lazy">
 </section>
 
-<div class="vig-band" aria-hidden="true">
-  <img class="vig vig-r" src="/assets/kimp/vignette-bus.webp" alt="" loading="lazy">
-</div>
-
 <section class="comfort" id="comfort">
   <div class="wrap center">
-    <span class="script">Comfort off the court</span>
-    <h2>Eleven days, zero roughing it.</h2>
+    <div class="sec-head">
+      <div><span class="script">Comfort off the court</span>
+      <h2>Eleven days, zero roughing it.</h2></div>
+      <img class="sec-head-art" src="/assets/kimp/vignette-bus.webp" alt="" aria-hidden="true" loading="lazy">
+    </div>
     <div class="comforts">
       <article class="c-card"><img src="/assets/kimp/comfort-hotel.webp" alt="" loading="lazy"><h3>Historic hotels</h3><p>Every night in a hotel with a story &mdash; a lakeside resort under a landmark dome, a boutique hotel in a restored 1926 railway hospital, a desert resort with courts under the lights.</p></article>
       <article class="c-card"><img src="/assets/kimp/comfort-coach.webp" alt="" loading="lazy"><h3>The motorcoach</h3><p>A full-size luxury motorcoach with a restroom on board and room to spread out. The windows do the entertaining.</p></article>
