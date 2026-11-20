@@ -15,7 +15,7 @@ CITIES = [
     "slug": "chicago", "name": "Chicago", "state": "Illinois", "font": "Monoton",
     "title": "Chicago: where to eat, drink and explore near the Chicago Athletic Association",
     "desc": "Your Route 66 Pickleball Tour night in Chicago: what's inside the Chicago Athletic Association, plus the best food, blues and sights a short walk from Millennium Park.",
-    "when": [("Westbound", "Day 1 (Sunday) — arrival, Kickoff Reception 6:00–8:00 pm"),
+    "when": [("Westbound", "Day 1 (Sunday) — arrival, Kickoff Reception 7:00–9:00 pm"),
              ("Eastbound", "Day 10 (Thursday) — Farewell Happy Hour, then your last night")],
     "hotels": [("Chicago Athletic Association", "12 S. Michigan Ave., across from Millennium Park",
                 "An 1893 Venetian Gothic gentlemen's club turned hotel. The Route 66 BEGIN sign is a three-minute walk away.")],
@@ -264,7 +264,7 @@ CITIES = [
 
 # Day-by-day pages. (day, weekday, overnight city slug, headline, what happens, play, along the way)
 WESTBOUND = [
-  ("Day 1", "Sunday", "chicago", "The BEGIN sign", "Arrive in Chicago, a sidewalk photo at the sign on Adams Street, then the Kickoff Reception at the hotel, 6:00–8:00 pm.", "Arrival day", []),
+  ("Day 1", "Sunday", "chicago", "The BEGIN sign", "Arrive in Chicago, a sidewalk photo at the sign on Adams Street, then the Kickoff Reception at the hotel, 7:00–9:00 pm.", "Arrival day", []),
   ("Day 2", "Monday", "st-louis", "The Mississippi", "Indoor courts on the way out of Chicago, then down the old road across Illinois to the big river by evening.", "Morning session", ["Route 66 Hall of Fame & Museum, Pontiac, Illinois"]),
   ("Days 3–4", "Tuesday–Wednesday", "grand-lake", "The dome", "A Missouri morning on the courts, the Ozarks, then two nights at the lake.", "Three sessions", ["Gary's Gay Parita, a restored Sinclair station in Ash Grove, Missouri"]),
   ("Day 5", "Thursday", "amarillo", "Cadillac Ranch", "The road all day across Oklahoma and into Texas, then spray paint at golden hour.", "The road all day", ["The Blue Whale of Catoosa, Oklahoma", "POPS 66 Soda Ranch and its 66-foot neon bottle, Arcadia, Oklahoma"]),
@@ -318,7 +318,7 @@ FAQ = [
   ("Getting there and home", [
     ("Where does the tour start and finish?", "It's a one-way tour. Westbound starts in Chicago and finishes in Santa Monica; eastbound runs the other way. Fly into one end and home from the other."),
     ("Which airports should I use?", "Chicago O'Hare or Midway at the Chicago end, and LAX at the Santa Monica end."),
-    ("When should I arrive?", "Day 1 is arrival day, with the Kickoff Reception at the hotel from 6:00 to 8:00 pm. Plan to land that afternoon. The motorcoach leaves on the morning of Day 2."),
+    ("When should I arrive?", "Day 1 is arrival day, with the Kickoff Reception at the hotel from 7:00 to 9:00 pm. Plan to land that afternoon. The motorcoach leaves on the morning of Day 2."),
     ("When can I fly home?", "The Farewell Happy Hour is on the last evening, and your final hotel night is included, so book your flight home for Day 11. Want a few extra days at either end? Tell us and we'll help you add nights."),
     ("How much luggage can I bring?", "A normal suitcase plus your paddle bag. The motorcoach has full-size luggage bays, and baggage handling at every hotel is covered."),
   ]),
