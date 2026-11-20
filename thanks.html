@@ -67,6 +67,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a class="btn" href="/">Back to the road</a>
   </main>
   <script>
+    if(/[?&]for=ontheroad/.test(location.search)){document.getElementById('t-label').textContent="You're on the road";document.getElementById('t-head').textContent="You\u2019re signed up.";document.getElementById('t-news').textContent="On the Road is 12 daily emails, one for each day of the Route 66 Pickleball Tour. Watch your inbox."}
     if(/[?&]status=error/.test(location.search)){document.getElementById('fallback').hidden=false}
   </script>
 <footer class="pdt-legal-foot" style="position:relative;z-index:1;background:#04421D;color:#FFFAFF;font-family:'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.6;padding:1.5rem 1.25rem;margin-top:3rem">

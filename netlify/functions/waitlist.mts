@@ -8,6 +8,8 @@ import type { Context, Config } from "@netlify/functions";
  *     (MAILERLITE_GROUP_ID), whose automation emails the brochure. If the
  *     "news" box was ticked (news=yes) it also joins the News group.
  *   news — the footer signup on both sites; joins only the News group.
+ *   ontheroad — the "On the Road" sign-up on the home page; joins only the
+ *     On the Road group (MAILERLITE_OTR_GROUP_ID), which will carry the 12-email series.
  * The thanks page gets ?for=brochure|news|both so it can say the right thing.
  *
  * The form on index.html posts here natively (no JS required). On success the
@@ -60,16 +62,19 @@ export default async (req: Request, _context: Context) => {
     return redirect(`${THANKS}?status=error`);
   }
 
-  const kind = clean(form.get("kind"), 20) === "news" ? "news" : "brochure";
+  const rawKind = clean(form.get("kind"), 20);
+  const kind = rawKind === "news" ? "news" : rawKind === "ontheroad" ? "ontheroad" : "brochure";
+  const otrGroup = Netlify.env.get("MAILERLITE_OTR_GROUP_ID") || "204621344764069579"; // "On the Road (Route 66 email series)"
   const wantsNews = kind === "news" || clean(form.get("news"), 10) === "yes";
   const newsGroup = Netlify.env.get("MAILERLITE_NEWS_GROUP_ID") || "204488616319124956"; // "Postcards from the Kitchen" group
   if (wantsNews && !newsGroup) console.error("waitlist: MAILERLITE_NEWS_GROUP_ID not set; news opt-in not recorded");
   const groups = [
     ...(kind === "brochure" ? [groupId] : []),
+    ...(kind === "ontheroad" ? [otrGroup] : []),
     ...(wantsNews && newsGroup ? [newsGroup] : []),
   ];
   if (!groups.length) return redirect(`${THANKS}?for=news&status=error`);
-  const forWhat = kind === "news" ? "news" : wantsNews ? "both" : "brochure";
+  const forWhat = kind === "news" ? "news" : kind === "ontheroad" ? "ontheroad" : wantsNews ? "both" : "brochure";
 
   const ip = req.headers.get("x-nf-client-connection-ip") ?? undefined;
   // Visitors who arrived by a club's short link post its members' code, so the signup is credited to that club.

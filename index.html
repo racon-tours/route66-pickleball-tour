@@ -398,7 +398,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <p class="route-sub">Experience the Route 66 Pickleball Tour by Email</p>
     <p class="body-lg otr-lede">12 daily emails detailing each day of the Route 66 Pickleball Tour. The hotels, the landmarks, the roadside wonders and posh resorts &mdash; you&rsquo;ll get the day-by-day account of a uniquely stress-free adventure you&rsquo;ll never forget.</p>
     <div class="form-card">
-    <form name="on-the-road" method="POST" action="/api/waitlist" data-lead="on-the-road" data-preview="1">
+    <form name="on-the-road" method="POST" action="/api/waitlist" data-lead="on-the-road">
       <input type="hidden" name="kind" value="ontheroad">
       <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
       <input type="hidden" name="club" value="">
@@ -408,7 +408,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
       <button class="btn" type="submit">Show Me the Tour</button>
       <p class="fine">Unsubscribe anytime.</p>
-      <p class="otr-preview" hidden>Preview only: signups switch on once the On the Road emails are live.</p>
     </form>
     </div>
     </div>
@@ -571,10 +570,5 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script src="https://pickle.tours/webinars/widget.js" defer></script>
 
-<script>
-  /* On the Road form is a preview until the MailerLite series is live (Technical card: don't switch forms on before the series exists) */
-  (function(){var f=document.querySelector('form[data-preview="1"]');if(!f)return;
-    f.addEventListener('submit',function(e){e.preventDefault();var m=f.querySelector('.otr-preview');if(m)m.hidden=false;});})();
-</script>
 </body>
 </html>
