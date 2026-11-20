@@ -207,11 +207,7 @@
   .faq summary{cursor:pointer;font-weight:700;font-size:clamp(1rem,1.1vw,1.25rem)}
   .faq details p{margin-top:10px}
 
-  /* closing bookends: Chicago (start) and Santa Monica (finish) */
-  .bookends{position:relative;overflow:hidden;height:clamp(200px,30vw,640px)}
   .waitlist{overflow:hidden;padding-bottom:clamp(120px,14vw,260px)}
-  .wl-l,.wl-r{position:absolute;bottom:0;width:clamp(260px,44vw,900px)}
-  .wl-l{left:-6%} .wl-r{right:-8%}
   .form-card{position:relative;z-index:1;max-width:820px;margin:36px auto 0;background:url(/assets/kimp/paper-torn.webp) center/100% 100%;
     padding:clamp(28px,4vw,56px);filter:drop-shadow(0 10px 20px rgba(80,40,0,.3))}
   .form-card label{display:block;font-family:'Passion One','Arial Black',sans-serif;color:var(--red);font-size:clamp(1.4rem,1.7vw,2rem);margin-bottom:14px}
@@ -223,20 +219,15 @@
   /* footer */
   .form-card label.optin{display:flex;gap:12px;align-items:flex-start;font-family:'Atkinson Hyperlegible Next',system-ui,-apple-system,'Segoe UI',sans-serif;color:inherit;font-size:clamp(.95rem,1.05vw,1.15rem);margin:18px 0 0;text-align:left}
   .form-card label.optin input{width:22px;height:22px;flex:none;margin-top:2px}
-  .news-foot{margin:0 0 18px}
-  .news-foot b{display:block;font-family:'Passion One','Arial Black',sans-serif;font-weight:700;font-size:clamp(1.05rem,1.2vw,1.35rem);margin-bottom:6px}
-  .news-foot form{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-  .news-foot input[type=email]{font:inherit;padding:10px 14px;border:0;border-radius:10px;background:#FFF6E3;min-width:220px}
-  .news-foot button{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;border:0;border-radius:30px;padding:10px 20px;background:var(--blue);color:#fff;cursor:pointer}
-  .news-foot .hp{position:absolute;left:-9999px}
-  @media(max-width:760px){.news-foot form{justify-content:flex-start}}
-  .pdt-foot{background:url(/assets/kimp/paper-wide.webp) center/100% 100%;padding:clamp(32px,4vw,64px) 0;font-size:clamp(.85rem,.95vw,1.05rem)}
+  .pdt-foot{background:var(--ink);color:#E4E2D9;padding:clamp(32px,4vw,64px) 0;font-size:clamp(.85rem,.95vw,1.05rem)}
   .pdt-grid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
   .pdt-right{text-align:right}
   .pdt-right nav a,.sot-phone a{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;text-decoration:none;
-    font-size:clamp(1rem,1.25vw,1.5rem);color:var(--dark);margin-left:20px}
+    font-size:clamp(1rem,1.25vw,1.5rem);color:#E4E2D9;margin-left:20px}
+  .sot-phone a{color:var(--optic)}
   .pdt-tag{font-family:'Passion One','Arial Black',sans-serif;color:var(--red)}
-  .pdt-logo{display:none}
+  .pdt-logo{display:block;width:220px;max-width:100%;height:auto;margin:16px 0 16px auto}
+  @media (max-width:900px){.pdt-logo{margin-left:0}}
 
   @media (max-width:900px){
     .two,.notes,.comforts,.live .wrap,.pdt-grid{grid-template-columns:1fr}
@@ -249,8 +240,6 @@
     .facts div{grid-template-columns:1fr}.facts dt{border-right:0;padding-bottom:0}
     .pdt-right{text-align:left}.pdt-right nav a{margin:0 16px 0 0}
     .dir-toggle button{padding:12px 18px}
-    .wl-l,.wl-r{width:60vw;opacity:.9}
-    .bookends{height:44vw}
   }
 
 </style>
@@ -536,22 +525,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </section>
 
-<section class="bookends" aria-hidden="true">
-  <img class="wl-l" src="/assets/kimp/chicago-park.webp" alt="" loading="lazy">
-  <img class="wl-r" src="/assets/kimp/pier-sunset.webp" alt="" loading="lazy">
-</section>
 </main>
 
 <footer class="pdt-foot">
   <div class="wrap pdt-grid">
     <p class="pdt-legal">Pickle Dot Tours | St. Louis, MO USA<br>CA Registered Seller of Travel CST 2175274-50<br>WA Seller of Travel UBI 606297094<br>Fla. Seller of Travel Reg. No. ST150318<br>Registration as a Seller of Travel does not constitute approval by the State of California.<br>&copy; 2026 Nichols &amp; Company</p>
     <div class="pdt-right">
-      <div class="news-foot"><b>Postcards from the Kitchen</b>
-        <form method="POST" action="/api/waitlist" data-lead="news"><input type="hidden" name="kind" value="news"><input class="hp" type="text" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label class="visually-hidden" for="news-email" style="position:absolute;left:-9999px">Email for Postcards from the Kitchen</label><input id="news-email" type="email" name="email" required autocomplete="email" placeholder="Your email"><button type="submit">Sign me up</button></form></div>
       <nav aria-label="Footer"><a href="/">The Route 66 tour</a> <a href="https://pickle.tours/advisors">Travel advisors</a> <a href="https://pickle.tours/#partners">Clubs</a> <a href="https://pickle.tours/blog/">Blog</a> <a href="https://pickle.tours/privacy">Privacy</a> <a href="https://pickle.tours/terms">Terms</a></nav>
-      <p class="sot-phone"><a href="mailto:hello@pickle.tours">hello@pickle.tours</a> &middot; <a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
       <img class="pdt-logo" src="/assets/pdt-wordmark-optic.png" alt="Pickle Dot Tours" width="640" height="164">
+      <p class="sot-phone"><a href="mailto:hello@pickle.tours">hello@pickle.tours</a> &middot; <a href="tel:+18887743465">Call or text 1-888-774-DINK</a></p>
     </div>
   </div>
 </footer>
